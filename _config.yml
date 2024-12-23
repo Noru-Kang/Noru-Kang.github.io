@@ -153,11 +153,11 @@ yat:
 #   - about.md
 
 # Page default value
-# defaults:
-#   home:
-#     heading: "Your awesome heading"
-#     subheading: "Your awesome subheading"
-#     banner: "Your image url"
+defaults:
+  home:
+    heading: "Just Noru-Kang"
+    subheading: "데이터 사이언스와 ML/DL 공부, 프로젝트, 논문 리뷰 등을 기록하는 공간"
+    # banner: "Your image url"
 
 # Banner default settings
 # These banner settings are for global banner default, but you can also
