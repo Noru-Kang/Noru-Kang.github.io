@@ -3,9 +3,9 @@
 # -----------------------------------------------------------------------------
 
 title: Noru-Kang # the website title (if blank, full name will be used instead)
-first_name: You
-middle_name: R.
-last_name: Name
+first_name: TaeYoung
+middle_name:
+last_name: Kang
 contact_note: >
   You can even add a little note about which of these is the best way to reach you.
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
@@ -14,9 +14,9 @@ footer_text: >
   Powered by <a href="https://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme.
   Hosted by <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>.
   Photos from <a href="https://unsplash.com" target="_blank">Unsplash</a>.
-keywords: jekyll, jekyll-theme, academic-website, portfolio-website # add your own keywords or leave empty
-lang: en # the language of your site (for example: en, fr, cn, ru, etc.)
-icon: ⚛️ # the emoji used as the favicon (alternatively, provide image name in /assets/img/)
+keywords: 강태영, 태영, 20학번, 2020, CAU-ET, 소프트웨어학부, 응용통계학과, AI, ML, DL, Machine Learning, Deep Learning, Artificial Intelligence, Mathematics, Statistics, Signal Processing, Biomedical Signal, Computer Science, Computer Engineering, CAU, Chung-Ang University, 중앙대, 중앙대학교, 인공지능, 머신러닝, 딥러닝, 수학, 통계학, 신호처리, 생체신호, 컴퓨터공학, 포트폴리오, 기술 블로그, Noru-Kang, 강태영 # add your own keywords or leave empty
+lang: ko # the language of your site (for example: en, fr, cn, ru, etc.)
+icon: 🦌 # the emoji used as the favicon (alternatively, provide image name in /assets/img/)
 
 url: https://Noru-Kang.github.io # the base hostname & protocol for your site
 baseurl:
