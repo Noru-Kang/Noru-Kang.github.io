@@ -36,11 +36,19 @@ latest_posts:
 ---
 
 I major in Applied Statistics and Computer Science, and I am an interested student in Data Science and ML/DL.
+
 <br>
+
 I've been studying various fields, but now I'm going to try to deepen my studies with Data Science and Researching Engineering places.
+
 <br>
+
 I have a strength in Modeling rather than analyzing data
+
+<br>
+
 (It's not that I can't analyze better than others because I majored in statistics.)
+
 <br>
 I'm currently studying in the "CAU-ET" AI lab.
 
