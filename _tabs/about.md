@@ -8,6 +8,7 @@ order: 4
 <!-- {: .prompt-tip } -->
 
 ## General Information
+
 | Name | Kang TaeYoung (강태영) |
 | --- | --- |
 | University | Chung-Ang University (중앙대학교) |
