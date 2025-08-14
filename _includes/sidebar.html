@@ -58,9 +58,8 @@
             https://{{ entry.type }}.com/{{ site[entry.type].username }}
           {%- endcapture -%}
         {% when 'email' %}
-          {% assign email = site.social.email | split: '@' %}
           {%- capture url -%}
-            javascript:location.href = 'mailto:' + ['{{ email[0] }}','{{ email[1] }}'].join('@')
+            #copy-email
           {%- endcapture -%}
         {% when 'rss' %}
           {% assign url = '/feed.xml' | relative_url %}
@@ -69,29 +68,72 @@
       {% endcase %}
 
       {% if url %}
-        <a
-          href="{{ url }}"
-          aria-label="{{ entry.type }}"
-          {% assign link_types = '' %}
-
-          {% unless entry.noblank %}
-            target="_blank"
-            {% assign link_types = 'noopener noreferrer' %}
-          {% endunless %}
-
-          {% if entry.type == 'mastodon' %}
-            {% assign link_types = link_types | append: ' me' | strip %}
-          {% endif %}
-
-          {% unless link_types == empty %}
-            rel="{{ link_types }}"
-          {% endunless %}
-        >
-          <i class="{{ entry.icon }}"></i>
-        </a>
+        {% if entry.type == 'email' %}
+          <a href="#" id="copyEmailBtn" aria-label="email">
+            <i class="{{ entry.icon }}"></i>
+          </a>
+        {% else %}
+          <a
+            href="{{ url }}"
+            aria-label="{{ entry.type }}"
+            {% assign link_types = '' %}
+            {% unless entry.noblank %}
+              target="_blank"
+              {% assign link_types = 'noopener noreferrer' %}
+            {% endunless %}
+            {% if entry.type == 'mastodon' %}
+              {% assign link_types = link_types | append: ' me' | strip %}
+            {% endif %}
+            {% unless link_types == empty %}
+              rel="{{ link_types }}"
+            {% endunless %}
+          >
+            <i class="{{ entry.icon }}"></i>
+          </a>
+        {% endif %}
       {% endif %}
     {% endfor %}
   </div>
   <!-- .sidebar-bottom -->
 </aside>
 <!-- #sidebar -->
+
+<!-- 복사 안내 배너 (body 끝에 배치) -->
+<div id="copyBanner" style="
+  display:none;
+  position:fixed;
+  top:20px;
+  left:50%;
+  transform:translateX(-50%);
+  background:#2a3441;
+  color:#fff;
+  padding:10px 24px;
+  border-radius:20px;
+  box-shadow:0 2px 8px rgba(0,0,0,0.15);
+  font-size:0.9em;
+  z-index:1050;
+  font-weight:500;
+  text-align:center;
+  white-space:nowrap;
+">
+  <i class="fas fa-check-circle" style="margin-right:6px; color:#28a745;"></i>
+  클립보드에 복사되었습니다
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var btn = document.getElementById('copyEmailBtn');
+  var banner = document.getElementById('copyBanner');
+  if(btn && banner){
+    btn.onclick = function(e) {
+      e.preventDefault();
+      navigator.clipboard.writeText("kangty0527@gmail.com").then(function() {
+        banner.style.display = 'block';
+        setTimeout(function() {
+          banner.style.display = 'none';
+        }, 1800);
+      });
+    };
+  }
+});
+</script>
