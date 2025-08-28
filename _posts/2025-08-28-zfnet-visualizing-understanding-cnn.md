@@ -18,16 +18,16 @@ tags: [paper, Computer-Vision, Diagnostic]
 
 ### 📦 추가 자료
 
-…
+...
 
 ## 🧩 방법론
 
-> **by …**
+> **by ...**
 > 
 
-<aside>
 
-</aside>
+
+
 
 ---
 
@@ -35,12 +35,12 @@ tags: [paper, Computer-Vision, Diagnostic]
 
 ## 💡 요약
 
-> **by …**
+> **by ...**
 > 
 
-<aside>
 
-</aside>
+
+
 
 ---
 
@@ -48,11 +48,11 @@ tags: [paper, Computer-Vision, Diagnostic]
 
 ### 📌 제목
 
-<aside>
+
 
 ## Visualizing and Understanding Convolutional Networks
 
-</aside>
+
 
 ---
 
@@ -74,7 +74,7 @@ Large Convolutional Network models have recently demonstrated impressive classif
 
 마지막으로, 우리의 ImageNet 모델은 다른 데이터셋에도 잘 일반화됨을 보였다. softmax 분류기만 새로 학습시키면, Caltech-101과 Caltech-256 데이터셋에서 기존 최고 성능(state-of-the-art)을 능가하는 결과를 달성한다.
 
-<aside>
+
 
 # 0. 초록
 
@@ -91,7 +91,7 @@ Large Convolutional Network models have recently demonstrated impressive classif
 | 모델 구조 | AlexNet 기반, stride/filter 개선, softmax 출력              |
 | 연구 기여 | Deconvnet 시각화, 구조 최적화, ablation, 전이학습           |
 | 평가 결과 | ImageNet에서 AlexNet보다 낮은 오류율, Caltech에서 SOTA 달성 |
-</aside>
+
 
 ---
 
@@ -115,7 +115,7 @@ Finally, we showed how the ImageNet trained model can generalize well to other d
 
 마지막으로, ImageNet에서 학습된 모델이 다른 데이터셋에서도 잘 일반화됨을 보였다. Caltech-101과 Caltech-256의 경우 데이터셋 특성이 충분히 유사하여 기존 최고 성능(state-of-the-art)을 능가했으며, 특히 Caltech-256에서는 상당한 차이로 성능을 앞섰다. 이 결과는 작은 규모(<10^4)의 학습셋을 갖는 벤치마크의 효용성에 의문을 제기한다. 반면 PASCAL 데이터에서는 상대적으로 일반화가 약했는데, 이는 데이터셋 바이어스(dataset bias) 때문일 수 있다(Torralba & Efros, 2011). 그럼에도 불구하고 별도의 조정 없이도 최고 결과와 3.2% 차이에 불과하였다. 만약 이미지 내 다중 객체를 허용하는 다른 손실 함수를 사용한다면 성능은 더 향상될 수 있으며, 이는 곧 객체 탐지(object detection) 문제까지도 자연스럽게 확장될 수 있을 것이다.
 
-<aside>
+
 
 # 6. Disccusion
 
@@ -158,7 +158,7 @@ Finally, we showed how the ImageNet trained model can generalize well to other d
 | 전이 성능   | Caltech-101/256에서 SOTA, PASCAL은 dataset bias로 다소 저하                |
 | 시사점      | 작은 벤치마크의 유효성 재검토, loss function 개선 시 객체 탐지로 확장 가능 |
 
-</aside>
+
 
 ---
 
@@ -202,7 +202,7 @@ We used the standard training and validation images to train a 20-way softmax on
 
 표준 학습 및 검증 이미지를 이용해, ImageNet에서 사전 학습된 ConvNet 위에 20클래스 softmax 분류기를 학습시켰다. 그러나 이 접근은 완벽하지 않은데, PASCAL 이미지는 다중 객체를 포함할 수 있지만 모델은 단일 객체 분류만 수행하기 때문이다.
 
-<aside>
+
 
 ## 데이터셋(생략)
 
@@ -212,7 +212,7 @@ We used the standard training and validation images to train a 20-way softmax on
 | Caltech-101     | 101 클래스, 클래스당 15~30 학습, 최대 50 테스트  | 소규모, 단순 객체         | 전이학습 효과 검증        |
 | Caltech-256     | 256 클래스, 클래스당 15~60 학습                  | 클래스 수 많고 다양성 큼  | 전이학습 강건성 평가      |
 | PASCAL VOC 2012 | 20 클래스, 장면 내 다중 객체 포함                | 복잡한 장면, multi-object | ConvNet 일반화 한계 확인  |
-</aside>
+
 
 ---
 
@@ -242,7 +242,7 @@ ConvNet 모델에 대한 관심이 다시 높아진 이유는 여러 가지 요�
 
 이러한 도구들을 사용하여 우리는 (Krizhevsky et al., 2012)의 아키텍처를 출발점으로 하여 다양한 구조를 탐색하고, ImageNet에서 더 나은 결과를 내는 아키텍처를 발견하였다. 또한 softmax 분류기만 새로 학습시키는 방식으로 다른 데이터셋에 대한 일반화 능력을 탐구하였다. 이는 (Hinton et al., 2006; Bengio et al., 2007; Vincent et al., 2008) 등이 제안한 비지도 사전학습(unsupervised pre-training)과 달리 **지도 사전학습(supervised pre-training)**에 해당한다. ConvNet 특징의 일반화 능력은 (Donahue et al., 2013)의 동시대 연구에서도 탐구되고 있다.
 
-<aside>
+
 
 # 1. 서론
 
@@ -271,7 +271,7 @@ ConvNet 모델에 대한 관심이 다시 높아진 이유는 여러 가지 요�
 | 기여          | 시각화 기법 제안 (deconvnet, occlusion)                                                   |
 | 연구 전략     | AlexNet 구조 → 개선 → 시각화 기반 진단 → 전이 성능 확인                                   |
 | 사전학습 구분 | 지도 사전학습(supervised pre-training) vs 비지도 사전학습(unsupervised pre-training) 대비 |
-</aside>
+
 
 ---
 
@@ -299,7 +299,7 @@ Visualizing features to gain intuition about the network is common practice, but
 
 (Donahue et al., 2013)은 데이터셋 내에서 높은 계층 feature map을 강하게 활성화시키는 이미지 패치를 식별하는 시각화를 제시했다. 우리의 시각화는 단순히 입력 이미지를 잘라내는 것이 아니라, **top-down projection(상향식 투영)**을 통해 특정 feature map을 자극하는 패치 내부의 구조를 드러낸다는 점에서 다르다.
 
-<aside>
+
 
 ## 1.1. 관련 연구
 
@@ -307,12 +307,12 @@ Visualizing features to gain intuition about the network is common practice, but
 - 각 뉴런 유닛의 활성화를 최대화하기 위해서, 이미지 공간에서 각 유닛의 optimal stimulus(최적 자극)을 찾았으나 이는 초기화에 민감하여 유닛의 invariances(불변성)에 대한 정보는 제공하지 못한다. → 이러한 단점을 해결하기 위해 Hessian을 수치적으로 계산하여 일부 통찰을 제공했으나 깊어질수록 통찰을 제공하지 않는다(이차 근사의 단점)
 - 이를 해결하기 위해 비모수적 관점의 불변성 시각화를 제공, 이미지를 잘라내는게 아니라 top-down projection을 통해 특정 피쳐맵을 자극하는 패치 내부의 드러낸다
 
-<aside>
+
 
 **헤세 행렬(Hessian Matrix)**
 
 - 어떤 함수 f(x)의 **Hessian 행렬(Hessian matrix)**은 **이차 도함수(이계 미분)**를 모아놓은 **정방행렬**입니다.
-- 예를 들어, f(x₁, x₂, …, xₙ)이 n차원 변수 x를 가진 스칼라 함수라면, Hessian H는 다음과 같이 정의됩니다.
+- 예를 들어, f(x₁, x₂, ..., xₙ)이 n차원 변수 x를 가진 스칼라 함수라면, Hessian H는 다음과 같이 정의됩니다.
 
 H_ij = ∂²f / ∂xᵢ ∂xⱼ
 
@@ -332,7 +332,7 @@ H =
 - 뉴런의 출력이 입력 변화에 따라 얼마나 민감하게 달라지는지(곡률)를 분석
 - 곡률이 낮은 방향 → 뉴런이 그 방향의 입력 변화에는 **불변(invariant)**
 - 곡률이 높은 방향 → 민감하게 반응 → 중요한 패턴 방향
-</aside>
+
 
 ### 핵심
 
@@ -366,7 +366,7 @@ H =
 | Le et al. (2010)      | Hessian 근사 → 불변성 분석         | 고차원 층의 복잡성 반영 못함  |
 | Donahue et al. (2013) | 패치 식별 → 활성화 해석            | 단순 crop, 구조 설명 한계     |
 | 본 논문               | Deconvnet 기반 top-down projection | 고층 feature 구조적 해석 가능 |
-</aside>
+
 
 ### 📚 2. Approach
 
@@ -429,7 +429,7 @@ H =
     상위 계층에서 하위 계층으로의 투영 시, ConvNet 학습 과정에서 기록된 pooling switch가 사용된다. 이 switch는 특정 입력 이미지에 종속적이므로, 한 개의 activation으로부터 얻은 복원 결과는 원래 입력 이미지의 일부분과 유사하다. 이는 feature가 입력 이미지의 어떤 구조에 의해 자극되는지를 가중치 형태로 보여준다. 모델은 판별적(discriminative)으로 학습되므로, 이 시각화는 결국 입력 이미지에서 **어떤 부분이 판별에 중요했는지**를 드러낸다. 주의할 점은, 이러한 projection은 **생성 모델의 샘플이 아니라 단순히 역투영된 구조**라는 것이다.
     
 
-<aside>
+
 
 # 2. Approach
 
@@ -500,7 +500,7 @@ H =
 | ReLU      | ReLU             | ReLU                     |
 | Filtering | Learned filter   | Transposed filter (flip) |
 | 결과      | Feature map      | 입력 공간 복원           |
-</aside>
+
 
 ### 📚 3. Training Detail
 
@@ -535,7 +535,7 @@ Visualization of the first layer filters during training reveals that a few of t
 
 훈련 중 1층 필터를 시각화한 결과 일부 필터가 지나치게 지배적임을 확인하였다(Fig. 6(a)). 이를 방지하기 위해 RMS 값이 10^-1을 초과하는 필터는 강제로 재정규화(renormalization)하여 해당 반경으로 맞췄다. 이는 특히 입력 이미지가 [-128,128] 범위에 존재하는 1층에서 중요하다. (Krizhevsky et al., 2012)와 마찬가지로 학습 예제를 증강하기 위해 여러 크롭과 플립을 사용했다. 학습은 70 epoch 동안 수행되었으며, GTX580 GPU 한 장에서 약 12일이 소요되었다. 구현은 Krizhevsky et al.(2012)을 기반으로 했다.
 
-<aside>
+
 
 # 3. 학습 세부 사항
 
@@ -564,7 +564,7 @@ Visualization of the first layer filters during training reveals that a few of t
 | 정규화    | Dropout(0.5), filter RMS clipping(0.1)                           |
 | 구조 차이 | AlexNet sparse → dense 연결                                      |
 | 학습 시간 | 70 epoch, GTX580 GPU, 12일                                       |
-</aside>
+
 
 ### 📚 4. Convnet Visualization
 
@@ -574,11 +574,11 @@ Visualization of the first layer filters during training reveals that a few of t
     
     Using the model described in Section 3, we now use the deconvnet to visualize the feature activations on the ImageNet validation set.
     
-    **Feature Visualization:** Fig. 2 shows feature visualizations from our model once training is complete. However, instead of showing the single strongest activation for a given feature map, we show the top 9 activations. Projecting each separately down to pixel space reveals the different structures that excite a given feature map, hence showing its invariance to input deformations. Alongside these visualizations we show the corresponding image patches. … For example, in layer 5, row 1, col 2, the patches appear to have little in common, but the visualizations reveal that this particular feature map focuses on the grass in the background, not the foreground objects.
+    **Feature Visualization:** Fig. 2 shows feature visualizations from our model once training is complete. However, instead of showing the single strongest activation for a given feature map, we show the top 9 activations. Projecting each separately down to pixel space reveals the different structures that excite a given feature map, hence showing its invariance to input deformations. Alongside these visualizations we show the corresponding image patches. ... For example, in layer 5, row 1, col 2, the patches appear to have little in common, but the visualizations reveal that this particular feature map focuses on the grass in the background, not the foreground objects.
     
     The projections from each layer show the hierarchical nature of the features in the network. Layer 2 responds to corners and other edge/color conjunctions. Layer 3 has more complex invariances, capturing similar textures. Layer 4 shows significant variation, but is more class-specific (e.g. dog faces, bird legs). Layer 5 shows entire objects with significant pose variation (e.g. keyboards, dogs).
     
-    **Feature Evolution during Training:** Fig. 4 visualizes the progression during training of the strongest activation … The lower layers converge within a few epochs, but the upper layers only develop after 40–50 epochs.
+    **Feature Evolution during Training:** Fig. 4 visualizes the progression during training of the strongest activation ... The lower layers converge within a few epochs, but the upper layers only develop after 40–50 epochs.
     
     **Feature Invariance:** Fig. 5 shows how features change under translation, rotation, and scaling. Small transformations affect the first layer strongly, but higher layers are more stable, showing quasi-linear changes.
     
@@ -664,13 +664,13 @@ Visualization of the first layer filters during training reveals that a few of t
     Table 1은 세 가지 얼굴 부위(왼쪽 눈, 오른쪽 눈, 코)와 무작위 부위를 비교한 결과이다. Layer 5 특징에서는 무작위 부위에 비해 눈과 코에서 Δ 값이 더 낮게 나타났으며, 이는 모델이 일정 수준의 대응성을 형성하고 있음을 보여준다. Layer 7에서는 이 차이가 줄어드는데, 이는 상위층이 주로 **클래스 판별(breed discrimination)**에 집중하기 때문으로 보인다.
     
 
-<aside>
+
 
 ![image.png]((ZFNet)%20Visualizing%20and%20Understanding%20Convolutiona%2025ca9b246de18068af2bc450e4cf0526/image%202.png)
 
 # 4. 시각화
 
-- 각 층별 특징 : 그 레이어에서의 복원이 아니라, 역으로 전부다 거친 후 복원, 따라서 깊어질수록 해상도가 높아진다. e.g. 2층의 경우 2 → 1, 5층의 경우 5 → 4 → … → 1 즉 하위계층(초기층)과 상위계층(후반층)을 비교
+- 각 층별 특징 : 그 레이어에서의 복원이 아니라, 역으로 전부다 거친 후 복원, 따라서 깊어질수록 해상도가 높아진다. e.g. 2층의 경우 2 → 1, 5층의 경우 5 → 4 → ... → 1 즉 하위계층(초기층)과 상위계층(후반층)을 비교
     - 2층(layer 2): 모서리(corner), 색상/엣지 결합 구조에 반응
     - 3층(layer 3): 텍스처(texture)와 같은 복잡한 불변성 패턴 포착
     - 4층(layer 4): 클래스 특이적(class-specific) 패턴 (예: 개 얼굴, 새 다리)
@@ -779,7 +779,7 @@ Visualization of the first layer filters during training reveals that a few of t
 - ConvNet은 명시적으로 correspondence를 정의하지 않아도, 중간층에서 **객체 부위 간 암묵적 대응**을 학습
 - 그러나 깊은 층으로 갈수록 이 정보는 사라지고, **클래스 구분에 더 특화**됨
 
-<aside>
+
 
 ### 해밍 거리
 
@@ -787,7 +787,7 @@ Visualization of the first layer filters during training reveals that a few of t
 
 값이 작을수록 서로 다른 이미지에서도 같은 부위가 공통된 역할을 하고 있음을 의미
 
-</aside>
+
 
 ![image.png]((ZFNet)%20Visualizing%20and%20Understanding%20Convolutiona%2025ca9b246de18068af2bc450e4cf0526/image%206.png)
 
@@ -807,7 +807,7 @@ Visualization of the first layer filters during training reveals that a few of t
 | ---------- | --------------- | --------------- | -------------------------------------- |
 | Layer 5    | 눈·코 vs 무작위 | 눈·코 Δ 더 낮음 | 부위 간 대응성 확보                    |
 | Layer 7    | 눈·코 vs 무작위 | 유사            | breed 구분에 집중, correspondence 약화 |
-</aside>
+
 
 ### 📚 5. Experiments
 
@@ -915,7 +915,7 @@ Visualization of the first layer filters during training reveals that a few of t
     ```
     
 
-<aside>
+
 
 ## 5.1. ImageNet 2012
 
@@ -980,6 +980,6 @@ Visualization of the first layer filters during training reveals that a few of t
 | ----------- | ------- | ------- | ------- | ------- | ------------------------------------------- |
 | Caltech-101 | 44.8%   | 72.3%   | 86.2%   | 85.5%   | 중간~상위층에서 큰 향상, 최상위층은 plateau |
 | Caltech-256 | 24.6%   | 46.0%   | 65.6%   | 71.7%   | 층이 깊을수록 계속 향상, 최상위층이 최강    |
-</aside>
+
 
 ---

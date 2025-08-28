@@ -18,16 +18,16 @@ tags: [paper, Computer-Vision, optimizer]
 
 ### 📦 추가 자료
 
-…
+...
 
 ## 🧩 방법론
 
-> **by …**
+> **by ...**
 > 
 
-<aside>
 
-</aside>
+
+
 
 ---
 
@@ -35,12 +35,12 @@ tags: [paper, Computer-Vision, optimizer]
 
 ## 💡 요약
 
-> **by …**
+> **by ...**
 > 
 
-<aside>
 
-</aside>
+
+
 
 ---
 
@@ -48,11 +48,11 @@ tags: [paper, Computer-Vision, optimizer]
 
 ### 📌 제목
 
-<aside>
+
 
 ## A Survey of Optimization Methods from a Machine Learning Perspective
 
-</aside>
+
 
 ---
 
@@ -74,14 +74,14 @@ Index Terms—Machine learning, optimization method, deep neural network, reinfo
 
 색인어—머신러닝(Machine learning), 최적화 기법(Optimization method), 심층 신경망(Deep Neural Network), 강화학습(Reinforcement Learning), 근사 베이지안 추론(Approximate Bayesian Inference).
 
-<aside>
+
 
 # 0. Abstract
 
 - 최적화 기법 서베이 논문
     - 도전 과제
     - 미해결 문제를 제시
-</aside>
+
 
 ---
 
@@ -93,12 +93,12 @@ Index Terms—Machine learning, optimization method, deep neural network, reinfo
     
     The development of optimization brings a lot of contributions to the progress of machine learning. However, there are still many challenges and open problems for optimization problems in machine learning.
     
-    1. How to improve optimization performance with insufficient data in deep neural networks is a tricky problem…
-    2. For sequential models, the samples are often truncated by batches when the sequence is too long, which will cause deviation…
-    3. The stochastic variational inference is graceful and practical, and it is probably a good choice to develop methods of applying high-order gradient information…
-    4. It may be a great idea to introduce the stochastic technique to the conjugate gradient method to obtain an elegant and powerful optimization algorithm…
+    1. How to improve optimization performance with insufficient data in deep neural networks is a tricky problem...
+    2. For sequential models, the samples are often truncated by batches when the sequence is too long, which will cause deviation...
+    3. The stochastic variational inference is graceful and practical, and it is probably a good choice to develop methods of applying high-order gradient information...
+    4. It may be a great idea to introduce the stochastic technique to the conjugate gradient method to obtain an elegant and powerful optimization algorithm...
     
-    The purpose of this paper is to summarize and analyze classical and modern optimization methods from a machine learning perspective. Firstly, we describe the theoretical basis… Then we describe the applications… Finally, we discuss some challenges and open problems…
+    The purpose of this paper is to summarize and analyze classical and modern optimization methods from a machine learning perspective. Firstly, we describe the theoretical basis... Then we describe the applications... Finally, we discuss some challenges and open problems...
     
 
 ---
@@ -115,7 +115,7 @@ Index Terms—Machine learning, optimization method, deep neural network, reinfo
     이 논문의 목적은 머신러닝 관점에서 **고전적(classical) 및 현대적(modern) 최적화 기법을 요약·분석**하는 데 있다. 우선 이론적 기반을 다루었고, 이어서 다양한 최적화 기법들의 응용을 설명하였으며, 마지막으로 향후 연구를 위한 **도전 과제와 오픈 문제**들을 제시하였다.
     
 
-<aside>
+
 
 # 6. 결론
 
@@ -125,7 +125,7 @@ Index Terms—Machine learning, optimization method, deep neural network, reinfo
     - **Stochastic Variational Inferecne(SVI, 확률적 변분 추론)** : 실용적인 접근법이며, 고차 도함수를 적용하는 방법을 개발하는것이 유망하다.
     - **Stochastic Techniques(확률적 기법), Conjugate Gradient Method(공액기울기법)** : 또한 최적화 알고리즘을 얻는 유망한 방법이다.
 
-<aside>
+
 
 ### 확률적 변분 추론 (Stochastic Variational Inference, SVI)
 
@@ -134,9 +134,9 @@ Index Terms—Machine learning, optimization method, deep neural network, reinfo
 - 핵심 아이디어 : 다루기 힘든 실제 **사후분포를 다루기 쉬운 간단한 근사분포로 대체**하는데 **일반적으로 KL-divergence를 최소화하는 방향**을 찾는것임
 - **확률적 :** 전체 데이터 중 일부를 즉 미니배치만을 무작위로 샘플링하여 파라미터를 업데이트하는데 이는 SGD랑 비슷하다.
 - **고차 도함수 적용의 유망성** : 일반적으로 **SVI는 경사 기반 최적화를 수행**하는데, **헤신거리와 같은 2차 도함수 정보를 활용하게 된다면 손실 함수의 곡률까지 고려**할 수 있어 훨씬 더 빠르고 안정적인 수렴을 기대할 수 있음. 이는 뉴턴 방법이 경사 하강법보다 더 빠르게 최적점에 도달하는것과 동일하다.
-</aside>
 
-<aside>
+
+
 
 ### 확률적 기법 (Stochastic Techniques)
 
@@ -148,9 +148,9 @@ Index Terms—Machine learning, optimization method, deep neural network, reinfo
 - **몬테카를로 방법 (Monte Carlo Methods)**: 무작위 샘플링을 통해 적분이나 확률 분포 계산 등 어려운 수치 계산을 근사적으로 수행하는 기법입니다.
 - **시뮬레이티드 어닐링 (Simulated Annealing)**: 담금질 과정에서 영감을 얻은 최적화 방법으로, 확률적으로 현재 해보다 좋지 않은 해를 선택할 수도 있어 지역 최적점을 탈출하는 데 도움을 줍니다.
 - **유전 알고리즘 (Genetic Algorithms)**: 생물의 진화 과정을 모방한 탐색 기법으로, 선택, 교배, 돌연변이 등 확률적 연산을 통해 해를 개선해 나갑니다.
-</aside>
 
-<aside>
+
+
 
 ### 공액 기울기법 (Conjugate Gradient Method)
 
@@ -162,7 +162,7 @@ Index Terms—Machine learning, optimization method, deep neural network, reinfo
     2. 다음 이동부터는 이전의 기울기 정보를 활용하여, 이전 탐색 방향과 공액 관계에 있는 새로운 탐색 방향을 만든다
     3. 이 과정을 반복한다. 최악은 N번이다.
 - 비선형 공액 기울기법도 경사 하강법 보다 훨씬 효율적인 대안으로 사용된다.
-</aside>
+
 
 ### ✅ 5줄 요약
 
@@ -181,7 +181,7 @@ Index Terms—Machine learning, optimization method, deep neural network, reinfo
 | 모델 구조            | Sequential models (RNN, LSTM 등)에서 batch truncation이 최적화 성능에 직접 영향                                                                       |
 | 학습 방법            | Variational Inference는 확률적 최적화와 결합해야 확장성 확보Conjugate Gradient에 stochastic 기법 접목은 새로운 연구 방향                              |
 | 결과 해석            | 최적화 기법이 ML 발전을 견인했지만, **대규모 비볼록 문제, 고차 정보 활용, 확률적 최적화 결합**이 향후 연구 과제                                       |
-</aside>
+
 
 ---
 
@@ -221,7 +221,7 @@ Derivative-free optimization methods are mainly used in the case that the deriva
 
 마지막으로, 무도함수 최적화 기법은 목적 함수의 도함수가 존재하지 않거나 계산이 어려울 때 주로 사용된다. 이 방법에는 경험적 규칙에 기반한 **휴리스틱 탐색(heuristic search)** 과 표본(sample)을 이용하여 목적 함수를 근사하는 방법이 있다. 또한 무도함수 최적화 기법은 경사 기반 방법과 함께 사용될 수도 있다.
 
-<aside>
+
 
 # 1. 서론
 
@@ -249,7 +249,7 @@ Derivative-free optimization methods are mainly used in the case that the deriva
 | 1차 기법 (First-order)          | Gradient 기반 (SGD, Mini-batch 등)                          | 계산 단순, 대규모 데이터에 효율적 | 수렴 속도 느림, 학습률 튜닝 필요     | Convex: 전역 최적해 보장 / Non-convex: 지역 최적해, saddle point 문제 |
 | 고차 기법 (High-order)          | Hessian 등 곡률(curvature) 정보 활용 (Newton, Quasi-Newton) | 빠른 수렴, 방향성 우수            | Hessian 역행렬 계산·저장 부담        | Convex: 빠른 전역 수렴 / Non-convex: 계산 부담 커서 제한적            |
 | 무도함수 기법 (Derivative-free) | Gradient 필요 없음 (Coordinate descent, Heuristic search)   | 미분 불가능 문제 해결, 단순 구현  | 이론적 보장 약함, 전역 최적화 불확실 | Convex/Non-convex 모두 가능하나 Heuristic 의존성 큼                   |
-</aside>
+
 
 ---
 
@@ -354,7 +354,7 @@ Derivative-free optimization methods are mainly used in the case that the deriva
         
         i=1
         
-        where N represents the number of samples, xi is a D-dimensional vector, x̂i is the reconstruction of xi. zi = {z1i, …, zD′i} is the projection of xi in D′-dimensional coordinates, D ≫ D′. ej is the standard orthogonal basis under D′-dimensional coordinates.
+        where N represents the number of samples, xi is a D-dimensional vector, x̂i is the reconstruction of xi. zi = {z1i, ..., zD′i} is the projection of xi in D′-dimensional coordinates, D ≫ D′. ej is the standard orthogonal basis under D′-dimensional coordinates.
         
         Another common optimization goal in probabilistic models is to find an optimal probability density function of p(x), which maximizes the logarithmic likelihood function (MLE) of the training samples,
         
@@ -389,7 +389,7 @@ Derivative-free optimization methods are mainly used in the case that the deriva
         
         i=1
         
-        여기서 N은 샘플 수, xi는 D차원 벡터, x̂i는 xi의 재구성, zi = {z1i, …, zD′i} 는 xi의 D′ 차원 공간으로의 투영 값이며, D ≫ D′ 이다. ej는 D′ 차원 좌표계에서의 표준 직교 기저(orthogonal basis)이다.
+        여기서 N은 샘플 수, xi는 D차원 벡터, x̂i는 xi의 재구성, zi = {z1i, ..., zD′i} 는 xi의 D′ 차원 공간으로의 투영 값이며, D ≫ D′ 이다. ej는 D′ 차원 좌표계에서의 표준 직교 기저(orthogonal basis)이다.
         
         **확률적 모델(probabilistic models)** 에서 또 다른 일반적 최적화 목표는 p(x)의 최적 확률 밀도 함수를 찾는 것으로, 이는 학습 샘플의 로그우도(log-likelihood)를 최대화하는 문제이다:
         
@@ -453,7 +453,7 @@ Derivative-free optimization methods are mainly used in the case that the deriva
     이 세 단계 중 처음 두 단계는 머신러닝의 모델링 문제이며, 세 번째 단계는 **최적화 방법을 통해 원하는 모델을 해결하는 과정**이다.
     
 
-<aside>
+
 
 # 2. Machine Learning Formulated as Optimization
 
@@ -466,14 +466,14 @@ Derivative-free optimization methods are mainly used in the case that the deriva
     - 비지도학습: 군집화(K-means → 거리 최소화), 차원축소(PCA → 재구성 오차 최소화) 등 최적화 문제로 변환.
     - 강화학습: 누적 보상(cumulative reward)을 최대화하는 정책(policy) 학습 → 확률적 최적화.
 
-<aside>
+
 
 ### Convex vs Non-convex
 
 - **Convex vs Non-convex**
     - Convex: 선형 회귀, 로지스틱 회귀, SVM과 같은 문제는 Convex 최적화로 수식화 가능. → 전역 최적해(global optimum) 존재.
     - Non-convex: 심층 신경망(DNN), 강화학습(RL) 문제는 대부분 비볼록(non-convex). → 지역 최적해(local optimum) 또는 saddle point에 빠질 위험 존재.
-</aside>
+
 
 ### 요약
 
@@ -533,7 +533,7 @@ Derivative-free optimization methods are mainly used in the case that the deriva
     - **마진 최대화(maximizing margin) 제약 조건 등으로 라벨과 비라벨에 둘 다 적용한다.**
 - **그래프 기반 준지도학습(Graph-based Semi-supervised Learning) : 모든 샘플을 정점으로보고, 유사한 두 샘플은 같은 라벨을 가질 가능성이 높다**는 것 - 라벨 간 차이를 최소화하는 것이다.
 
-<aside>
+
 
 ### SRM
 
@@ -545,7 +545,7 @@ SRM은 두 가지 위험의 합을 최소화하는 것을 목표로 한다.
 - 최종위험 (일반화 오류) ≤ 경험적 위험 + 구조적 위험(모델 복잡도에 따른 패널티)
     - 정규화 : 패널티 항을 추가하는 기법
     - SVM : SRM 원리를 가장 잘 구현한 알고리즘으로 마진을 최대화 하려고함.
-</aside>
+
 
 ### 요약
 
@@ -631,54 +631,54 @@ SRM은 두 가지 위험의 합을 최소화하는 것을 목표로 한다.
 | 강화학습 (RL) | maxπ Vπ(s) = E[Σ γ^k r]            | 대부분 Non-convex             | 정책 함수 최적화, 누적 보상 최대화 |
 | 지도/비지도   | min/max 목적함수 (손실, 우도 등)   | Convex & Non-convex 혼재      | 데이터 기반 학습                   |
 | 머신러닝 전반 | 모델 가설 → 목적함수 정의 → 최적화 | 단계 1·2는 모델링, 3은 최적화 | 최적화가 실질적 학습의 핵심        |
-</aside>
+
 
 ### 📚 (예시)
 
 ### 번역
 
-<aside>
 
-</aside>
 
-### 📚 (예시)
 
-### 번역
-
-<aside>
-
-</aside>
 
 ### 📚 (예시)
 
 ### 번역
 
-<aside>
 
-</aside>
 
-### 📚 (예시)
 
-### 번역
-
-<aside>
-
-</aside>
 
 ### 📚 (예시)
 
 ### 번역
 
-<aside>
 
-</aside>
+
+
 
 ### 📚 (예시)
 
 ### 번역
 
-<aside>
 
-</aside>
+
+
+
+### 📚 (예시)
+
+### 번역
+
+
+
+
+
+### 📚 (예시)
+
+### 번역
+
+
+
+
 
 ---

@@ -21,7 +21,7 @@ tags: [paper, Computer-Vision]
 > **by GPT5**
 > 
 
-<aside>
+
 
 ## 1. 모델 아키텍처 (Architecture)
 
@@ -102,7 +102,7 @@ tags: [paper, Computer-Vision]
 
 원하시면 제가 이걸 **그림/플로우차트 형태의 시각화 자료**로도 만들어드릴까요?
 
-</aside>
+
 
 ---
 
@@ -113,7 +113,7 @@ tags: [paper, Computer-Vision]
 > **by GPT5**
 > 
 
-<aside>
+
 
 ## 1. 배경
 
@@ -208,7 +208,7 @@ tags: [paper, Computer-Vision]
 
 👉 이걸 발표 슬라이드용으로 **더 요약한 한 페이지 버전**도 만들어드릴 수 있습니다. 원하시나요?
 
-</aside>
+
 
 ---
 
@@ -216,11 +216,11 @@ tags: [paper, Computer-Vision]
 
 ### 📌 제목
 
-<aside>
+
 
 ## ImageNet Classification with Deep Convolutional Neural Networks
 
-</aside>
+
 
 ---
 
@@ -232,7 +232,7 @@ We trained a large, deep convolutional neural network to classify the 1.2 millio
 
 우리는 ImageNet LSVRC-2010 대회의 120만 장의 고해상도 이미지를 1000개의 서로 다른 클래스에 분류하기 위해, 크고 깊은 컨볼루션 신경망(convolutional neural network)을 학습시켰다. 테스트 데이터에서 우리는 top-1과 top-5 오류율을 각각 37.5%와 17.0% 달성했으며, 이는 이전 최첨단 성능보다 상당히 우수하다. 이 신경망은 6천만 개의 파라미터와 65만 개의 뉴런으로 구성되어 있으며, 다섯 개의 컨볼루션 계층(일부는 맥스 풀링 계층과 결합)과 세 개의 완전 연결 계층(fully-connected layer)으로 구성되며, 마지막은 1000-way softmax를 갖는다. 학습 속도를 높이기 위해, 우리는 non-saturating neuron(비포화형 뉴런)을 사용하고, 컨볼루션 연산의 매우 효율적인 GPU 구현을 활용했다. 또한 완전 연결 계층에서 과적합을 줄이기 위해 dropout이라는 최근 개발된 정규화 기법을 적용했는데, 이는 매우 효과적임이 입증되었다. 우리는 또한 이 모델의 변형을 ILSVRC-2012 대회에 출전시켰고, top-5 테스트 오류율 15.3%를 달성하여, 26.2%를 기록한 2등 결과를 크게 앞섰다.
 
-<aside>
+
 
 - 1000-way softmax : 1000개의 cls.문제이기 때문에, output을 1000개의 vec.으로 만들었다.
     - Top-1 error: 가장 큰 확률이 정답이 아닐 때.
@@ -251,7 +251,7 @@ We trained a large, deep convolutional neural network to classify the 1.2 millio
 
 ![image.png]((AlexNet)%20ImageNet%20Classification%20with%20Deep%20Convol%2025ca9b246de1800b878cd59e8addb4dd/image.png)
 
-</aside>
+
 
 ---
 
@@ -281,7 +281,7 @@ Figure 4는 네트워크의 top-5 예측 결과와, 마지막 은닉층(4096차�
 
 궁극적으로 우리는 매우 크고 깊은 컨볼루션 네트워크를 비디오 시퀀스에 적용하고 싶다. 영상의 시계열적 구조는 정적인 이미지에서는 결여되거나 덜 명확한 중요한 정보를 제공하기 때문이다.
 
-<aside>
+
 
 | 항목                       | 내용                                                                                                     |
 | -------------------------- | -------------------------------------------------------------------------------------------------------- |
@@ -301,7 +301,7 @@ Figure 4는 네트워크의 top-5 예측 결과와, 마지막 은닉층(4096차�
 | 성능 스케일링   | 네트워크를 크게 하고 학습 시간을 늘리면 성능이 계속 향상됨 (scale-up 효과)                 |
 | 한계            | 인간 뇌의 시각 피질(infero-temporal pathway)에 비하면 아직 멀었다고 언급                   |
 | 미래 방향       | 정적 이미지가 아닌 **비디오 학습**으로 확장 → 시계열적 단서(temporal structure) 활용       |
-</aside>
+
 
 ---
 
@@ -318,12 +318,12 @@ ILSVRC-2010은 테스트셋 라벨이 공개된 유일한 버전이므로, 대�
 
 ImageNet은 해상도가 다양한 이미지를 포함하지만, 우리의 시스템은 고정된 입력 크기를 필요로 한다. 따라서 이미지를 **256 × 256**의 고정 해상도로 다운샘플링했다. 직사각형 이미지는 짧은 변이 256이 되도록 먼저 리사이즈한 뒤, 그 결과물에서 중앙 256 × 256 패치를 잘라냈다. 다른 전처리는 하지 않았으며, 훈련셋 전체에서 픽셀 단위 평균값을 빼는 작업만 수행했다. 따라서 네트워크는 중심화된(centered) 원시 RGB 픽셀 값으로 학습되었다.
 
-<aside>
 
-<aside>
+
+
 
 - Amazon Mechanical Turk : **작업을 잘게 쪼개어(HITs, Human Intelligence Tasks) 온라인으로 다수의 사람(worker)에게 할당**, 소액 보상으로 처리하게 하는 시스템. 적은 데이터셋으로 대규모데이터셋 구성가능
-</aside>
+
 
 - CNN모델에 input으로 넣기 위해서, 256x256으로 다운샘플링 진행
     - 직사각형의 경우에는 이미지가 짧은변을 256으로 resizing한 후, 그 결과물에서 중앙 256x256패치를 잘라넴
@@ -337,7 +337,7 @@ ImageNet은 해상도가 다양한 이미지를 포함하지만, 우리의 시�
 | 오류 지표     | Top-1 (최고 확률 예측이 틀린 경우), Top-5 (상위 5개 예측 안에 정답 없음)                    |
 | 전처리        | 모든 이미지를 256×256으로 리사이즈 후 중앙 crop / train set 픽셀 평균값을 빼고 raw RGB 사용 |
 | 의의          | 당시로서는 unprecedented(전례 없는) 대규모 labeled dataset. CNN 학습 가능케 한 기반.        |
-</aside>
+
 
 ---
 
@@ -363,9 +363,9 @@ ImageNet은 해상도가 다양한 이미지를 포함하지만, 우리의 시�
 
 네트워크의 크기는 주로 GPU 메모리와 학습 시간에 의해 제한된다. 우리의 네트워크를 학습시키는 데 두 개의 GTX 580 (3GB) GPU로 5~6일이 소요되었다. 우리의 실험은, 더 빠른 GPU와 더 큰 데이터셋만 있으면 성능이 더 향상될 수 있음을 시사한다.
 
-<aside>
 
-<aside>
+
+
 
 ### 1) **Stationarity of statistics (통계적 특성의 불변성)**
 
@@ -393,7 +393,7 @@ ImageNet은 해상도가 다양한 이미지를 포함하지만, 우리의 시�
     - **적은 파라미터**로도 큰 모델 표현력 확보 (weight sharing으로 절약).
     - **학습 효율**이 개선 → 전체 이미지를 다 보지 않아도, 작은 필터로 국소 특징을 잡아내고, 이걸 전체 이미지에 반복 적용.
     - **일반화 성능 향상** → 모델이 데이터셋에만 특화되지 않고, 위치·배경 변화에도 강인.
-</aside>
+
 
 - 최근까지 라벨링된 데이터는 규모가 작다. 또한 이러한 규모의 데이터셋은 단순한 문제로 충분하며 인간의 성능에 근접했다.
 - 그러나 실제환경은 큰 변화를 보이므로 큰 데이터셋이 필요하고 ImageNet같은 대규모 데이터셍으로 인해 가능해졌다.
@@ -408,7 +408,7 @@ ImageNet은 해상도가 다양한 이미지를 포함하지만, 우리의 시�
 | CNN 장점         | 적은 파라미터, 지역적 연결, 이미지 통계 가정 활용 → 일반 신경망 대비 효율적         |
 | 기술적 돌파구    | GPU + 고속 2D convolution 구현 → 대규모 CNN 훈련 현실화                             |
 | 논문 기여        | - 대규모 CNN 학습 성공                                                              |
-</aside>
+
 
 ---
 
@@ -472,7 +472,7 @@ CNN에서 pooling layer는 동일한 커널 맵(kernel map) 내 인접한 뉴런
 
 Fully-connected layer는 각각 4096개의 뉴런을 포함한다.
 
-<aside>
+
 
 - ReLU : 포화 비선형 함수는 경사하강법에서 비포화함수에 비해 훨씬 느리다. ReLU는 같은 깊이의 Tanh에 비해 몇배나 학습속도가 빠르다.
 
@@ -488,7 +488,7 @@ Fully-connected layer는 각각 4096개의 뉴런을 포함한다.
 | 실험 근거     | CIFAR-10 실험에서 tanh 대비 6배 빠른 수렴 속도 확인                                    |
 | 의의          | GPU + 대규모 데이터셋과 결합하여, “실제로 훈련 가능한” 대규모 CNN을 가능하게 만든 핵심 |
 
-<aside>
+
 
 - columnar
     - “Column” = 독립적으로 학습된 하나의 CNN.
@@ -496,7 +496,7 @@ Fully-connected layer는 각각 4096개의 뉴런을 포함한다.
     - 마지막에 각 column의 softmax 출력(probability distribution)을 평균하거나 투표하여 최종 예측.
     - 장점: 단일 CNN보다 일반화 성능이 뛰어나고, 과적합을 줄일 수 있음.
     - 단점: 각 column이 완전히 독립적이므로, 계산량이 크고 column 수에 비례해 자원이 필요.
-</aside>
+
 
 - GPU는 서로간의 메모리에서 직접 읽고 쓰기가 가능하기 때문에, 호스트 메모리를 거치지 않고 교차 GPU를 잘 지원한다.
 - GPU 2개에 대해 절반의 커널을 위치시켜 사용하며 특정 층에서는 gpu간 공유가 가능하다. 2-3번 layer가 해당부분으로 3번 layer는 2번의 모든 gpu에 대해서 입력을 받지만, 4번 layer는 같은 gpu내에서만 입력을 받는다.
@@ -545,7 +545,7 @@ Fully-connected layer는 각각 4096개의 뉴런을 포함한다.
 | FC3                   | 1000 뉴런 → softmax                                              |
 | ReLU                  | 모든 conv, FC layer에 적용                                       |
 | Normalization/Pooling | Conv1, Conv2 뒤에 LRN + pooling, Conv5 뒤에 pooling              |
-</aside>
+
 
 ### 📚 4. Reducing Overfitting
 
@@ -573,7 +573,7 @@ Fully-connected layer는 각각 4096개의 뉴런을 포함한다.
 
 우리는 Figure 2의 첫 두 fully-connected layer에서 dropout을 사용했다. Dropout이 없을 때는 네트워크가 심각하게 과적합되었으며, Dropout을 적용하면 학습 수렴 속도가 약 두 배 느려지지만 과적합은 크게 줄어들었다.
 
-<aside>
+
 
 ## 4.1. 증강
 
@@ -604,7 +604,7 @@ Fully-connected layer는 각각 4096개의 뉴런을 포함한다.
 | – 일반화 성능 ↑, 하지만 수렴 속도 약 2배 느려짐     |                                                         |
 | 적용 위치                                           | Fully-connected 1, 2층                                  |
 
-</aside>
+
 
 ### 📚 5. Details of learning
 
@@ -629,7 +629,7 @@ w*{i+1} := w_i + v_{i+1}
 
 전체 학습은 약 120만 장의 이미지 데이터셋을 90 epoch 순환하는 동안 진행되었으며, 3GB 메모리를 가진 NVIDIA GTX 580 GPU 두 장에서 5~6일이 소요되었다.
 
-<aside>
+
 
 ## 5. 학습 세부사항
 
@@ -639,6 +639,6 @@ w*{i+1} := w_i + v_{i+1}
 
 - 파라미터들은 가우시안 분포에서 샘플링해 초기화, 2, 4, 5와 fc에서는 bias를 1로 나머지넌 0으로 초기화(bias = 1 : ReLU뉴런이 초기 학습 단계에서 양수 입력을 더 잘 받게 되어 학습이 빨라지는 효과)
 - lr은 수동으로 조정. val err가 개선되지 않으면 학습률을 10배로 낮췄음
-</aside>
+
 
 ---
