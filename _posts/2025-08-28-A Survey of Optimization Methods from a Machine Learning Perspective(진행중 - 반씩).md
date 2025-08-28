@@ -16,12 +16,6 @@ tags: [paper, Computer-Vision, optimizer]
 
 ---
 
-### 🗂️ 논문
-
-[A Survey of Optimization Methods from a Machine Learning Perspective.pdf](A%20Survey%20of%20Optimization%20Methods%20from%20a%20Machine%20Le%2025ca9b246de180a3838bcfa8d6ca3088/A_Survey_of_Optimization_Methods_from_a_Machine_Learning_Perspective.pdf)
-
----
-
 ### 📦 추가 자료
 
 …
@@ -180,13 +174,13 @@ Index Terms—Machine learning, optimization method, deep neural network, reinfo
 
 📌 주요 포인트
 
-| 항목 | 내용 |
-| --- | --- |
+| 항목                 | 내용                                                                                                                                                  |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Convex vs Non-convex | • Convex 문제에서는 기존 기법(Gradient Descent, Newton 등)으로 전역 최적해 보장• DNN, RL 등은 대부분 Non-convex → 지역 최적해 위험, saddle point 문제 |
-| 데이터셋 문제 | **데이터 부족** 시 DNN은 과적합·분산 증가 → Transfer Learning, Meta Learning 같은 접근 필요 |
-| 모델 구조 | Sequential models (RNN, LSTM 등)에서 batch truncation이 최적화 성능에 직접 영향 |
-| 학습 방법 | Variational Inference는 확률적 최적화와 결합해야 확장성 확보Conjugate Gradient에 stochastic 기법 접목은 새로운 연구 방향 |
-| 결과 해석 | 최적화 기법이 ML 발전을 견인했지만, **대규모 비볼록 문제, 고차 정보 활용, 확률적 최적화 결합**이 향후 연구 과제 |
+| 데이터셋 문제        | **데이터 부족** 시 DNN은 과적합·분산 증가 → Transfer Learning, Meta Learning 같은 접근 필요                                                           |
+| 모델 구조            | Sequential models (RNN, LSTM 등)에서 batch truncation이 최적화 성능에 직접 영향                                                                       |
+| 학습 방법            | Variational Inference는 확률적 최적화와 결합해야 확장성 확보Conjugate Gradient에 stochastic 기법 접목은 새로운 연구 방향                              |
+| 결과 해석            | 최적화 기법이 ML 발전을 견인했지만, **대규모 비볼록 문제, 고차 정보 활용, 확률적 최적화 결합**이 향후 연구 과제                                       |
 </aside>
 
 ---
@@ -250,11 +244,11 @@ Derivative-free optimization methods are mainly used in the case that the deriva
 
 ### 핵심
 
-| 구분 | 특징 | 장점 | 단점 | Convex / Non-convex 적용성 |
-| --- | --- | --- | --- | --- |
-| 1차 기법 (First-order) | Gradient 기반 (SGD, Mini-batch 등) | 계산 단순, 대규모 데이터에 효율적 | 수렴 속도 느림, 학습률 튜닝 필요 | Convex: 전역 최적해 보장 / Non-convex: 지역 최적해, saddle point 문제 |
-| 고차 기법 (High-order) | Hessian 등 곡률(curvature) 정보 활용 (Newton, Quasi-Newton) | 빠른 수렴, 방향성 우수 | Hessian 역행렬 계산·저장 부담 | Convex: 빠른 전역 수렴 / Non-convex: 계산 부담 커서 제한적 |
-| 무도함수 기법 (Derivative-free) | Gradient 필요 없음 (Coordinate descent, Heuristic search) | 미분 불가능 문제 해결, 단순 구현 | 이론적 보장 약함, 전역 최적화 불확실 | Convex/Non-convex 모두 가능하나 Heuristic 의존성 큼 |
+| 구분                            | 특징                                                        | 장점                              | 단점                                 | Convex / Non-convex 적용성                                            |
+| ------------------------------- | ----------------------------------------------------------- | --------------------------------- | ------------------------------------ | --------------------------------------------------------------------- |
+| 1차 기법 (First-order)          | Gradient 기반 (SGD, Mini-batch 등)                          | 계산 단순, 대규모 데이터에 효율적 | 수렴 속도 느림, 학습률 튜닝 필요     | Convex: 전역 최적해 보장 / Non-convex: 지역 최적해, saddle point 문제 |
+| 고차 기법 (High-order)          | Hessian 등 곡률(curvature) 정보 활용 (Newton, Quasi-Newton) | 빠른 수렴, 방향성 우수            | Hessian 역행렬 계산·저장 부담        | Convex: 빠른 전역 수렴 / Non-convex: 계산 부담 커서 제한적            |
+| 무도함수 기법 (Derivative-free) | Gradient 필요 없음 (Coordinate descent, Heuristic search)   | 미분 불가능 문제 해결, 단순 구현  | 이론적 보장 약함, 전역 최적화 불확실 | Convex/Non-convex 모두 가능하나 Heuristic 의존성 큼                   |
 </aside>
 
 ---
@@ -491,12 +485,12 @@ Derivative-free optimization methods are mainly used in the case that the deriva
 
 ### 정리
 
-| 학습 유형 | 최적화 수식화 | Convex / Non-convex 성격 | 대표 예시 |
-| --- | --- | --- | --- |
-| 지도학습 (Supervised) | min (1/N) Σ L(yi, f(xi; θ)) | Convex (로지스틱 회귀, SVM) / Non-convex (DNN) | 분류(Classification), 회귀(Regression) |
-| 준지도학습 (Semi-supervised) | 라벨 없는 데이터에 제약조건 추가 | Non-convex 혼합 문제 多 | S3VM, Graph-based SSL |
-| 비지도학습 (Unsupervised) | K-means: min Σ |  | x - μ |
-| 강화학습 (Reinforcement Learning) | max E[Σ γ^k r_t+k] | Non-convex (정책공간 탐색) | Q-learning, Policy Gradient, Actor-Critic |
+| 학습 유형                         | 최적화 수식화                    | Convex / Non-convex 성격                       | 대표 예시                                 |
+| --------------------------------- | -------------------------------- | ---------------------------------------------- | ----------------------------------------- |
+| 지도학습 (Supervised)             | min (1/N) Σ L(yi, f(xi; θ))      | Convex (로지스틱 회귀, SVM) / Non-convex (DNN) | 분류(Classification), 회귀(Regression)    |
+| 준지도학습 (Semi-supervised)      | 라벨 없는 데이터에 제약조건 추가 | Non-convex 혼합 문제 多                        | S3VM, Graph-based SSL                     |
+| 비지도학습 (Unsupervised)         | K-means: min Σ                   |                                                | x - μ                                     |
+| 강화학습 (Reinforcement Learning) | max E[Σ γ^k r_t+k]               | Non-convex (정책공간 탐색)                     | Q-learning, Policy Gradient, Actor-Critic |
 
 ## 2.1. Optimization Problems in Supervised Learning
 
@@ -520,13 +514,13 @@ Derivative-free optimization methods are mainly used in the case that the deriva
 
 ### 정리
 
-| 요소 | 설명 | Convex 여부 |
-| --- | --- | --- |
-| 기본 목적함수 | minθ (1/N) Σ L(yi, f(xi; θ)) | 손실함수 종류에 따라 다름 |
-| 손실함수 예시 | L2 loss, Cross-entropy, Hinge loss | 대부분 Convex |
-| Structured Risk Minimization | 일반화 오류 최소화, SVM 대표 | Convex |
-| 정규화 항 | λ |  |
-| 심층 신경망 | 목적함수 비선형·복잡 → 지역 최적점 문제 | Non-convex |
+| 요소                         | 설명                                    | Convex 여부               |
+| ---------------------------- | --------------------------------------- | ------------------------- |
+| 기본 목적함수                | minθ (1/N) Σ L(yi, f(xi; θ))            | 손실함수 종류에 따라 다름 |
+| 손실함수 예시                | L2 loss, Cross-entropy, Hinge loss      | 대부분 Convex             |
+| Structured Risk Minimization | 일반화 오류 최소화, SVM 대표            | Convex                    |
+| 정규화 항                    | λ                                       |                           |
+| 심층 신경망                  | 목적함수 비선형·복잡 → 지역 최적점 문제 | Non-convex                |
 
 ## 2.2. Optimization Problems in Semi-supervised Learning
 
@@ -563,11 +557,11 @@ SRM은 두 가지 위험의 합을 최소화하는 것을 목표로 한다.
 
 ### 중요
 
-| 방법 | 최적화 공식화 | Convex 여부 | 특징 |
-| --- | --- | --- | --- |
-| S3VM | 라벨 있는 샘플 + 없는 샘플 모두 마진 최대화 | Non-convex | 라벨 부족 상황에서 강력, 하지만 계산 복잡 |
+| 방법            | 최적화 공식화                                         | Convex 여부 | 특징                                           |
+| --------------- | ----------------------------------------------------- | ----------- | ---------------------------------------------- |
+| S3VM            | 라벨 있는 샘플 + 없는 샘플 모두 마진 최대화           | Non-convex  | 라벨 부족 상황에서 강력, 하지만 계산 복잡      |
 | Graph-based SSL | 그래프 라플라시안 정규화 → 인접 노드 라벨 차이 최소화 | Convex 가능 | 유사도 기반, Semi-supervised Clustering에 적합 |
-| 공통점 | 지도 손실 + 비지도 제약 결합 | 혼합 | 라벨 없는 데이터 활용으로 일반화 성능 향상 |
+| 공통점          | 지도 손실 + 비지도 제약 결합                          | 혼합        | 라벨 없는 데이터 활용으로 일반화 성능 향상     |
 
 ## 2.3. Optimization Problems in Unsupervised Learning
 
@@ -605,12 +599,12 @@ SRM은 두 가지 위험의 합을 최소화하는 것을 목표로 한다.
 
 ### 정리
 
-| 방법 | 최적화 문제 | Convex 여부 | 특징 |
-| --- | --- | --- | --- |
-| k-means | min Σ |  | x − μk |
-| PCA | min Σ |  | xi − x̂i |
-| 확률적 모델 (MLE) | max Σ ln p(xi ; θ) | Non-convex | 근사추론 필요, EM/VI/MCMC 활용 |
-| Bayesian 확장 | max Posterior with prior | Non-convex | Prior로 과적합 완화 가능 |
+| 방법              | 최적화 문제              | Convex 여부 | 특징                           |
+| ----------------- | ------------------------ | ----------- | ------------------------------ |
+| k-means           | min Σ                    |             | x − μk                         |
+| PCA               | min Σ                    |             | xi − x̂i                        |
+| 확률적 모델 (MLE) | max Σ ln p(xi ; θ)       | Non-convex  | 근사추론 필요, EM/VI/MCMC 활용 |
+| Bayesian 확장     | max Posterior with prior | Non-convex  | Prior로 과적합 완화 가능       |
 
 # 2.4. 강화학습
 
@@ -632,11 +626,11 @@ SRM은 두 가지 위험의 합을 최소화하는 것을 목표로 한다.
 
  
 
-| 구분 | 최적화 문제 | Convex 여부 | 특징 |
-| --- | --- | --- | --- |
-| 강화학습 (RL) | maxπ Vπ(s) = E[Σ γ^k r] | 대부분 Non-convex | 정책 함수 최적화, 누적 보상 최대화 |
-| 지도/비지도 | min/max 목적함수 (손실, 우도 등) | Convex & Non-convex 혼재 | 데이터 기반 학습 |
-| 머신러닝 전반 | 모델 가설 → 목적함수 정의 → 최적화 | 단계 1·2는 모델링, 3은 최적화 | 최적화가 실질적 학습의 핵심 |
+| 구분          | 최적화 문제                        | Convex 여부                   | 특징                               |
+| ------------- | ---------------------------------- | ----------------------------- | ---------------------------------- |
+| 강화학습 (RL) | maxπ Vπ(s) = E[Σ γ^k r]            | 대부분 Non-convex             | 정책 함수 최적화, 누적 보상 최대화 |
+| 지도/비지도   | min/max 목적함수 (손실, 우도 등)   | Convex & Non-convex 혼재      | 데이터 기반 학습                   |
+| 머신러닝 전반 | 모델 가설 → 목적함수 정의 → 최적화 | 단계 1·2는 모델링, 3은 최적화 | 최적화가 실질적 학습의 핵심        |
 </aside>
 
 ### 📚 (예시)
