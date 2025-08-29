@@ -8,7 +8,15 @@ tags: [Computer-Vision, paper]
 
 ### 📌 제목
 
-> **Visualizing and Understanding  - **분석 구조**
+> **Visualizing and Underst  - **분석 구조**
+
+![Deconvnet Process]((ZFNet)%20Visualizi### 📚 4. Convnet Visualization
+
+![Feature Visualization across Layers]((ZFNet)%20Visualizing%20and%20Understanding%20Convolutiona%2025ca9b246de18068af2bc450e4cf0526/image%202.png)
+
+**4. 시각화**g%20and%20Understanding%20Convolutiona%2025ca9b246de18068af2bc450e4cf0526/image%201.png)
+
+**✅ 5줄 요약**nding  - **분석 구조**
 
 ![Deconvnet Process]((ZFNet)%20Visualizi### 📚 4. Convnet Visualization
 
