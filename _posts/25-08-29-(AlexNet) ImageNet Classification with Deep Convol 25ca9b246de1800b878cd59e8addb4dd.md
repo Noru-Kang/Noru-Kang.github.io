@@ -1,5 +1,5 @@
 ---
-title: "(ZFNet) Visualizing and Understanding Convolutional Networks"
+title: "(AlexNet) ImageNet Classification with Deep Convolutional Neural Networks"
 date: 2025-08-29 18:00:00 +0900
 categories: [AI-ML-DL, etc.]
 tags: [Computer-Vision, paper]
@@ -30,7 +30,7 @@ tags: [Computer-Vision, paper]
 > | 기여 | CNN을 대규모 데이터·GPU와 결합 → 기존 feature-engineering 기반 방법보다 획기적으로 우수한 성능 달성 |
 >
 >   - **아키텍쳐**
-> ![AlexNet Architecture]((AlexNet)%20ImageNet%20Classification%20with%20Deep%20Convol%2025ca9b246de1800b878cd59e8addb4dd/image.png)
+> ![AlexNet Architecture](/assets/img/posts/alexnet/image.png)
 
 <br>
 
@@ -140,7 +140,7 @@ tags: [Computer-Vision, paper]
 >
 > <br>
 >
-> ![ReLU vs Tanh convergence speed]((AlexNet)%20ImageNet%20Classification%20with%20Deep%20Convol%2025ca9b246de1800b878cd59e8addb4dd/image%201.png)
+> ![ReLU vs Tanh convergence speed](/assets/img/posts/alexnet/image%201.png)
 >
 > | 항목 | 내용 |
 > | --- | --- |
@@ -169,7 +169,7 @@ tags: [Computer-Vision, paper]
 >
 > <br>
 >
-> ![Local Response Normalization formula]((AlexNet)%20ImageNet%20Classification%20with%20Deep%20Convol%2025ca9b246de1800b878cd59e8addb4dd/스크린샷_2025-08-27_오후_3.54.26.jpg)
+> ![Local Response Normalization formula](/assets/img/posts/alexnet/스크린샷_2025-08-27_오후_3.54.26.jpg)
 >
 > | 항목 | 내용 |
 > | --- | --- |
@@ -192,7 +192,7 @@ tags: [Computer-Vision, paper]
 >
 > <br>
 >
-> ![AlexNet layer connection diagram]((AlexNet)%20ImageNet%20Classification%20with%20Deep%20Convol%2025ca9b246de1800b878cd59e8addb4dd/image%202.png)
+> ![AlexNet layer connection diagram](/assets/img/posts/alexnet/image%202.png)
 >
 >   - 큰 필터와 큰 stride로 시작 → 점차 작은 필터로 깊이 있게 연결 → fully-connected layer에서 high-level representation 형성 → softmax 출력
 >   - Conv3는 두 GPU 모두 연결, Conv4·5는 같은 GPU 내부 연결” 정도를 표에 넣어주면 더 완성도가 높습니다.
@@ -222,7 +222,7 @@ tags: [Computer-Vision, paper]
 >
 > <br>
 >
-> ![RGB channel intensity variation example]((AlexNet)%20ImageNet%20Classification%20with%20Deep%20Convol%2025ca9b246de1800b878cd59e8addb4dd/image%203.png)
+> ![RGB channel intensity variation example](/assets/img/posts/alexnet/image%203.png)
 >
 > ## 4.2. 드롭아웃 (Dropout)
 >
@@ -256,7 +256,7 @@ tags: [Computer-Vision, paper]
 >
 > <br>
 >
-> ![Weight update rule]((AlexNet)%20ImageNet%20Classification%20with%20Deep%20Convol%2025ca9b246de1800b878cd59e8addb4dd/image%204.png)
+> ![Weight update rule](/assets/img/posts/alexnet/image%204.png)
 >
 >   - **가중치 초기화**: 각 계층의 가중치는 평균 0, 표준편차 0.01의 Gaussian 분포에서 샘플링.
 >   - **Bias 초기화**: 두 번째, 네 번째, 다섯 번째 convolutional layer와 fully-connected hidden layer의 뉴런 bias는 상수 1로 초기화. (bias = 1 : ReLU 뉴런이 초기 학습 단계에서 양수 입력을 더 잘 받게 되어 학습이 빨라지는 효과). 나머지 layer의 bias는 0으로 초기화.

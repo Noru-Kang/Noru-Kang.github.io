@@ -178,7 +178,7 @@ tags: [Computer-Vision, paper]
 >   - 네트워크가 깊어지면 소수의 fc layer로 구성, 마지막은 **softmax clf.**
 >   - **아키텍쳐**
 >
-> ![ZFNet Architecture](/(ZFNet) Visualizing and Understanding Convolutiona 25ca9b246de18068af2bc450e4cf0526/image.png)
+> ![ZFNet Architecture](/assets/img/posts/zfnet/image.png)
 >
 >   - 손실함수 : **Cross-entropy**
 >   - Optimizer : **SGD(mini-batch)**
@@ -221,7 +221,7 @@ tags: [Computer-Vision, paper]
 >   - 한개의 활성으로부터 얻는 결과는 이미지의 어떤 구조의 일부분과 유사하다. **모델은 판별적으로 학습되므로, 입력이미지에서 어떤부분이 중요했는지를 드러**낸다. 다만 **생성모델의 샘플이 아니라, 단순히 역투영**된다는 점이다. → **생성모델이 아니라 역투영**이다. → 즉 모델이 입력구조의 어떤부분을 가지고 판단했는지 직관적으로 보여준다.
 >   - **분석 구조**
 >
-> ![Deconvnet Process](/(ZFNet) Visualizing and Understanding Convolutiona 25ca9b246de18068af2bc450e4cf0526/image 1.png)
+> ![Deconvnet Process](/assets/img/posts/zfnet/image%201.png)
 >
 > **✅ 5줄 요약**
 >
@@ -272,7 +272,7 @@ tags: [Computer-Vision, paper]
 
 ### 📚 4. Convnet Visualization
 
-> ![Feature Visualization across Layers](/(ZFNet) Visualizing and Understanding Convolutiona 25ca9b246de18068af2bc450e4cf0526/image 2.png)
+> ![Feature Visualization across Layers](/assets/img/posts/zfnet/image%202.png)
 >
 > **4. 시각화**
 >
@@ -283,12 +283,12 @@ tags: [Computer-Vision, paper]
 >       - **5층(layer 5)**: 포즈 변화가 큰 전체 객체 (예: 키보드, 개 전체 모습)
 >   - **입력 변형(input deformation)에 대한 불변성(invariance)을 확인 → 작은 변화는 하위층에서 큰 효과를 주지만 상위층에는 quasi-linear(안정적)인 반응을 보여줌**
 >
-> ![Feature Invariance Visualization](/(ZFNet) Visualizing and Understanding Convolutiona 25ca9b246de18068af2bc450e4cf0526/스크린샷_2025-08-28_오전_12.47.55.jpg)
+> ![Feature Invariance Visualization](/assets/img/posts/zfnet/스크린샷_2025-08-28_오전_12.47.55.jpg)
 >
 >   - **계층적 성격(hierarchical nature)**
 >   - **하위 계층은 소수의 epochs만에 수렴, 상위는 오래걸림**
 >
-> ![Feature Evolution during Training](/(ZFNet) Visualizing and Understanding Convolutiona 25ca9b246de18068af2bc450e4cf0526/image 3.png)
+> ![Feature Evolution during Training](/assets/img/posts/zfnet/image%203.png)
 >
 >   - **즉 ConvNet은 깊게 학습될수록 추상적인 특징을 학습**
 >
@@ -320,7 +320,7 @@ tags: [Computer-Vision, paper]
 >       - **1층 필터 크기**를 11x11에서 7x7로 줄이고,
 >       - **합성곱 stride**를 4에서 2로 축소하였다.
 >
-> ![AlexNet vs ZFNet Layer 1 and 2 Visualization](/(ZFNet) Visualizing and Understanding Convolutiona 25ca9b246de18068af2bc450e4cf0526/image 4.png)
+> ![AlexNet vs ZFNet Layer 1 and 2 Visualization](/assets/img/posts/zfnet/image%204.png)
 >
 > **✅ 5줄 요약**
 >
@@ -345,7 +345,7 @@ tags: [Computer-Vision, paper]
 >   - 객체의 위치를 인식하는지, 주변 맥락만 사용하는지를 확인해보는 실험으로, 결론적으로 **객체를 지우는 경우 올바른 클래스 확률이 크게 떨어진다**.
 >   - 즉 모델은 **객체 자체에 집중하여,** 객체 탐지의 가능성에 대해 시사
 >
-> ![Occlusion Sensitivity Experiment](/(ZFNet) Visualizing and Understanding Convolutiona 25ca9b246de18068af2bc450e4cf0526/image 5.png)
+> ![Occlusion Sensitivity Experiment](/assets/img/posts/zfnet/image%205.png)
 >
 > **✅ 5줄 요약**
 >
@@ -389,7 +389,7 @@ tags: [Computer-Vision, paper]
 > > 두 벡터가 있을때, 서로 다른 위치의 원소 개수를 새는 거리 측도
 > > 값이 작을수록 서로 다른 이미지에서도 같은 부위가 공통된 역할을 하고 있음을 의미
 >
-> ![Correspondence Analysis Experiment](/(ZFNet) Visualizing and Understanding Convolutiona 25ca9b246de18068af2bc450e4cf0526/image 6.png)
+> ![Correspondence Analysis Experiment](/assets/img/posts/zfnet/image%206.png)
 >
 > **✅ 5줄 요약**
 >
@@ -430,7 +430,7 @@ tags: [Computer-Vision, paper]
 > | Zeiler & Fergus (앙상블) | 14.8 | 2012 학습셋 기준 최고 성능 |
 > | 비-ConvNet (Gunji et al.) | 26.2 | 같은 대회 상위 entry |
 >
-> ![ImageNet 2012 Results Table](/(ZFNet) Visualizing and Understanding Convolutiona 25ca9b246de18068af2bc450e4cf0526/image 7.png)
+> ![ImageNet 2012 Results Table](/assets/img/posts/zfnet/image%207.png)
 >
 > **5.2 Feature Generalization**
 > **✅ 5줄 요약**
