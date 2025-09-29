@@ -419,3 +419,39 @@ D_cz[:3, :3]
 ```
 
 ![](/assets/img/posts/clustering/be03e525bce7e61e2a4b6b829568170e.png)
+
+# 계층적 클러스터링
+
+## 종류
+
+- **Agglomerative(bottom-up)** : 모든 데이터 포인트가 독립된 클러스터로 시작하여 가장 가까운 두 클러스터를 합쳐간다. 최종적으로 하나가 될 때 까지 반복한다
+	1.  모든 점을 독립된 n개의 클러스터로 시작(데이터 수 만큼 클러스터)
+	2. 현재 클러스터 집합에서 가장 가까운 두 집합(A, B)의 linkage를 찾음
+	3. A와 B집합을 합침
+	4. 클러스터가 특정 threshold 혹은 1이 될때까지 반복
+- Divisve(top-down) : 모든 점을 하나의 클러스터로 시작하여 계속 쪼개간다.
+
+## Linkage(거리)
+
+- Single linkage : 두 클러스터안의 데이터 포인트에 대하여 가장 가까운 거리
+
+	![](/assets/img/posts/clustering/a7ab83616e16b7d524950a286f0bf314.png)
+
+- complete linkage : 두 클러스터안의 데이터 포인트에 대하여 가장 먼 거리
+
+	![](/assets/img/posts/clustering/b956f89bf6289ecaf154116bebd090a0.png)
+
+- average linkage : 두 클러스터 간 평균 거리
+
+	![](/assets/img/posts/clustering/198ae19922feaa26b03863659937f4c3.png)
+
+
+![](/assets/img/posts/clustering/e970a99ee7bca8a6b0185901b15b28ee.png)
+
+## Dendrogram(덴드로그램)
+
+![](/assets/img/posts/clustering/7de03213cf8bf26311247393482e5f9f.png)
+
+
+[hierachy_clustering](/assets/file/clustering/hierachy.ipynb)
+
