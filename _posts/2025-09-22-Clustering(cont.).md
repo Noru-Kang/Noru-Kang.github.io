@@ -1,6 +1,6 @@
 ---
 title: "Clustering(cont.)"
-date: 2025-09-22 09:40:41 +0900
+date: 2025-09-28 09:00:41 +0900
 categories: [Data-Mining]
 tags: [clustering, distance]
 ---
@@ -452,6 +452,4 @@ D_cz[:3, :3]
 
 ![](/assets/img/posts/clustering/7de03213cf8bf26311247393482e5f9f.png)
 
-
-[hierachy_clustering](/assets/file/clustering/hierachy.ipynb)
-
+<a href="/assets/file/clustering/hierachy.ipynb" download>계층적 클러스터링 다운로드</a>
