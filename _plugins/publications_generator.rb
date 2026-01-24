@@ -1,6 +1,4 @@
-﻿require 'bibtex'
-
-module Jekyll
+﻿module Jekyll
   class PublicationsGenerator < Generator
     safe true
     priority :high
@@ -12,33 +10,41 @@ module Jekyll
       return unless File.exist?(bib_file)
 
       begin
-        # BibTeX 파일 파싱
-        bibliography = BibTeX.open(bib_file)
-        publications = []
-
-        bibliography.each do |entry|
-          pub = {
-            'title' => entry.title.to_s,
-            'author' => entry.author.to_s,
-            'year' => entry.year.to_s,
-            'journal' => entry.journal.to_s,
-            'booktitle' => entry.booktitle.to_s,
-            'volume' => entry.volume.to_s,
-            'pages' => entry.pages.to_s,
-            'doi' => entry.doi.to_s,
-            'url' => entry.url.to_s,
-            'type' => entry.type.to_s
-          }
-
-          publications << pub
-        end
-
-        # site.data에 저장
+        content = File.read(bib_file)
+        publications = parse_bibtex(content)
         site.data['publications'] = publications
 
       rescue StandardError => e
         Jekyll.logger.warn "Error parsing BibTeX file: #{e.message}"
         site.data['publications'] = []
+      end
+    end
+
+    private
+
+    def parse_bibtex(content)
+      publications = []
+      
+      # BibTeX 항목 파싱
+      content.scan(/@(\w+)\s*\{\s*([^,\n]+),\s*([\s\S]*?)\n\s*\}/i) do |entry_type, cite_key, fields_str|
+        pub = {
+          'type' => entry_type.downcase.strip,
+          'cite_key' => cite_key.strip
+        }
+
+        # 필드 파싱
+        parse_fields(fields_str, pub)
+        publications << pub
+      end
+
+      publications
+    end
+
+    def parse_fields(fields_str, pub)
+      # 필드 파싱: key = {value} 또는 key = "value" 형식
+      fields_str.scan(/(\w+)\s*=\s*(?:\{([^}]*)\}|"([^"]*)"|(\d+))/i) do |key, brace_value, quote_value, number_value|
+        value = brace_value || quote_value || number_value
+        pub[key.downcase.strip] = value.strip if value
       end
     end
   end
