@@ -56,10 +56,9 @@ order: 4
 ## Honors & Awards
 **2024**  
 - Encouragement Award, Applied Statistics Contest (Optimal Landfill Site Selection)  
-- Excellent Award, DArt-B Academic Festival (Customized Song Recommendation System for Korean Language Learners) 
-<p>
+- Excellent Award, DArt-B Academic Festival (Customized Song Recommendation System for Korean Language Learners)  
 
-**2025** 
+**2025**  
 - Encouragement Award, 2025 Winter Conference of the Korean Data Analysis Society (KDAS) Awarded for the presentation: "ResNet-BiGRU with Conditioned Query-Based Cross-Attention and Weighted Loss for Automated Chagas Disease Detection from 12-Lead ECG"
 
 ---
