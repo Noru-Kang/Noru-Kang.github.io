@@ -9,14 +9,14 @@ order: 4
 
 ## General Information
 
-| Name | Kang TaeYoung (강태영) |
-| --- | --- |
-| University | Chung-Ang University (중앙대학교) |
-| Major | Applied Statistics & Computer Science (응용통계학 · 컴퓨터공학) |
-| Expected Graduation | August 2026 (Enrolled: March 2020) |
-| Contact | kangty0527@gmail.com |
-| Location | Seoul, South Korea |
-| Languages | Korean (Native), English (Intermediate) |
+| Name                | Kang TaeYoung (강태영)                                          |
+| ------------------- | --------------------------------------------------------------- |
+| University          | Chung-Ang University (중앙대학교)                               |
+| Major               | Applied Statistics & Computer Science (응용통계학 · 컴퓨터공학) |
+| Expected Graduation | August 2026 (Enrolled: March 2020)                              |
+| Contact             | kangty0527@gmail.com                                            |
+| Location            | Seoul, South Korea                                              |
+| Languages           | Korean (Native), English (Intermediate)                         |
 
 ---
 
@@ -57,6 +57,12 @@ order: 4
 **2024**  
 - Encouragement Award, Applied Statistics Contest (Optimal Landfill Site Selection)  
 - Excellent Award, DArt-B Academic Festival (Customized Song Recommendation System for Korean Language Learners)  
+
+---
+
+## Publications
+
+{% include publications.html %}
 
 ---
 
