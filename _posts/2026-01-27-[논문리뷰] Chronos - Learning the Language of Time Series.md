@@ -7,6 +7,7 @@ categories:
 tags:
   - time-series
   - TS_model
+math : true
 ---
 ### 🔗 출처
 > https://arxiv.org/abs/2403.07815
