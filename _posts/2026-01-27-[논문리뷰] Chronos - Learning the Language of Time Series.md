@@ -28,18 +28,16 @@ tags:
 ##### 1.1. 시계열 토큰화
  실수 값을 가지는 시계열을 유한한 어휘의 이산적인 토큰으로 매핑
 - **Scaling** : **Mean Scailing** 사용, 시계열의 각 엔트리를 context내의 절대값의 평균으로 나눔 $\tilde{x}_i = (x_i - m) / s$ 여기서 m=0 이고, $s = C^{-1} \sum_{j=1}^{C} |x_j|$ 임. 이는 시계열의 0을 보호하는 이점을 가짐
-- **Quantization** : 스케일링된 실수 값 $\tilde{x}_i$을 이산적인 토큰 ID로 변환함. B개의 칸(Bin) 중심 $c_1 < \ldots < c_B$ 와 B-1개의 $b_i$를 설정, $$
-q : \mathbb{R} \to \{1, 2, \dots, B\}
-$$
-$$
-q(x) =
-\begin{cases}
+- **Quantization** : 스케일링된 실수 값 $\tilde{x}_i$을 이산적인 토큰 ID로 변환함. B개의 칸(Bin) 중심 $c_1 < \ldots < c_B$ 와 B-1개의 $b_i$를 설정,
+
+$$q : \mathbb{R} \to \{1, 2, \dots, B\}$$
+
+$$q(x) = \begin{cases}
 1, & \text{if } -\infty \le x < b_1, \\
 2, & \text{if } b_1 \le x < b_2, \\
 \vdots & \\
 B, & \text{if } b_{B-1} \le x < \infty.
-\end{cases}
-$$
+\end{cases}$$
 
 훈련데이터에대한 의존성을 줄이기 위해 [-15, +15]구간 내에서 **Uniform Binning**을 사용. 값이 15보다 크면 마지막칸, -15보다 작으면 첫번째 칸으로 보냄
 시계열 토큰이외에 언어 모델에서 사용하는 특수토큰 PAD, EOS토큰을 어휘에 포함하여 시계열 어휘 집합 $V_{ts}$를 구성
@@ -48,7 +46,9 @@ $$
  **모델 아키텍처는 변겨오디지 않으며, 단지 양자화하는 B개수에 따라 어휘 크기 $|V_{ts}|$, 즉 입력층의 크기만 수정하면 됨
  
 ##### 1.3. 목적 함수
- $$\ell(\theta) = -\sum_{h=1}^{H+1} \sum_{i=1}^{|V_{ts}|} \mathbb{1}(z_{C+h+1}=i) \log p_\theta(z_{C+h+1}=i|z_{1:C+h})$$
+
+$$\ell(\theta) = -\sum_{h=1}^{H+1} \sum_{i=1}^{|V_{ts}|} \mathbb{1}(z_{C+h+1}=i) \log p_\theta(z_{C+h+1}=i|z_{1:C+h})$$
+
  **Cross-Entropy Loss** 그대로 사용함. **다중 분류**문제로 접근하여, 다음 숫자가 **어떤 칸(Bin)**인지 맞추는 문제로 접근**
   손실 함수 자체가 숫자 간의 거리그 자체를 알지 못하지만, 방대한 데이터를 스스로 학습하여 **인접한 칸들은 서로 연관되어 있다**를 학습하는것이 목적임
   
@@ -61,7 +61,9 @@ $$
 
 ##### 2.1. TSMixup 📌
  이미지 처리에 사용하는 Mixup의 시계열 버전. 서로 다른 시계열 여러 개를 가져와서 <b>볼록 조합(Convex Combination)</b>을 만듦
- $$\tilde{x}_{1:l}^{\text{TSMixup}} = \sum_{i=1}^k \lambda_i \tilde{x}_{1:l}^{(i)}$$
+
+$$\tilde{x}_{1:l}^{\text{TSMixup}} = \sum_{i=1}^k \lambda_i \tilde{x}_{1:l}^{(i)}$$
+
 - e.g. '주가 데이터'와 '온도 데이터'를 특정 비율로 섞어서 <b>세상에 없는 새로운 형태의 시계열</b>을 만들어 모델에게 보여줌으로써, 모델이 특정 데이터에만 매몰되지 않고 강건하게 학습되도록 도움
 - 과정 : 무작위로 K개의 시계열(Uniform에서 추출)을 선택 → 평균 스케일링한 후, $Dir({\alpha})$, 디리클레 분포에서 샘플링된 가중치 $\lambda_i$ 를 사용하여 볼록 조합을 생성
  
