@@ -1,5 +1,5 @@
 ---
-title: Chronos-2 _ From Univariate to Universal Forecasting
+title: Chronos-2 From Univariate to Universal Forecasting
 date: 2026-01-28 14:00:00 +0900
 categories:
   - AI-ML-DL
@@ -224,7 +224,8 @@ e.g. 클라우드 인프라 지표 : CPU 사용량 + 메모리 소비량 + 스�
 ### 포인트
 #### 서론
 
-> [!NOTE]
+<!-- > [!NOTE] -->
+> **NOTE**
 > <strong>In-Context Learning</strong>
 > 모델의 가중치(Weight)를 새로 학습시키지 않고도, 입력값(Context)으로 주어진 예시나 데이터를 보고 즉석에서 문제 해결 방식을 깨우치는 능력으로
 > chronos-2에서는, 새로운 도메인의 데이터가 들어왔을때 이 데이터의 과거 패턴을 context로 삼아 예측
