@@ -11,6 +11,7 @@ math : true
 ---
 ### 🔗 출처
 > https://arxiv.org/abs/2403.07815
+{: .prompt-tip }
 
 ---
 ## 🗓️ 요약
@@ -278,6 +279,7 @@ Chronos는 시계열 예측을 위해 최소한으로 LLM을 수정한 모델이
 
 ![](/assets/img/posts/chronos/fa5c3bb8a17b181478e563e574662a0c.png)
 > Figure 1
+{: .prompt-tip }
 
 
 ---
@@ -296,7 +298,7 @@ Chronos는
 ### 포인트
 #### 서론
 
-> [!NOTE]
+>
 > <strong>ARIMA</strong>
 > 시계열을 `자기회귀(AR) + 이동평균(MA) + 차분(I: differencing)`으로 설명하는 고전적인 통계모델
 > 보통 $ARIMA(p, d, q)$로 표기하며, d번 차분으로 정상성을 확보한뒤 자기상관을 모델링함(ACF/PACF)
@@ -307,8 +309,9 @@ Chronos는
 > 3. <strong>이동평균</strong>(MA, q : 과거의 오차를 몇 개까지 반영할것인가) : <strong>과거의 예측오차가 현재를 결정하는 것</strong>
 > 4. <strong>ACF</strong>(자기상관함수) : 시차에 따른 $y_t$와 $y_{t-k}$사이의 상관관계 측정, MA(q)의 차수를 구하기 위해 사용. ACF그래프가 특정 시점이후에 0으로 갑자기 떨어진다면, 그 지점이 q임
 > 5. <strong>PACF</strong>(부분자기상관함수) : 두 점 사이의 상관관계를 측정하되, 그 사이의 지점들의 영향력을 제거한 순수한 상관관계만 봄. AR(p)의 차수를 결정할 때 사용. PACF그래프가 특정 시점이후에 0으로 갑자기 떨어진다면, 그 지점이 p임
+{: .prompt-tip }
 
-> [!NOTE]
+>
 > <strong>ETS(Error-Trend-Seasonal)</strong>
 > 지수평활(exponential smoothing)은 최근 관측치에 더 큰 가중치를 두는 기법이고, 이를 <strong>상태공간</strong>에 정식화하여 확률모형과 AIC(자동 모형 선택)등에 사용가능하도록 만든 체계
 > - 강점 : 추세와 계절성이 명확한 <strong>비정상 시계열</strong>에 강하며, 실무 업무 예측에 널리 사용
@@ -321,9 +324,10 @@ Chronos는
 > 	- 1차 차분 : $y_t - y_{t-1}$을 사용하여 추세를 제거
 > 	- 로그 변환 : 변동 폭이 가면갈수록 커지는 경우
 > 	- 계절 차분 : $y_t - y_{t-m}$을 사용하여 계절성을 제거
+{: .prompt-tip }
 
 
-> [!NOTE]
+>
 > <strong>LLM Zero-Shot Forecasters (Gruver et al., 2023)</strong>
 > <strong>시계열 값을 숫자 문자열로 인코딩하여 "다음 토큰 예측"문제로 바꿔버림</strong>. 이를 통해 GPT-3, LLaMA-2와 같은 모델에 추가학습없이 외삽을 꽤나 잘한다 → Zero-shot가능성
 > - 숫자 토크나이징/디코딩을 설계 → 토큰 분포의 연속값을 확률분포로 바꾸는 절차를 제안
@@ -331,18 +335,22 @@ Chronos는
 > - 시사점 : 텍스트 사전학습 모델이 시계열에도 적용이 가능함을 시사
 > - 한계점 : 숫자 표현 및 토크나이저 설계에 민감하며, 스케일에 따라 성능차이가 큼
 > 1. 외삽 : 과거 데이터 패턴을 보고, 아직 오지 않은 미래의 값을 예측
+{: .prompt-tip }
 
-> [!NOTE]
+>
 > <strong>Time-LLM: Time Series Forecasting by Reprogramming LLMs (Jin et al., ICLR 2024)</strong>
 > <strong>LLM을 frozen시키고 입력시계열을 텍스트로 재프로그래밍(Reprogramming)하여 LLM이 다루기 쉬운 형태롤 정렬시키는 프레임워크</strong>
 > “Prompt-as-Prefix(PaP)”로 문맥을 풍부하게 주고, LLM 출력(변환된 패치)을 다시 예측 값으로 사상(projection)
 > 1. 재프로그래밍 : 언어적 형태로 바꾸어줌
 > 2. PaP(Prompt-as-Prefix)와 사상(Projection) : PaP는 "텍스트 설명"을 접두사로 달아주는 것(이 데이터는 어떤 데이터이고, 어떤 패턴을 가지고 있다), 사상은 실수값으로 변환하는 것
+{: .prompt-tip }
 
-> [!NOTE]
+>
 > <strong>ForecastPFN (Dooleyet al.2023):</strong>
+{: .prompt-tip }
 <strong>합성(synthetic) 데이터 분포</strong>를 활용하여 훈련된 최초의 zero-shot 예측 모델. 새 시계열 데이터에 대해 <strong>베이지안 근추론을 근사</strong>하도록 학습시키는 것
 > 새로운 데이터에 대해 <strong>재학습 없이 단 한번의 순전파로 예측</strong>
+{: .prompt-tip }
 적은 데이터로도 기존 최첨단(SOTA) 모델보다 정확하고 빠른 예측 성능 입증.
 > - 핵심 주장 : 작은 데이터포인트를 가지고, 기존보다 빠르고 정확하게 예측(논문 주장 40개 이하)
 > - 한계점 : 어떤 합성 데이터로 학습했는가가 실제 도메인간 불일치가 발생한 경우 리스크가 발생함
@@ -350,26 +358,30 @@ Chronos는
 > 	1. 통계적 함수(ARIMA, ETS등)들을 활용하여, 무작위로 조합해 <strong>가상의 시계열</strong>을 생성
 > 	2. 이 가상의 데이터로 정답을 맞추도록 학습
 > 	3. 가짜 패턴들 중 비슷한 패턴을 찾아 실제 데이터와 비슷하다고 판단하여 예측
+{: .prompt-tip }
 
-> [!NOTE]
+>
 > <strong>A decoder-only foundation model for time-series forecasting (Das et al., 2023/ICML 2024)</strong>
+{: .prompt-tip }
 대규모 시계열 코퍼스(corpus)에서 사전 학습된 decoder-only Transformer 기반 모델.
 다양한 public 데이터셋에서 zero-shot 성능이 SOTA 지도 학습(supervised) 모델에 근접.
 다양한 예측 이력 길이, 예측 길이, 시간적 세분성에 잘 작동.
 
 
-> [!NOTE]
+>
 > <strong>Moirai (Woo et al., 2024) — Unified Training of Universal TS Forecasting Transformers</strong>
+{: .prompt-tip }
 Masked Encoder 기반의 Universal Time Series Forecasting Transformer.
 시계열 데이터의 고유한 도전 과제(교차 주파수 학습, 다양한 변수 수, 분포 특성)를 해결하기 위해 Transformer 아키텍처를 개선.
 270억 개 이상의 관측치를 포함하는 대규모 공개 시계열 아카이브(LOTSA)로 훈련.
 zero-shot 예측에서 full-shot 모델과 비교하여 경쟁력 있거나 우수한 성능 달성.
 
-> [!NOTE]
+>
 > <strong>BIN (Binning in Time-Series)</strong>
 > 시계열 윈도우 내의 연속적인 수치를 이산적인 구간(Bin)으로 나누어 토큰화 하는 기법
 > - 강점 : 수치 데이터의 스케일 문제를 완화, LLM에 그대로 사용 가능
 > - 단점 : 구간 개수나, 경계 설정 전략에 따라 정보 손실 가능
+{: .prompt-tip }
 
 
 ---
@@ -494,11 +506,12 @@ Chronos는 인코더-디코더 T5 모델(Raffel et al., 2020)의 변형에 초�
 ---
 ### 포인트
 
-> [!NOTE]
+>
 > <strong>아핀 변환(affine transformation)</strong>
 > $$\tilde{x}_i = (x_i - m)/s$$
 > <strong>평행이동, 선형변환</strong>을 결합한것으로 쉽게 말해, 그래프를 밀거나 당기고(더하기, 뺴기) / 늘리고 줄이는(곱하고, 나누고) 모든 행위를 의미한다
 > 
+{: .prompt-tip }
 
 ---
 
@@ -588,14 +601,15 @@ Automatic Statistician (Duvenaud et al., 2013)에서 영감을 받았다. 이 �
 ---
 ### 포인트
 
-> [!NOTE]
+>
 > <strong>Mixup</strong>
 > <strong>볼록 조합 = 가중 평균</strong>과 동일하다.
 > $$\tilde{x} = \lambda x_i + (1 - \lambda) x_j$$$$\tilde{y} = \lambda y_i + (1 - \lambda) y_j$$
 > e.g. 예를 들어, 개와 고양이를 0.7개의 개, 0.3개의 고양이로 만드는것과 동일하다.
 > 
+{: .prompt-tip }
 
-> [!NOTE]
+>
 > <strong>TSMixup</strong>
 > 동작 원리
 > 1. 데이터 쌍 선택: 훈련셋에서 무작위로 두 개의 시계열 샘플(A, B)을 뽑습니다.
@@ -604,8 +618,9 @@ Automatic Statistician (Duvenaud et al., 2013)에서 영감을 받았다. 이 �
 > 	1. 입력(과거 데이터): A 시계열의 값들에 0.6을 곱하고, B 시계열의 값들에 0.4를 곱해서 더합니다.
 > 	2. 레이블(미래 예측값): A의 실제 미래값에 0.6을, B의 실제 미래값에 0.4를 곱해서 더합니다.
 > 4. 학습: 모델에게 이 '섞인 시계열'을 보여주며 '섞인 미래값'을 예측하게 시킵니다.
+{: .prompt-tip }
 
-> [!NOTE]
+>
 > <strong>KernelSynth</strong>
 > <strong>시계열을 레고로 보는 방식</strong>
 > 복잡해보이는 시계열도 몇 가지 기본패턴으로 쪼갤 수 있음 이 기본패턴을 커널로 정의
@@ -613,6 +628,7 @@ Automatic Statistician (Duvenaud et al., 2013)에서 영감을 받았다. 이 �
 > 1. 여러개의 커널을 이항연산(+, x) : e.g. RBF + 7일 주기 x 우상향 직선 = 주간 매출 데이터
 > 2. 커널의 강도를 조절
 > 3. 시계열 생성(GP)
+{: .prompt-tip }
 
 대표적인 '레고 블록(Kernel)'
 	RBF (Radial Basis Function) Kernel: 아주 매끄러운 곡선 패턴 (부드러운 변동)

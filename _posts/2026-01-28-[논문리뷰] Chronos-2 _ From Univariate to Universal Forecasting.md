@@ -11,6 +11,7 @@ math : true
 ---
 ### 🔗 출처
 > https://arxiv.org/abs/2510.15821
+{: .prompt-tip }
 
 ---
 ## 🗓️ 요약
@@ -230,6 +231,7 @@ e.g. 클라우드 인프라 지표 : CPU 사용량 + 메모리 소비량 + 스�
 > 모델의 가중치(Weight)를 새로 학습시키지 않고도, 입력값(Context)으로 주어진 예시나 데이터를 보고 즉석에서 문제 해결 방식을 깨우치는 능력으로
 > chronos-2에서는, 새로운 도메인의 데이터가 들어왔을때 이 데이터의 과거 패턴을 context로 삼아 예측
 > 즉, <strong>별도의 튜닝 없이 "눈치껏 맞추는"능력</strong>
+{: .prompt-tip }
 
 <strong>다변량 vs 공변량</strong>
 
@@ -348,7 +350,7 @@ $$P(Y_{T+1:T+H} \mid Y_{1:T}, X_{1:T+H})$$
 ---
 ### 포인트
 
-> [!NOTE]
+>
 > <strong>DeepAR</strong>
 > 확률적 자기회귀 RNN 기반 모델
 > - 순환신경망을 통해 과거의 시계열로부터 <strong>미래 확률분포를 직접적으로 예측</strong>
@@ -359,8 +361,9 @@ $$P(Y_{T+1:T+H} \mid Y_{1:T}, X_{1:T+H})$$
 > - 불확실성 모델링 가능
 > - 대규모 시계열에 강함
 > - 전처리 필요성이 비교적 낮음
+{: .prompt-tip }
 
-> [!NOTE]
+>
 > <strong>DeepState</strong>
 > 상태 공간 모델(SSM) + 딥러닝
 > <strong>SSM → 동적 상태(state)와 관측(obs.)을 동시에 학습</strong>하며 딥러닝을 통해 데이터를 통해 자동으로 학습하되, 구조적 해석 가능성을 남겨둠
@@ -368,8 +371,9 @@ $$P(Y_{T+1:T+H} \mid Y_{1:T}, X_{1:T+H})$$
 > <strong>강점</strong>
 > - 적은 데이터로 구조적 학습 가능
 > - 모델 해석에 유리
+{: .prompt-tip }
 
-> [!NOTE]
+>
 > <strong>TimeGrad</strong>
 > 확산(diffusion) 기반 확률 시계열 모델
 > diffusion model을 시계열에 적용하여 <strong>확률적 분포 샘플링 기반 예측</strong>, <strong>다변량 확률적 패턴을 추정</strong>
@@ -381,8 +385,9 @@ $$P(Y_{T+1:T+H} \mid Y_{1:T}, X_{1:T+H})$$
 > <strong>단점</strong>
 > - 계산량
 > - 샘플링 비용
+{: .prompt-tip }
 
-> [!NOTE]
+>
 > <strong>N-BEATS</strong>
 > MLP 기반 Residual 네트워크
 > 완전한 <strong>MLP</strong>기반 구조 + <strong>Residual link</strong>를 활용
@@ -391,8 +396,9 @@ $$P(Y_{T+1:T+H} \mid Y_{1:T}, X_{1:T+H})$$
 > <strong>강점</strong>
 > - RNN, TF에 비해 복잡하지 않으면서 강력한 성능
 > - 낮은 데이터 가용성에도 훌륭한 성능
+{: .prompt-tip }
 
-> [!NOTE]
+>
 > <strong>N-HITS</strong>
 > Neural Hierarchical Interpolation 모델
 > N-BEATS에서 확장된 모델, <strong>계층적 보간</strong>을 이용해 장기적 패턴을 예측하며 서로 다른 스케일 패턴을 분리하여 예측에 반영
@@ -402,8 +408,9 @@ $$P(Y_{T+1:T+H} \mid Y_{1:T}, X_{1:T+H})$$
 > - 장기예측 성능에 강점
 > - 복잡한 시계열 패턴을 다중 스케일로 포착
 > 
+{: .prompt-tip }
 
-> [!NOTE]
+>
 > <strong>TFT</strong>
 > Transformer 기반 다변량 시계열 예측
 > TF기반으로, 정적 변수와 시계열 변수를 동시에 처리하며 gating과 variable selection을 포함해 <strong>해석가능성을 제공</strong>
@@ -411,8 +418,9 @@ $$P(Y_{T+1:T+H} \mid Y_{1:T}, X_{1:T+H})$$
 > <strong>강점</strong>
 > - 여러 미래 시점에 대한 예측에 강점(MultiHorizon Forecasting)
 > - 다양한 입력 형태에 대해 처리
+{: .prompt-tip }
 
-> [!NOTE]
+>
 > <strong>PatchTST</strong>
 > Transformer Long-term forecasting
 > 시계열 데이터를 패치화 시켜서 TF에 적용하여 긴 시계열에 대한 의존성을 잘 학습
@@ -420,6 +428,7 @@ $$P(Y_{T+1:T+H} \mid Y_{1:T}, X_{1:T+H})$$
 > <strong>강점</strong>
 > - 장기 예측의 효율성
 > - TF 계산력 향상
+{: .prompt-tip }
 
 ---
 ### 📚 3 The Chronos-2 Model
@@ -757,11 +766,12 @@ $$\text{Patch}_p = [\underbrace{u_{t}, \dots, u_{t+P-1}}_{P \text{ values}}, \qu
 ###### x
 $$\mathbf{X}_{\text{sequence}} = \Big[ \underbrace{\mathbf{h}_1, \dots, \mathbf{h}_n}_{\text{Context Patches}} , \quad \mathbf{e}_{\text{REG}} , \quad \underbrace{\mathbf{h}_{n+1}, \dots, \mathbf{h}_{n+m}}_{\text{Future Patches}} \Big]$$
 $$\mathbf{h}_p = f_{\text{in}} \left( \left[ \underbrace{u_{t:t+P, d}}_{\text{Values}} , \underbrace{j_{t:t+P}}_{\text{Indices}} , \underbrace{m_{t:t+P, d}}_{\text{Masks}} \right] \right) \in \mathbb{R}^{D_{\text{model}}}$$
-> [!NOTE]
+>
 > <strong>RoPE(Rotary Position Embedding)</strong>
 > 입력 벡터를 특정 각도만큼 <strong>회전</strong>시켜 벡터를 더해주는 방법
 > e.g. t번째 위치 → t번째와 비례하는 각도 $\theta$만큼 회전 변환
 > 이를 통해 두 토큰 사이의 어텐션 계산을 진행할때, 결과값이 두 토큰의 <strong>상대적 거리</strong>에만 의존하게됨
+{: .prompt-tip }
 
 #### Attention
 - <strong>Time Attention</strong> : 어제와 오늘 - 시간 관계 학습
@@ -843,28 +853,32 @@ Chronos, GIFT-Eval의 사전 학습에서 선변한 데이터셋을 Chronos-2에
 ---
 ### 포인트
 
-> [!NOTE]
+>
 > <strong>TSI(Trend, Seasonality, Irregularity)</strong>
 > 시계열 데이터를 구성하는 3가지 성분(추세, 계절성, 불확실성)을 무작위로 조합(기존데이터로부터 유래 X)하여 단변량 데이터를 생성 → 모델이 학습해보지 못한 희귀한 패턴, 데이터문제 해결
 > 
+{: .prompt-tip }
 
-> [!NOTE]
+>
 > <strong>TCM(Temporal Causal Model)</strong>
 > 시간에 따른 인과 관계를 모델링
 > <strong>무작위 인과 그래프</strong>를 샘플링 후 자기회귀, A사건이 발생하면 일정 시간 뒤 B사건에 영향을 준다는 시간적 인과 구조를 데이터에 부여
 > - 무작위 인과 그래프 : 변수들 사이의 "원인과 결과"관계를 나타내는 지도를 무작위로 그려낸 것, 즉 컴퓨터가 어떤 변수가 어떤 변수의 원인 혹은 영향력이 얼마나 강할지를 무작위로 결정하며 이는 현실세계의 <strong>What-if</strong>시나리오를 위함
+{: .prompt-tip }
 
-> [!NOTE]
+>
 > <strong>선행 지연 효과</strong>
 > <strong>시간차 관계</strong>를 의미. 한 시계열(Lead)의 움직임이 다른 시계열(Lag)에 일정한 시간 간격을 두고 나중에 나타나는 현상
 > e.g. 가격이 오르면(Lead)→완제품의 가격이 오르는(Lag)관계
 > 
+{: .prompt-tip }
 
-> [!NOTE]
+>
 > <strong>공적분</strong>
 > 각각은 불안정(Non-Stationary)하여 제멋대로 움직이는 것 같지만, <strong>장기적으로는 일정한 관계를 유지하며 함께 움직이는 성질</strong>
 > 개별 시계열 데이터가 추세를 가지고 있어 불안정하더라도, 이들의 선형 조합이 안정적인 상태가 될 때 공적분 관계에 있다고 한다.
 > e.g. 술취한 사람과 개 : 서로 비틀거리지만 목줄로 연결되어 같은 방향으로는 간다
+{: .prompt-tip }
 
 ---
 ### 📚 5 Experiments
@@ -1093,26 +1107,29 @@ ICL을 통해 Chronos-2는 공변량 정보를 효과적으로 활용하여 단�
 ---
 ### 포인트
 
-> [!NOTE]
+>
 > <strong>평균 승률</strong>
 > 특정 모델이 다른 모델과의 1:1비교에서 얼마나 자주 이기는지를 측정
 > N개의 모델이 있을때, 각 데이터셋(task)마다 모델 A와 B의 예측 오차(Loss by SQL)을 비교하여 더 낮은 오차를 기록한 모델이 승자로 판단.
 > 이후 모델 A가 다른 모델들을 상대로 거둔 승리 비율을 계싼하고, 이를 전체 태스크에 대해 평균
 > $$
+{: .prompt-tip }
 R = 1 + \left(1 - \frac{W}{100}\right)(N - 1)
 > $$
 > - $W$: 평균 승률 (Avg. Win Rate)  
 > - $N$: 비교 대상 모델의 총 개수  
 > - $R$: 모델의 평균 순위 (Average Rank)
 > 승률 100%에 가까울수록, 해당 모델이 거의 모든 데이터셋에서 이긴다는 의미
+{: .prompt-tip }
 
-> [!NOTE]
+>
 > <strong>스킬 점수</strong>
 > 베이스라인 모델 대비 성능이 얼마나 개선되었는지 <strong>백분율로 나타내는</strong>지표
 > 베이스라인 : Seasonal Naive
 > 평가 모델과 베이스라인 모델의 예측 오차를 비교, 오차가 얼마나 감소했는지를 측정
 > 
 > $$
+{: .prompt-tip }
 S = \left(1 - \frac{Loss_{\text{model}}}{Loss_{\text{base}}}\right) \times 100
 > $$
 > - $S$: 스킬 점수 (Skill Score) 
@@ -1123,8 +1140,9 @@ S = \left(1 - \frac{Loss_{\text{model}}}{Loss_{\text{base}}}\right) \times 100
 > - $S > 0$: 베이스라인보다 성능이 우수함  
 > 	- e.g. : $S = 47.3$은 베이스라인 대비 예측 오차를 약 47% 감소시켰음을 의미
 > - $S < 0$: 베이스라인보다 성능이 열등함  
+{: .prompt-tip }
 
-> [!NOTE]
+>
 > **대체 전략 (Imputation Strategy)**
 > 시계열 예측 벤치마크(fev-bench)에서 미래의 정보가 입력 데이터에 포함되어 성능이 왜곡되는 **데이터 누수(Data Leakage)** 문제를 해결하기 위한 데이터 처리 규약
 > 
@@ -1142,6 +1160,7 @@ S = \left(1 - \frac{Loss_{\text{model}}}{Loss_{\text{base}}}\right) \times 100
 > **의미**
 > * **누수 차단:** 모델이 미래의 타겟 정보를 미리 보고 예측하는 '커닝'을 원천적으로 방지
 > * **공정한 비교:** 모든 모델이 동일하게 제한된 정보(마스킹된 데이터)만을 사용하여 예측하게 함으로써 진정한 제로샷 예측 성능을 측정
+{: .prompt-tip }
 
 
 ---
