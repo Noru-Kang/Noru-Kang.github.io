@@ -46,6 +46,7 @@ order: 4
   - Member (Mar 2024 – present)  
   - HR Manager (Jun 2024 – Dec 2024)  
   - President (Jan 2025 – Jul 2025)  
+  - GA Manager (Jun 2026 - Jul 2026)
 
 - **DArt-B, Data Analysis Society, Chung-Ang University**
   - Member (Jan 2024 – Dec 2024)  
