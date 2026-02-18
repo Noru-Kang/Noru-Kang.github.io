@@ -9,3 +9,64 @@
 ';
 
 /* append your custom style below */
+
+.portfolio-container {
+  padding: 0.5rem 0 1rem;
+}
+
+.briefs-intro {
+  margin-bottom: 1rem;
+}
+
+.briefs-hint {
+  margin-top: 0.5rem;
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.project-card {
+  border: 1px solid var(--main-border-color);
+  border-radius: 0.65rem;
+  background: var(--card-bg);
+  overflow: hidden;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+}
+
+.project-card > a {
+  display: block;
+  height: 100%;
+  padding: 0.9rem;
+  color: inherit;
+  text-decoration: none;
+}
+
+.project-card h3 {
+  font-size: 1.05rem;
+  margin: 0.15rem 0 0.5rem;
+}
+
+.project-card p {
+  margin: 0;
+  color: var(--text-muted-color);
+  font-size: 0.95rem;
+}
+
+.project-thumb {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 0.45rem;
+  margin-bottom: 0.75rem;
+}

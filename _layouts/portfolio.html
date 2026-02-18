@@ -1,0 +1,45 @@
+---
+layout: default
+---
+
+{% include lang.html %}
+
+<div class="portfolio-container">
+  <header class="briefs-intro content">
+    <h1 class="dynamic-title">{{ page.title }}</h1>
+    {{ content }}
+  </header>
+
+  {% assign project_posts = site.posts | where_exp: "item", "item.categories contains 'projects' and item.hidden != true" %}
+  {% assign fallback_mode = false %}
+
+  {% if project_posts == empty %}
+    {% assign fallback_mode = true %}
+    {% assign project_posts = site.posts | where_exp: "item", "item.hidden != true" %}
+  {% endif %}
+
+  {% if fallback_mode %}
+    <p class="briefs-hint text-muted">
+      `projects` 카테고리 포스트가 아직 없어, 최신 포스트를 예시로 표시합니다.
+    </p>
+  {% endif %}
+
+  <div class="project-grid">
+    {% for post in project_posts limit: 9 %}
+      <article class="project-card">
+        <a href="{{ post.url | relative_url }}">
+          {% assign src = post.image.path | default: post.image %}
+          {% if src %}
+            {% unless src contains '//' %}
+              {% assign src = post.media_subpath | append: '/' | append: src | replace: '//', '/' %}
+            {% endunless %}
+            {% assign alt = post.image.alt | default: post.title | xml_escape %}
+            <img src="{{ src }}" alt="{{ alt }}" class="project-thumb" loading="lazy">
+          {% endif %}
+          <h3>{{ post.title }}</h3>
+          <p>{{ post.excerpt | strip_html | truncate: 120 }}</p>
+        </a>
+      </article>
+    {% endfor %}
+  </div>
+</div>
