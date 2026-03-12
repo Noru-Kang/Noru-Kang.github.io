@@ -114,8 +114,7 @@ Random masking을 하면 너무 쉬운 문제가 된다. 따라서 REVE는 <stro
 
 ![](/assets/img/posts/REVE/6be92a403e08ceebda59df6d9a92cda1.png)
 
-> **$M_r$ : 마스킹 비율**  
->
+> $M_r$ : 마스킹 비율  
 > $R_s$ : 공간 마스킹 반경  
 > $R_t$ : 시간 마스킹 반경  
 {: .prompt-tip }
@@ -126,8 +125,7 @@ Dropout 또한 Block Masking과 비슷한 접근을 가져간다. Dropout은 <st
 
 ![](/assets/img/posts/REVE/7e66f698c071cae3e63521c027c557f5.png)
 
-> **$D_r$ : Dropout 비율**  
->
+> $D_r$ : Dropout 비율  
 > $R_d$ : Dropout의 영향을 받을 인접한 공간 반경  
 {: .prompt-tip }
 
@@ -203,7 +201,7 @@ $$ \text{Total Loss} = L_{\text{primary}} + \lambda \cdot L_{\text{secondary}} $
 > <strong>평균을 빼는 과정 없이 scale만 맞추는 방식에 가까움</strong>  
 > 	<strong>LayerNorm</strong> : 평균과 분산을 모두 맞춤  
 {: .prompt-tip }
-\begin{align*}
+$$\begin{align*}
 \mu &= \frac{1}{d} \sum_{i=1}^{d} x_i \\
 \sigma^2 &= \frac{1}{d} \sum_{i=1}^{d} (x_i - \mu)^2 \\
 \bar{x}_i &= \frac{x_i - \mu}{\sqrt{\sigma^2 + \epsilon}} \\
