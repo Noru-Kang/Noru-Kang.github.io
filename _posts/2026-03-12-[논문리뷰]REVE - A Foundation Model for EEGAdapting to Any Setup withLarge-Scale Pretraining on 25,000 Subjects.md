@@ -180,9 +180,11 @@ L2 말고 L1을 선택한 이유: EEG의 경우 노이즈가 많은 데이터이
 ##### Secondary Loss : L1
 
 $$ L_{\text{primary}} = \frac{1}{|P_m|} \sum_{i \in P_m} \| \hat{P}^{(i)}_m - P^{(i)}_m \|_1$$
+
 #### 2.3. Loss
 
 $$ \text{Total Loss} = L_{\text{primary}} + \lambda \cdot L_{\text{secondary}} $$
+
 
 > **왜?**  
 >
@@ -199,44 +201,47 @@ $$ \text{Total Loss} = L_{\text{primary}} + \lambda \cdot L_{\text{secondary}} $
 >
 > LayerNorm에서 변경됨  
 > <strong>평균을 빼는 과정 없이 scale만 맞추는 방식에 가까움</strong>  
-> 	<strong>LayerNorm</strong> : 평균과 분산을 모두 맞춤  
-{: .prompt-tip }
-$$\begin{align*}
+>   
+> <strong>LayerNorm</strong> : 평균과 분산을 모두 맞춤  
+> $$\begin{align*}
 \mu &= \frac{1}{d} \sum_{i=1}^{d} x_i \\
 \sigma^2 &= \frac{1}{d} \sum_{i=1}^{d} (x_i - \mu)^2 \\
 \bar{x}_i &= \frac{x_i - \mu}{\sqrt{\sigma^2 + \epsilon}} \\
 y_i &= \gamma_i \bar{x}_i + \beta_i
 \end{align*}
-$$
-> 	<strong>RMSNorm</strong> : scale(크기)만 안정화, 계산이 더 단순해지고 대규모 transformer에서 학습 안정성이 높아짐
-> 	$$
+$$  
+>  
+> <strong>RMSNorm</strong> : scale(크기)만 안정화, 계산이 더 단순해지고 대규모 transformer에서 학습 안정성이 높아짐
+>$$
 \begin{align*}
 \text{RMS}(x) &= \sqrt{\frac{1}{d} \sum_{i=1}^{d} x_i^2 + \epsilon} \\
 \bar{x}_i &= \frac{x_i}{\text{RMS}(x)} \\
 y_i &= \gamma_i \bar{x}_i
-\end{align*}
-$$
+\end{align*} $$
 >
 {: .prompt-tip }
 
-><strong>📍 GEGLU</strong>
+><strong>📍 GEGLU</strong>  
 >GELU(값이 크면 통과, 애매하면 조금만 통과)에서 변경됨 
->GEGLU는 <strong>GLU계열 activation으로 Sigmoid대신 GELU로 변경하여</strong> 단순 활성화가 아니라, <strong>한 쪽이 다른쪽을 gate하는 구조로</strong> 입력 정보 중 어떤 부분을 더 살릴지 <strong>gate</strong>가 결정함, 이를 통해 표현력의 상승과 종종 GELU보다 성능이 상승하기도 함(transformer FFN에서)
->$$
-\begin{align*}
-\text{GELU}(x) &= x \cdot \Phi(x) \\
-\Phi(x) &\approx 0.5x \left( 1 + \tanh \left( \sqrt{\frac{2}{\pi}} (x + 0.044715x^3) \right) \right)
-\end{align*}
-$$
->![](/assets/img/posts/REVE/7101daa05175723ee81e3d89c0c91bb3.png)
-> >https://docs.pytorch.org/docs/stable/generated/torch.nn.GELU.html
-> 
+GEGLU는 <strong>GLU계열 activation으로 Sigmoid대신 GELU로 변경하여</strong> 단순 활성화가 아니라, <strong>한 쪽이 다른쪽을 gate하는 구조로</strong> 입력 정보 중 어떤 부분을 더 살릴지 <strong>gate</strong>가 결정함, 이를 통해 표현력의 상승과 종종 GELU보다 성능이 상승하기도 함(transformer FFN에서)  
+>
 > $$
-\begin{align*}
-\text{GEGLU}(x, W, V) &= \text{GELU}(xW) \otimes (xV)
-\end{align*}
-$$
->![](/assets/img/posts/REVE/d09213a6051662daecb511fcf06ef9b2.png)  
+> \begin{align*}
+> \text{GELU}(x) &= x \cdot \Phi(x) \\
+> \Phi(x) &\approx 0.5x \left( 1 + \tanh \left( \sqrt{\frac{2}{\pi}} (x + 0.044715x^3) \right) \right)
+> \end{align*}
+> $$
+>
+> ![](/assets/img/posts/REVE/7101daa05175723ee81e3d89c0c91bb3.png)
+> https://docs.pytorch.org/docs/stable/generated/torch.nn.GELU.html
+>
+> $$
+> \begin{align*}
+> \text{GEGLU}(x, W, V) &= \text{GELU}(xW) \otimes (xV)
+> \end{align*}
+> $$
+>
+> ![](/assets/img/posts/REVE/d09213a6051662daecb511fcf06ef9b2.png)  
 > https://medium.com/@tariqanwarph/activation-function-and-glu-variants-for-transformer-models-a4fcbe85323f  
 {: .prompt-tip }
 
