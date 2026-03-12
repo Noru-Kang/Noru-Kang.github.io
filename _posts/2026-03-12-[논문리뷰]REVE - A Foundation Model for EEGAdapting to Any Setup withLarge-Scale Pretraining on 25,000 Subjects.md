@@ -24,12 +24,9 @@ math: true
 
 ## 👿 문제 상황 (Problem Statement)
 
-><strong>전극 배치, 길이가 달라도 여러 EEG를 동일한 모델로 다루고 싶다</strong>
->기존의 EEG foundation 모델은 특정 데이터셋, 특정 채널구성에 묶여있기에 이를 해결하기 위해 저자들은 REVE를 제시하였다.
-> **📌 Note**  
+> **전극 배치, 길이가 달라도 여러 EEG를 동일한 모델로 다루고 싶다**  
 >
-> <strong>전극 배치, 길이가 달라도 여러 EEG를 동일한 모델로 다루고 싶다</strong>  
-> 기존의 EEG foundation 모델은 특정 데이터셋, 특정 채널구성에 묶여있기에 이를 해결하기 위해 저자들은 REVE를 제시하였다.
+> 기존의 EEG foundation 모델은 특정 데이터셋, 특정 채널구성에 묶여있기에 이를 해결하기 위해 저자들은 REVE를 제시하였다.  
 {: .prompt-note }
 
 ---
@@ -117,12 +114,8 @@ Random masking을 하면 너무 쉬운 문제가 된다. 따라서 REVE는 <stro
 
 ![](/assets/img/posts/REVE/6be92a403e08ceebda59df6d9a92cda1.png)
 
-> $M_r$ : 마스킹 비율
-> $R_s$ : 공간 마스킹 반경
-> $R_t$ : 시간 마스킹 반경 
-> **💡 Tip**  
+> **$M_r$ : 마스킹 비율**  
 >
-> $M_r$ : 마스킹 비율  
 > $R_s$ : 공간 마스킹 반경  
 > $R_t$ : 시간 마스킹 반경  
 {: .prompt-tip }
@@ -133,18 +126,15 @@ Dropout 또한 Block Masking과 비슷한 접근을 가져간다. Dropout은 <st
 
 ![](/assets/img/posts/REVE/7e66f698c071cae3e63521c027c557f5.png)
 
-> $D_r$ : Dropout 비율
-> $R_d$ : Dropout의 영향을 받을 인접한 공간 반경
+> **$D_r$ : Dropout 비율**  
+>
+> $R_d$ : Dropout의 영향을 받을 인접한 공간 반경  
 {: .prompt-tip }
 
 ### 2. Multi-Task Learning
 #### 2.1. Main Task
-
-> <strong>보이는걸 최대한 활용해서 마스킹을 복원해봐</strong>
-{: .prompt-warning }
-> **⚠️ 주의**  
+> **보이는걸 최대한 활용해서 마스킹을 복원해봐**  
 >
-> <strong>보이는걸 최대한 활용해서 마스킹을 복원해봐</strong>  
 {: .prompt-warning }
 
 
@@ -156,9 +146,8 @@ Dropout 또한 Block Masking과 비슷한 접근을 가져간다. Dropout은 <st
 	- 마스킹된 위치 개수 $N_m$만큼 학습 가능한 공유 벡터를 복제하여 배치함
 3. <strong>Decoder</strong> : Encoder의 output과 Learnable Mask Token을 합쳐 Decoder에 들어가게됨(이때 시공간적 위치를 알려주기 위해 <strong>4D Pos. Encoding</strong>이 더해짐)
 		$\text{Decoder Input} = [\text{Encoded Features} + \text{Positional Encodings}] \cup [\text{Learnable Mask Tokens} + \text{Positional Encodings}]$
-> **💡 Tip**  
+> **Learnable인 이유**  
 >
-> <strong>Learnable인 이유</strong>  
 > EEG는 그 자체가 노이즈가 많은 데이터이고, 학습 과정에서 토큰을 통해 <strong>평균적인 EEG 신호의 잠재적 형태를 제시하기 위한 Prior임</strong>  
 {: .prompt-tip }
 
@@ -170,10 +159,8 @@ L2 말고 L1을 선택한 이유: EEG의 경우 노이즈가 많은 데이터이
 
 #### 2.2. Secondary Task
 
-> <strong>Local 정보 없이 전체 내용을 잘 요약해서 복원해봐</strong>
-> **⚠️ 주의**  
+> **Local 정보 없이 전체 내용을 잘 요약해서 복원해봐**  
 >
-> <strong>Local 정보 없이 전체 내용을 잘 요약해서 복원해봐</strong>  
 {: .prompt-warning }
 
 ![](/assets/img/posts/REVE/225aaf1f8a29fbd696bcf7feee19d912.jpeg)
@@ -183,20 +170,13 @@ L2 말고 L1을 선택한 이유: EEG의 경우 노이즈가 많은 데이터이
 3. 이 Global Token을 다시 확장(Global Token값을 복제)한 후 Positional Encoding을 더해준다
 4. 마지막으로 2-layer FFN을 진행하여 Masked Patch를 복원하는 Secondary Task를 진행한다.
 
-> 📍 <strong>Attention Pooling</strong>
-> 여러 토큰을 <strong>하나의 요약 벡터</strong>로 압축하는 방법
-> <strong>어떤 토큰이 더 중요한지 attention으로 가중치를 줘서 모음</strong>
-> 
-> ![](/assets/img/posts/REVE/43378e8fd238cb84f6e6b9043eee28cc.png)
-> >https://www.researchgate.net/figure/Overview-of-Attention-Pooling-Mechanism_fig2_330348603
-> **💡 Tip**  
+> **📍 Attention Pooling**  
 >
-> 📍 <strong>Attention Pooling</strong>  
 > 여러 토큰을 <strong>하나의 요약 벡터</strong>로 압축하는 방법  
 > <strong>어떤 토큰이 더 중요한지 attention으로 가중치를 줘서 모음</strong>  
-> 
-> ![](/assets/img/posts/REVE/43378e8fd238cb84f6e6b9043eee28cc.png)
-> https://www.researchgate.net/figure/Overview-of-Attention-Pooling-Mechanism_fig2_330348603
+>
+> ![](/assets/img/posts/REVE/43378e8fd238cb84f6e6b9043eee28cc.png)  
+> https://www.researchgate.net/figure/Overview-of-Attention-Pooling-Mechanism_fig2_330348603  
 {: .prompt-tip }
 
 ##### Secondary Loss : L1
@@ -206,9 +186,8 @@ $$ L_{\text{primary}} = \frac{1}{|P_m|} \sum_{i \in P_m} \| \hat{P}^{(i)}_m - P^
 
 $$ \text{Total Loss} = L_{\text{primary}} + \lambda \cdot L_{\text{secondary}} $$
 
-> **ℹ️ Info**  
+> **왜?**  
 >
-> <strong>왜?</strong>  
 > <strong>좋은 표현을 만드는 Encoder만을 남겨</strong> 비교적 Local에 집중하는 main task뿐만 아니라, secondary task를 통해서 <strong>Global한 요약을 강제</strong>한다. 이를 통해 <strong>Frozen/Linear Probing</strong>의 성능을 향상시킨다.  
 {: .prompt-info }
 
@@ -218,9 +197,8 @@ $$ \text{Total Loss} = L_{\text{primary}} + \lambda \cdot L_{\text{secondary}} $
 
 ![](/assets/img/posts/REVE/472fee104eb642f6843de8b55189169a.png)
 
-> **💡 Tip**  
+> **📍 RMSNorm**  
 >
-> <strong>📍 RMSNorm</strong>  
 > LayerNorm에서 변경됨  
 > <strong>평균을 빼는 과정 없이 scale만 맞추는 방식에 가까움</strong>  
 > 	<strong>LayerNorm</strong> : 평균과 분산을 모두 맞춤  
@@ -264,9 +242,8 @@ $$
 > https://medium.com/@tariqanwarph/activation-function-and-glu-variants-for-transformer-models-a4fcbe85323f  
 {: .prompt-tip }
 
-> **💡 Tip**  
+> **📍Flash Attention v2**  
 >
-> <strong>📍Flash Attention v2</strong>  
 > attention 수식은 크게 변경되지 않음, 하지만 중간 메모리 사용을 줄이고 병렬성을 개선해서 훨씬 효율적으로 계산이 가능함  
 > 긴 시퀀스, GPU 메모리 관리, 속도 측면에서 기존 attention보다 유리하다.  
 {: .prompt-tip }
