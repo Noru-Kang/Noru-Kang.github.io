@@ -1,7 +1,7 @@
 ---
 title: "[논문리뷰] A multimodal sleep foundation model for
 disease prediction(SleepFM)"
-date: 2026-03-12 01:20:00 +0900
+date: 2026-03-23 09:20:00 +0900
 categories:
   - AI-ML-DL
   - Bio
