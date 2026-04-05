@@ -70,3 +70,67 @@
   border-radius: 0.45rem;
   margin-bottom: 0.75rem;
 }
+
+.projects-list {
+  margin-top: 1.25rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .projects-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.project-item {
+  padding: 1.1rem 1.15rem;
+  border: 1px solid var(--main-border-color);
+  border-radius: 0.8rem;
+  background: var(--card-bg);
+  height: 100%;
+}
+
+.project-title {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.project-priority {
+  margin: 0 0 0.45rem;
+  color: var(--text-muted-color);
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.project-title a {
+  color: var(--heading-color);
+  text-decoration: none;
+}
+
+.project-title a:hover {
+  color: var(--link-color);
+}
+
+.project-description {
+  margin: 0.45rem 0 0;
+  color: var(--text-muted-color);
+}
+
+.project-tags {
+  margin-top: 0.75rem;
+}
+
+.project-link {
+  display: inline-block;
+  margin-top: 0.9rem;
+  color: var(--text-muted-color);
+  font-size: 0.95rem;
+  text-decoration: none;
+}
+
+.project-link:hover {
+  color: var(--link-color);
+}
