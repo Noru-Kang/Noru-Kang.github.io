@@ -1,6 +1,6 @@
 ---
 icon: fas fa-folder-open
-order: 6
+order: 2
 title: Projects
 permalink: /projects/
 ---

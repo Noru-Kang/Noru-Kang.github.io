@@ -1,3 +1,4 @@
+<!-- Legacy archive: removed from active tabs because Projects now covers this role. -->
 ---
 layout: portfolio
 icon: fas fa-briefcase
