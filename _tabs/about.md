@@ -35,7 +35,7 @@ order: 6
 - Summarize studies and projects on data science, mathematics, ML/DL, and academic papers  
 
 **Undergraduate Researcher, CAU-ET (Prof. Il-Yeob Kwak)**  
-*Signal Processing and Data Science Lab, Chung-Ang University* — **Jul 2024 – present**  
+*Signal Processing and Data Science Lab, Chung-Ang University* — **Jul 2024 – Jun 2026**  
 - Conducting research on biosignal data (ECG/EEG), machine learning and deep learning applications in healthcare  
 - Collaborating with lab members on algorithm development and data analysis  
 
