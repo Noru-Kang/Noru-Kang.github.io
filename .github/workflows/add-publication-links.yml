@@ -1,0 +1,45 @@
+﻿name: Add Publication Links
+
+on:
+  push:
+    paths:
+      - "_data/publications.bib"
+      - ".github/workflows/add-publication-links.yml"
+  workflow_dispatch:
+
+jobs:
+  fetch-links:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Fetch publication links
+        run: python scripts/fetch_publication_links.py
+
+      - name: Check if files changed
+        id: verify-changed-files
+        run: |
+          if git diff --quiet _data/publications.bib; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Commit and push changes
+        if: steps.verify-changed-files.outputs.changed == 'true'
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add _data/publications.bib
+          git commit -m "chore: add publication links via automatic script"
+          git push

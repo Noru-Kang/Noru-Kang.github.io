@@ -1,0 +1,102 @@
+﻿{% assign publications_path = site.baseurl | append: '/_data/publications.bib'
+%}
+
+<div class="publications-section">
+  {% assign bib_content = site.data.publications | default: '' %} {% if
+  site.data.publications %} {% for pub in site.data.publications %}
+  <div class="publication-item">
+    <div class="publication-title">{{ pub.title }}</div>
+
+    {% if pub.author %}
+    <div class="publication-authors">{{ pub.author }}</div>
+    {% endif %} {% if pub.journal %}
+    <div class="publication-venue">
+      <em>{{ pub.journal }}</em>
+      {% if pub.year %} ({{ pub.year }}){% endif %}
+    </div>
+    {% elsif pub.booktitle %}
+    <div class="publication-venue">
+      <em>{{ pub.booktitle }}</em>
+      {% if pub.year %} ({{ pub.year }}){% endif %}
+    </div>
+    {% endif %}
+
+    <div class="publication-details">
+      {% if pub.volume %} Vol. {{ pub.volume }}{% if pub.pages %}, pp. {{
+      pub.pages }}{% endif %} {% elsif pub.pages %} pp. {{ pub.pages }} {% endif
+      %}
+    </div>
+
+    {% if pub.doi %}
+    <div class="publication-doi">
+      <a href="https://doi.org/{{ pub.doi }}" target="_blank"
+        >DOI: {{ pub.doi }}</a
+      >
+    </div>
+    {% endif %} {% if pub.url %}
+    <div class="publication-link">
+      <a href="{{ pub.url }}" target="_blank">Link</a>
+    </div>
+    {% endif %}
+  </div>
+  {% endfor %} {% else %}
+  <p>No publications yet.</p>
+  {% endif %}
+</div>
+
+<style>
+  .publications-section {
+    margin-top: 1rem;
+  }
+
+  .publication-item {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .publication-item:last-child {
+    border-bottom: none;
+  }
+
+  .publication-title {
+    font-weight: 600;
+    font-size: 1.05rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .publication-authors {
+    font-size: 0.95rem;
+    color: #555;
+    margin-bottom: 0.3rem;
+  }
+
+  .publication-venue {
+    font-size: 0.95rem;
+    color: #666;
+    margin-bottom: 0.3rem;
+  }
+
+  .publication-details {
+    font-size: 0.9rem;
+    color: #888;
+    margin-bottom: 0.3rem;
+  }
+
+  .publication-doi,
+  .publication-link {
+    font-size: 0.9rem;
+    margin-top: 0.3rem;
+  }
+
+  .publication-doi a,
+  .publication-link a {
+    color: #0969da;
+    text-decoration: none;
+  }
+
+  .publication-doi a:hover,
+  .publication-link a:hover {
+    text-decoration: underline;
+  }
+</style>
