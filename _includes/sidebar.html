@@ -109,7 +109,7 @@
             {%- continue -%}
           {%- endunless -%}
           {%- capture url -%}
-            #copy-email
+            #
           {%- endcapture -%}
         {% when 'rss' %}
           {% assign url = '/feed.xml' | relative_url %}
