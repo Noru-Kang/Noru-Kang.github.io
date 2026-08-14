@@ -189,6 +189,47 @@ $sidebar-display: 'sidebar-display'; /* the attribute for sidebar display */
 
     $btn-size: 1.75rem;
 
+    /*
+     * Bootstrap is tree-shaken for the production stylesheet. Keep the
+     * essential dropdown layout here so the theme selector always works,
+     * even if those Bootstrap component rules are absent from the bundle.
+     */
+    .btn-group {
+      position: relative;
+      display: inline-flex;
+      vertical-align: middle;
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      z-index: 1000;
+      display: none;
+      min-width: 10rem;
+      padding: 0.5rem 0;
+      margin: 0;
+      list-style: none;
+      background-clip: padding-box;
+      border: 1px solid var(--menu-border-color);
+    }
+
+    .dropup .dropdown-menu {
+      top: auto;
+      bottom: 100%;
+      margin-bottom: 0.125rem;
+    }
+
+    .dropdown-item {
+      display: block;
+      width: 100%;
+      padding: 0.25rem 1rem;
+      clear: both;
+      text-align: inherit;
+      text-decoration: none;
+      white-space: nowrap;
+      background-color: transparent;
+      border: 0;
+    }
+
     %button {
       width: $btn-size;
       height: $btn-size;
