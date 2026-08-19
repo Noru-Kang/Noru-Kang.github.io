@@ -1,8 +1,8 @@
 ---
 title: "(ZFNet) Visualizing and Understanding Convolutional Networks"
 date: 2025-08-29 18:00:00 +0900
-categories: [AI-ML-DL, etc.]
-tags: [Computer-Vision, paper]
+categories: [AI-ML-DL, Computer-Vision]
+tags: [zfnet, cnn, computer-vision, paper-review]
 ---
 ## 📚 정리
 

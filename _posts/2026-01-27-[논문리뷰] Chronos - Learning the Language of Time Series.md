@@ -3,10 +3,12 @@ title: Chronos - Learning the Language of Time Series
 date: 2026-01-27 14:00:00 +0900
 categories:
   - AI-ML-DL
-  - etc.
+  - Time-Series
 tags:
   - time-series
-  - TS_model
+  - time-series-model
+  - chronos
+  - paper-review
 math : true
 ---
 ### 🔗 출처

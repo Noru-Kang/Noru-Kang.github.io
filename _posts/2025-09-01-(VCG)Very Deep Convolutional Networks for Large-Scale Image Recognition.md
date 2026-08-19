@@ -2,8 +2,8 @@
 title: (VGG) Very Deep Convolutional Networks for Large-Scale Image Recognition
 author: noru
 date: 2025-09-01 12:00:00 +0900
-categories: [AI-ML-DL, Paper Review]
-tags: [VGG, CNN, Deep Learning, Image Recognition, Computer Vision]
+categories: [AI-ML-DL, Computer-Vision]
+tags: [vgg, cnn, deep-learning, image-recognition, paper-review]
 pin: false
 math: true
 mermaid: false

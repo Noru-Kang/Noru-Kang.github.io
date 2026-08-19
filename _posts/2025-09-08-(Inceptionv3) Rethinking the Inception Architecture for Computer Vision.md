@@ -2,8 +2,8 @@
 title: (Inceptionv3) Rethinking the Inception Architecture for Computer Vision
 author: noru
 date: 2025-09-08 16:00:00 +0900
-categories: [AI-ML-DL, Paper Review]
-tags: [inceptionv3, CNN, Deep Learning, Image Recognition, Computer Vision]
+categories: [AI-ML-DL, Computer-Vision]
+tags: [inception-v3, cnn, deep-learning, image-recognition, paper-review]
 pin: false
 math: true
 mermaid: false
@@ -498,4 +498,3 @@ ImageNet(K=1000)에서 $ε=0.1$을 적용했을 때, Top-1 및 Top-5 오류율�
 
 ---
 ---
-

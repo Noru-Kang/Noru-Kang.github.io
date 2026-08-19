@@ -2,11 +2,12 @@
 title: HMC Sleep Staging Database
 date: 2026-03-15 18:00:00 +0900
 categories:
-  - etc.
-  - DataSet
+  - Data
+  - Dataset
 tags:
-  - BIO
-  - PSG
+  - biosignal
+  - psg
+  - sleep
 math: true
 ---
 # Haaglanden Medisch Centrum sleep staging database
@@ -95,4 +96,3 @@ patient phenotype을 최대한 일반적이고 heterogeneous하게 유지하려�
 > - X(Time) : 보통 전체 수면 시간(6~8시간).
 > - Y(Labels): 수면 단계 (W, N1, N2, N3, REM, etc).
 {: .prompt-info }
-	

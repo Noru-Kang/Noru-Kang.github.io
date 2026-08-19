@@ -4,9 +4,8 @@ disease prediction(SleepFM)"
 date: 2026-04-05 09:20:00 +0900
 categories:
   - AI-ML-DL
-  - Bio
-  - etc.
-tags: "PSG"
+  - Biosignal
+tags: [psg, sleep, foundation-model, paper-review]
 math: true
 ---
 # A multimodal sleep foundation model for disease prediction(SleepFM)

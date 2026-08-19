@@ -1,7 +1,7 @@
 ---
 title: "Clustering(cont.)"
 date: 2025-09-28 09:00:41 +0900
-categories: [Data-Mining]
+categories: [Data-Science, Data-Mining]
 tags: [clustering, distance]
 ---
 

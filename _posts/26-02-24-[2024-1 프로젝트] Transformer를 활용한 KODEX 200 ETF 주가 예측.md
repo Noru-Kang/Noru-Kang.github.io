@@ -1,8 +1,8 @@
 ---
 title: "[2024-1 프로젝트] Time-Series Deep Learning — RNN / LSTM / GRU / Transformer를 활용한 KODEX 200 ETF 주가 예측"
 date: 2026-02-24 22:00:40 +0900
-categories: [AI-ML-DL, etc.]
-tags: [프로젝트, 2024-1, RNN, LSTM, Transformer, GRU, finance, time-series]
+categories: [AI-ML-DL, Time-Series]
+tags: [project, time-series, financial-forecasting, rnn, lstm, gru, transformer]
 ---
 
 # Time-Series Deep Learning — RNN / LSTM / GRU / Transformer를 활용한 KODEX 200 ETF 주가 예측

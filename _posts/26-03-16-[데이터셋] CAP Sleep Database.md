@@ -2,11 +2,12 @@
 title: CAP Sleep Database
 date: 2026-03-15 16:00:00 +0900
 categories:
-  - etc.
-  - DataSet
+  - Data
+  - Dataset
 tags:
-  - PSG
-  - BIO
+  - psg
+  - biosignal
+  - sleep
 math: true
 ---
 # 🧢 CAP Sleep Database

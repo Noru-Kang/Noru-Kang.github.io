@@ -1,8 +1,8 @@
 ---
 title: "(AlexNet) ImageNet Classification with Deep Convolutional Neural Networks"
 date: 2025-08-29 18:00:00 +0900
-categories: [AI-ML-DL, etc.]
-tags: [Computer-Vision, paper]
+categories: [AI-ML-DL, Computer-Vision]
+tags: [alexnet, cnn, computer-vision, paper-review]
 ---
 
 ## 📚 정리

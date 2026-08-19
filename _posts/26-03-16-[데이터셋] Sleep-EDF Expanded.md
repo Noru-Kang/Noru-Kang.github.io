@@ -2,11 +2,12 @@
 title: Sleep-EDF Expanded
 date: 2026-03-15 18:00:00 +0900
 categories:
-  - etc.
-  - DataSet
+  - Data
+  - Dataset
 tags:
-  - BIO
-  - PSG
+  - biosignal
+  - psg
+  - sleep
 math: true
 ---
 # Sleep-EDF Database Expanded

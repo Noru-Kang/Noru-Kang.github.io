@@ -3,10 +3,11 @@ title: SAE(Sparse AutoEncoder), Steering Vector
 date: 2026-07-26 14:00:00 +0900
 categories:
   - AI-ML-DL
-  - etc.
+  - Representation-Learning
 tags:
-  - SAE
-  - Steering-Vector
+  - sae
+  - steering-vector
+  - interpretability
 math: true
 ---
 # SAE(Sparse AutoEncoder), Steering Vector
@@ -1104,7 +1105,6 @@ $$\boldsymbol{h}^ = \boldsymbol{h} + D(\boldsymbol{z}^* - \boldsymbol{z})$$
 > [!note]
 > ### Fourier 주파수 분해 후 주파수 Steering Vector 차지
 > 
-
 
 
 

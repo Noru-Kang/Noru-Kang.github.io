@@ -3,10 +3,12 @@ title: Chronos-2 From Univariate to Universal Forecasting
 date: 2026-01-28 14:00:00 +0900
 categories:
   - AI-ML-DL
-  - etc.
+  - Time-Series
 tags:
   - time-series
-  - TS_model
+  - time-series-model
+  - chronos-2
+  - paper-review
 math : true
 ---
 ### 🔗 출처

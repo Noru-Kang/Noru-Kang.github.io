@@ -3,9 +3,8 @@ title: "[논문리뷰] REVE : A Foundation Model for EEG Adapting to Any Setup w
 date: 2026-03-12 01:20:00 +0900
 categories:
   - AI-ML-DL
-  - Bio
-  - etc.
-tags: "EEG"
+  - Biosignal
+tags: [eeg, foundation-model, paper-review]
 math: true
 ---
 # REVE : A Foundation Model for EEG Adapting to Any Setup with Large-Scale Pretraining on 25,000 Subjects

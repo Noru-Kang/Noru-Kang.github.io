@@ -1,8 +1,8 @@
 ---
 title: "[2024-1 프로젝트] EClassGUI — 중앙대학교 e-Class GUI 클론 (Java Swing)"
 date: 2026-02-24 22:00:20 +0900
-categories: [Computer-Science, etc.]
-tags: [프로젝트, 2024-1, java]
+categories: [Computer-Science, Java]
+tags: [project, java, swing, gui]
 ---
 
 # EClassGUI — 중앙대학교 e-Class GUI 클론 (Java Swing)
