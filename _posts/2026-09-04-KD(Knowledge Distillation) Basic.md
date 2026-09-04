@@ -618,4 +618,4 @@ TA를 늘리고 distillation path를 깊게 할수록 DGKD의 성능이 향상�
 - CIFAR-10, `T26 → A20 → A14 → S8` : TAKD **88.01 → DGKD 89.02**
 - TA를 7개까지 늘렸을 때 : TAKD **44.07**로 감소하지만 DGKD는 **49.56**까지 증가
 
-즉 DGKD의 핵심은 단순 SOTA 성능보다 **<strong>distillation path가 깊어질수록 TAKD에서는 error accumulation이 문제가 되지만 DGKD에서는 오히려 여러 TA를 더 잘 활용할 수 있었다는 점</strong>이다.
+즉 DGKD의 핵심은 단순 SOTA 성능보다 <strong>distillation path가 깊어질수록 TAKD에서는 error accumulation이 문제가 되지만 DGKD에서는 오히려 여러 TA를 더 잘 활용할 수 있었다는 점</strong>이다.
