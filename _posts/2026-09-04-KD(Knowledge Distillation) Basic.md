@@ -5,6 +5,7 @@ categories:
   - AI-ML-DL
 tags:
   - Knowledge-Distillation
+math: true
 ---
 # 1. Knowledge Distillation
 <strong>KD(Knowledge Distillation, 지식 증류)</strong>는 성능이 좋은 <strong>Teacher(큰 모델)</strong>이 학습한 정보를 가지고 <strong>Student(더 작고 가벼움)</strong> 모델의 학습에 사용하는 방식이다.
@@ -37,11 +38,11 @@ tags:
 
 과 같은 문제가 있어, Efficient AI에서는 다음과 같이 문제를 해결한다.
 
-| 방법                     | 핵심                            |
-| ---------------------- | ----------------------------- |
-| Pruning                | 중요도가 낮은 weight/channel 제거     |
-| Quantization           | FP32 → INT8 등 낮은 precision 사용 |
-| Knowledge Distillation | 큰 모델의 knowledge를 작은 모델에 전달    |
+| 방법                   | 핵심                                   |
+| ---------------------- | -------------------------------------- |
+| Pruning                | 중요도가 낮은 weight/channel 제거      |
+| Quantization           | FP32 → INT8 등 낮은 precision 사용     |
+| Knowledge Distillation | 큰 모델의 knowledge를 작은 모델에 전달 |
 KD의 특징은 <strong>Student Architecture 자체를 deployment 시점에 더 크게 만들 필요가 없다는 것</strong>이다.
 이는
 
@@ -276,12 +277,12 @@ gradient
 optimizer
 ```
 
-| 방식                | 구조                           |
-| ----------------- | ---------------------------- |
-| Offline KD        | pretrained Teacher → Student |
-| Online KD         | 모델들을 같이 학습하며 knowledge 교환    |
-| Self-Distillation | 동일/유사 모델 내부에서 knowledge 전달   |
-| Multi-Teacher     | 여러 Teacher가 Student를 지도      |
+| 방식              | 구조                                   |
+| ----------------- | -------------------------------------- |
+| Offline KD        | pretrained Teacher → Student           |
+| Online KD         | 모델들을 같이 학습하며 knowledge 교환  |
+| Self-Distillation | 동일/유사 모델 내부에서 knowledge 전달 |
+| Multi-Teacher     | 여러 Teacher가 Student를 지도          |
 ## 2.3. Transfer Set
 
 KD에서 Student가 Teacher의 soft target을 학습하는 데이터는 기존 training set일 수도 있고 별도의 transfer set일 수도 있으며, Teacher가 target을 만들어줄 수 있기 때문에 <strong>unlabeled data도 활용 가능</strong>
