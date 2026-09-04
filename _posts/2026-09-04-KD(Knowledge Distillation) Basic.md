@@ -599,16 +599,16 @@ TAKD와 동일한 세팅을 사용한다.
 
 #### Error Avalanche Problem
 
-![](/assets/img/posts/20260904_1044_KDKNOWLEDGE/a9443e7deeb780c2549cf14e0f639031.png)
+![](/assets/img/posts/20260904_1044_KDKNOWLEDGE/a9443e7deeb780c2549cf14e0f639031.png)   
 그림 4. 에러 중첩률은 Teacher T10, Student S2, 그리고 세 개의 TA(예: A8, A6, A4)가 있을 때 상위 레벨 모델의 오답과 하위 레벨 모델의 오답이 교차하는 비율을 나타낸다. $(E_i \cap E_j)$는 CIFAR-100 작업에서 i번째 plain CNN 모델의 에러 예시를 의미g한다.
 #### t-SNE
 
-![](/assets/img/posts/20260904_1044_KDKNOWLEDGE/05990b50829fbb51b1dbfd8267934f65.png)
+![](/assets/img/posts/20260904_1044_KDKNOWLEDGE/05990b50829fbb51b1dbfd8267934f65.png)   
 그림 5. CIFAR-10 데이터셋에서 ResNet을 사용한 (a) T26 → A20에 대한 KD, (b) A20 → S14에 대한 TAKD, (c) A20 → S14에 대한 본 논문의 DGKD의 t-SNE 시각화 결과. 빨간색 상자 안의 클래스 분포를 살펴보면, (b) TAKD와 (c) 본 논문의 DGKD에서 나타나는 서로 다른 에러 누적률을 확인할 수 있다.
 
 #### TA를 늘리면?
 
-![](/assets/img/posts/20260904_1044_KDKNOWLEDGE/63cdcaf309ac91bd5aeec8e4a3aeec73.png)
+![](/assets/img/posts/20260904_1044_KDKNOWLEDGE/63cdcaf309ac91bd5aeec8e4a3aeec73.png)   
 
 TA를 늘리고 distillation path를 깊게 할수록 DGKD의 성능이 향상된다. 즉 이는 <strong>TAKD의 serial error accumulation 때문에 많은 TA를 활용하지 못하는 것을 개선하였다.</strong>
 
