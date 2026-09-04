@@ -398,10 +398,12 @@ $$L_{\text{hint}} = \|F_T - r(F_S)\|_2^2$$
 9. TAKD는 `Teacher → Student`의 큰 capacity gap을 줄이기 위해 `Teacher → Teacher Assistant → Student`로 knowledge를 단계적으로 전달한다.
 
 ##### 실습한 자료
-| https://drive.google.com/file/d/1yJbf37gjslQ9omgy7ymhL82DDWOL2QLc/view?usp=sharing
 
-##### 실습한 자료 빈칸버전(pytorch 공식 튜토리얼 변형)
-| https://drive.google.com/file/d/1SeV0mhPb3IpbRFHZGhr52jxxb6UgShM-/view?usp=sharing
+| [PyTorch Knowledge Distillation 실습 자료](https://drive.google.com/file/d/1yJbf37gjslQ9omgy7ymhL82DDWOL2QLc/view?usp=sharing)
+
+##### 실습한 자료 빈칸버전 (PyTorch 공식 튜토리얼 변형)
+
+| [PyTorch Knowledge Distillation 빈칸 실습 자료](https://drive.google.com/file/d/1SeV0mhPb3IpbRFHZGhr52jxxb6UgShM-/view?usp=sharing)
 
 ##### 다음 논문 부터는, 간략하게 파악한 정도만 정리하였고 다른 섹션으로 나눠서 자세히 읽은 후 진행할 예정이다.
 # 5. Improved Knowledge Distillation via Teacher Assistant
