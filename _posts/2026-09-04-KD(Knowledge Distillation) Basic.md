@@ -177,10 +177,10 @@ $$P_{Teacher} ↔︎ P_{Student}$$를 비교하기 위함이다.
 <strong>Teacher는 ordinary supervise learning으로 학습</strong>
 $$L_T = CE(z_T, y)$$
 KD에서 Teacher가 유용한 정보를 주려면 우선 <strong>Teacher 자체가 task를 충분히 잘 수행할 수 있어야 한다.</strong>
-### 2. Student 독립 학습
-$$L_s = CE(z_S,y)$$
-<strong>Student baseline</strong>을 먼저 학습한다.
-### 3. Same Random Seed
+
+### 2. KD 
+
+##### Same Random Seed
 
 ```
 Architecture = Same
@@ -227,14 +227,14 @@ T가 너무 커지면 Teacher의 정보가 약해질 수 있다. 이는 $T → \
 > p_i = \frac{\exp(v_i/T)}{\sum_j \exp(v_j/T)},
 > \qquad
 > q_i = \frac{\exp(z_i/T)}{\sum_j \exp(z_j/T)}
-> $$
-> Teacher logits : $v_i$, Student logits : $z_i$
-> $$C = -\sum_i p_i \log q_i$$이고 이때 $z_i$에 대한 cross-entropy의 gradient는
-> $$\frac{\partial C}{\partial z_i} = \frac{1}{T}(q_i - p_i)$$
-> 이고 T가 충분히 높고 logits가 zeromean이라고 가정하면
-> $$\frac{\partial C}{\partial z_i} \approx \frac{1}{N T^2}(z_i - v_i)$$
-> 즉 높은 T limit에서는 사실상
-> $$\frac{1}{2}(z_i - v_i)^2$$
+> $$   
+> Teacher logits : $v_i$, Student logits : $z_i$   
+> $$C = -\sum_i p_i \log q_i$$이고 이때 $z_i$에 대한 cross-entropy의 gradient는   
+> $$\frac{\partial C}{\partial z_i} = \frac{1}{T}(q_i - p_i)$$   
+> 이고 T가 충분히 높고 logits가 zeromean이라고 가정하면   
+> $$\frac{\partial C}{\partial z_i} \approx \frac{1}{N T^2}(z_i - v_i)$$   
+> 즉 높은 T limit에서는 사실상   
+> $$\frac{1}{2}(z_i - v_i)^2$$   
 > 을 최소화 하는것과 비슷하다. 이는$$L_{\mathrm{logit}}=\frac{1}{2}\sum_i (z_i-v_i)^2$$을 student logit $z_i$에 대해 미분하면 $$\frac{\partial L_{\mathrm{logit}}}{\partial z_i}=z_i-v_i$$이고 상수를 제외하면 동일하다.
 > 이는 KD가 뜬금없이 soft probability를 쓰는게 아니라. <strong>기존의 logit matching을 더 일반적인 형태로 확장한 것으로 볼 수 있다.</strong>
 > logit matching은 단순하고 효과적이지만, 중요한 비식별성이 있는데, 모든 logit에 같은 상수를 더해도 softmax확률은 변하지 않는다는 점이다. 즉 확률 분포를 결정하는건 클래스가 상재적인 차이이고, zero-mean 조건은 이러한 공통 offset을 제거하여 teacher와 student의 logit을 비교 가능하게 만든다.
@@ -247,8 +247,14 @@ $$p_{T} = softmax(\frac{z_T}{T})$$
 $$\log{p_s} = \log{softmax(\frac{z_S}T)}$$
 ## 2.1. KL Divergence
 KD에서는 주로 KL divergence를 통해 계산한다.
-$$D_{\mathrm{KL}}(P \parallel Q) = \sum_i P_i \log \frac{P_i}{Q_i}$$$$D_{\mathrm{KL}}(P \parallel Q) = \sum_i P_i (\log P_i - \log Q_i)$$$$\mathcal{L}_{\mathrm{KD}} = \sum_i p_{T,i} (\log p_{T,i} - \log p_{S,i})$$$$\mathcal{L}_{\mathrm{KD}} = \sum_i p_{T,i} \log p_{T,i} - \sum_i p_{T,i} \log p_{S,i} = -H(P_T) + H(P_T, P_S)$$$$\nabla_{\theta_S} \mathcal{L}_{\mathrm{KD}} = \nabla_{\theta_S} \mathcal{L}_{\mathrm{CE}}(P_T, P_S) = -\nabla_{\theta_S} \sum_i p_{T,i} \log p_{S,i}$$이때
+$$D_{\mathrm{KL}}(P \parallel Q) = \sum_i P_i \log \frac{P_i}{Q_i}$$   
+$$D_{\mathrm{KL}}(P \parallel Q) = \sum_i P_i (\log P_i - \log Q_i)$$   
+$$\mathcal{L}_{\mathrm{KD}} = \sum_i p_{T,i} (\log p_{T,i} - \log p_{S,i})$$   
+$$\mathcal{L}_{\mathrm{KD}} = \sum_i p_{T,i} \log p_{T,i} - \sum_i p_{T,i} \log p_{S,i} = -H(P_T) + H(P_T, P_S)$$   
+$$\nabla_{\theta_S} \mathcal{L}_{\mathrm{KD}} = \nabla_{\theta_S} \mathcal{L}_{\mathrm{CE}}(P_T, P_S) = -\nabla_{\theta_S} \sum_i p_{T,i} \log p_{S,i}$$   
+이때   
 $$D_{KL}​(P∥Q) \neq D_{KL}​(Q∥P)$$이다. KL은 symmetric distance가 아니다. 따라서 KD에서는 Teacher distribution을 target으로 두고 Student가 이를 따라가게 한다.
+
 ### 1. $T^2$의 필요성
 Temperature T가 커지면 distribution만 부드러워지는게 아니라, <strong>KD gradient의 scale도 작아진다.</strong> 이를 보정하기 위해 $T^2$을 곱한다. $$L_{KD} = T^2D_{KL}(p_T^{teacher}\ ||\ p_S^{student})$$
 $T^2$<strong>는 gradient scale 보정일 뿐이다. 원래대로 되돌리는 것이 아니다.</strong>
@@ -286,12 +292,13 @@ optimizer
 | Online KD         | 모델들을 같이 학습하며 knowledge 교환  |
 | Self-Distillation | 동일/유사 모델 내부에서 knowledge 전달 |
 | Multi-Teacher     | 여러 Teacher가 Student를 지도          |
+   
 ## 2.3. Transfer Set
 
 KD에서 Student가 Teacher의 soft target을 학습하는 데이터는 기존 training set일 수도 있고 별도의 transfer set일 수도 있으며, Teacher가 target을 만들어줄 수 있기 때문에 <strong>unlabeled data도 활용 가능</strong>
 
 # 3. Representation KD
-<strong>output이 아니라 hidden representation</strong>을 전달하는 방식이다.
+<strong>output이 아니라 hidden representation</strong>을 전달하는 방식이다. 대응대는 stage끼리 맞춘다.
 
 ```
 Teacher hidden representation
@@ -358,7 +365,6 @@ $$r(F_S) \approx F_T$$
 > ```
 > Student
 > [B,16,8,8]
-{: .prompt-info }
  >     ↓
 >Regressor
 >    ↓
@@ -367,10 +373,12 @@ $$r(F_S) \approx F_T$$
 >Teacher
 >[B,32,8,8]
 > ```
+{: .prompt-info }
 
 ## 4.2. MSE Feature Distillation
 shape를 regressor로 맞춘 뒤
-$${L}_{\text{feature}} = \frac{1}{N} \|F_T - r(F_S)\|_2^2$$$${L} = \lambda_{\text{feature}} {L}_{\text{feature}} + \lambda_{\text{CE}} {L}_{\text{CE}}$$
+$${L}_{\text{feature}} = \frac{1}{N} \|F_T - r(F_S)\|_2^2$$   
+$${L} = \lambda_{\text{feature}} {L}_{\text{feature}} + \lambda_{\text{CE}} {L}_{\text{CE}}$$   
 로 만들 수 있다. 최종 loss는 $L$이다.
 
 ## 4.3. FitNets와의 연결
@@ -451,11 +459,10 @@ TA를 사용할 경우 논문 설명으로는
 
 ![](/assets/img/posts/20260904_1044_KDKNOWLEDGE/1b74c185e013bfdf91c34f14bed8bb8f.png)
 
-> [!note]
 > #### 비교군
 > - <strong>NOKD</strong> : No KD
 > - <strong>BLKD</strong> : Baseline KD
-
+{: .prompt-info }
 
 ## 5.3. TA의 크기
 
