@@ -36,13 +36,15 @@ math: true
 - FLOPs가 큼
 - inference가 느림
 
-과 같은 문제가 있어, Efficient AI에서는 다음과 같이 문제를 해결한다.
+과 같은 문제가 있어, Efficient AI에서는 다음과 같이 문제를 해결한다.   
+
 
 | 방법                   | 핵심                                   |
 | ---------------------- | -------------------------------------- |
 | Pruning                | 중요도가 낮은 weight/channel 제거      |
 | Quantization           | FP32 → INT8 등 낮은 precision 사용     |
 | Knowledge Distillation | 큰 모델의 knowledge를 작은 모델에 전달 |
+
 KD의 특징은 <strong>Student Architecture 자체를 deployment 시점에 더 크게 만들 필요가 없다는 것</strong>이다.
 이는
 
