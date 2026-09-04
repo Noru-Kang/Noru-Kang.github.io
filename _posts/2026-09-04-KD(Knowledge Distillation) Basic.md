@@ -64,7 +64,8 @@ KD의 특징은 <strong>Student Architecture 자체를 deployment 시점에 더 
 - 더 넓음
 - parameter수가 많음
 - representation capacity가 큼
-- task accuracy가 높음
+- task accuracy가 높음   
+   
 ### Student
 일반적으로
 
