@@ -2,7 +2,7 @@
 title: |-
   ShiftKD : Benchmarking Knowledge Distillation under
   Distribution Shift
-date: 2025-08-29 18:00:00 +0900
+date: 2026-11-01 18:00:00 +0900
 categories:
   - AI-ML-DL
   - Paper 
