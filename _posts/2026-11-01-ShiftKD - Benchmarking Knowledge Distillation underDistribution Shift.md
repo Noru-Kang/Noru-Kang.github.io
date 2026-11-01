@@ -186,7 +186,7 @@ KD의 성능을 결정하는 중요한 요소인
 4. 평가 지표
 를 중요히 여겨 Student model을 분석하였다.
 
-> **용어정리**
+> **용어정리**   
 > - <strong>Distribution shift</strong> : <span id="link1">같은 주제로 학습하더라도 학습한 데이터의 분포가 테스트하는 데이터의 분포와 다른 현상으로 실제 상황이다.</span> 예를 들어 병원 A의 데이터로 학습하더라도, 실제 적용하는 상황인 병원 B, C, D에서는 데이터 수집 장비의 차이, 환자의 차이 등등으로 인해 분포가 달라진다.
 > 	- <strong>Diversity Shift</strong> : <strong>Domain간 appearance나 style 등의 차이</strong>. 아래의 그림을 참고해보자. 같은 "개"를 뜻하더라도 예술적, 사진, 카툰스타일, 스케치 등등 스타일(화풍)의 차이가 있다.
 > 	- <strong>Correlation Shift</strong> : <strong>label과 spurious feature 사이의 상관관계의 변화</strong>. 아래의 그림을 참고해보자. 초록색계열로 1이 학습되었지만, 정작 테스트하는 상황에서는 붉은색 계열의 1이 나타날 수 있다. 즉, 모델이 1과 2를 구분할때, "1", "2"자체를 구분하는것이 아니라 색가지고 구분할 수 있기 때문에, 해당 shift가 발생한다.
@@ -204,7 +204,7 @@ KD의 성능을 결정하는 중요한 요소인
 
 ![](/assets/img/posts/20261101_1912_-/831d4d54034f40c3a9d7fe71d5b83577.png)
 
-> **의견 : Framework 표현**
+> **의견 : Framework 표현**   
 > 일단, Framework를 설명한다는 느낌은 크게 나지 않는 그림이다. Distribution Shift의 유형을 보여주는 것은 좋지만, Train과 Test의 구분 및 실제 KD 과정이 직관적으로 드러나지는 않는다.
 >
 > 이미지를 이해하기 쉽게 하려면 Student를 조금 줄이고, **Knowledge Distillation의 방향을 Teacher → Student로 단방향**으로 표현하는 것이 좋을 것 같다. 추가적으로 Test Environment를 Train Environment와 명확히 분리해야 할 것 같다. 현재 그림은 Test 데이터도 학습 과정에 함께 들어간다는 느낌이 든다.
@@ -238,7 +238,7 @@ KD의 성능을 결정하는 중요한 요소인
 
 → **어떤 KD 알고리즘도 모든 Distribution Shift 조건에서 일관된 성능 개선을 보장하지 못한다.** 또한 복잡한 KD 방법이 반드시 Vanilla KD보다 좋은 일반화 성능을 보이는 것은 아니다.
 
-> **의견 : "단순함"이 일반화에 유리한 관점일까?**
+> **의견 : "단순함"이 일반화에 유리한 관점일까?**   
 > 단순한 Vanilla KD가 복잡한 KD 방법들보다 좋은 성능을 보이는 경우가 많다. 그렇다면 **복잡한 Knowledge Transfer가 오히려 일반화를 방해하는 것은 아닐까?**
 {: .prompt-info }
 ### Figure 8
@@ -250,7 +250,7 @@ KD의 성능을 결정하는 중요한 요소인
 	- SGD Baseline : 82%
 	- Adam : 62%
 
-> **의견 : Optimizer에 따른 일반화 성능**
+> **의견 : Optimizer에 따른 일반화 성능**   
 > SGD도 다시 살펴볼 필요가 있을 것 같다. 특히 Adam이 항상 더 좋은 성능을 보이는 것은 아니며, Distribution Shift 환경에서는 Optimizer에 따른 차이가 크게 나타날 수 있다.
 >
 > 추가적으로 **AdamW, Adafactor, Lion, Muon 등 다른 Optimizer들도 비교**해 보면 좋을 것 같다.
@@ -296,7 +296,7 @@ $$
 
 저자들은 KD의 KL Divergence 최소화를 Student와 Teacher 간의 MI를 증가시키는 <strong>정보 최대화 원칙의 관점과 연결</strong>한다. 그러나 <strong>Student–Teacher 간 MI를 최대화한다고 해서 Distribution Shift 상황에서도 좋은 성능이 보장되는 것은 아니다.</strong> 이를 설명하기 위해 MI 분해를 사용한다.
 
-> **정보 최대화 원칙 (Tsai et al., 2020; Ahn et al., 2019)**
+> **정보 최대화 원칙 (Tsai et al., 2020; Ahn et al., 2019)**   
 > <strong>서로에 대해 알아낼 수 있는 정보가 많아지도록 하는 원칙</strong>으로, 서로 잘 맞으면 한쪽의 출력만 보고 다른 쪽의 출력을 더 잘 짐작할 수 있다고 본다. 이때 둘 사이의 정보량이 크다고 할 수 있다.
 >
 > 쉽게 예제를 들어 설명하자면 <strong>X와 Y를 원래 짝인 카드와 무작위로 섞어 만든 카드로 나누고</strong>, Critic Function이 원래 짝에 더 높은 점수를 주게 하는 방법이다. 즉, 원래 짝과 무작위 짝의 점수 차이를 크게 만드는 방식으로 X와 Y 사이의 공유 정보를 학습할 수 있다.
@@ -323,7 +323,7 @@ $$
 
 그러나 Distribution Shift가 발생하면, Teacher와 Label 사이의 허위 상관관계나 Style 변화에 의해 통계적 의존성이 방해를 받아 Teacher를 통해 Label과 관련된 정보를 전달받는 데 어려움이 발생한다.
 
-> **용어 정리**
+> **용어 정리**   
 > - <strong>Domain-invariant</strong> : Domain이 달라져도 변하지 않고, Target 예측에 유용한 정보
 > - <strong>Domain-variant</strong> : Domain에 따라 달라지는 정보
 >
@@ -368,7 +368,7 @@ ML 시스템은 효과적이지만 주요한 한계가 존재한다.
 KD는 일반적으로 <strong>거대한 Teacher 모델의 행동과 지식을 가벼운 Student 모델이 잘 모방</strong>하도록 훈련하는 모델 압축 기법이다. 많은 연구들이 <strong>독립 동일 분포(i.i.d.)를 가정</strong>하여 지식 전이와 일반화를 분석한다.
 그러나 Stanton et al.(2021)에서는 <strong>최적화 문제(최적화의 어려움)와 증류 대상인 데이터셋의 영향</strong>으로 Student가 Teacher의 Predictive Distribution을 완벽하게 모방하지 못할 수 있고(KL Divergence를 충분히 줄이지 못함), <strong>Teacher를 잘 모방하는 것이 항상 더 높은 일반화를 가져오는 것은 아니라고</strong> 주장한다.
 
-> **독립 동일 분포(i.i.d.)**
+> **독립 동일 분포(i.i.d.)**   
 > 데이터가 <strong>서로 독립적이고 같은 분포에서 나온다.</strong> 예를 들어 시험문제를 풀 때 <strong>연습문제와 비슷한 규칙과 비율로 시험문제가 나오고, 각 문제끼리 서로 독립적인 상황이다.(영향을 주지 않음)</strong>
 {: .prompt-info }
 
@@ -465,7 +465,7 @@ $$
 - $L_{reg}$ : KD의 정규화 항으로, **다양한 지식 소스를 전달하기 위한 Loss** → 예를 들어 Feature-based KD에서는 Teacher와 Student의 Feature가 유사해지도록 하는 Loss가 해당
 - $\beta$ : Trade-off Hyperparameter
 
-> **참고 : 기본 KD 최적화 함수**
+> **참고 : 기본 KD 최적화 함수**   
 > $$
 > \min_{\theta_s} \mathbb{E}[\alpha L_{KL}(S, T) + (1 - \alpha)L_{CE}(S, Y)]
 > $$
@@ -479,7 +479,7 @@ $$
    e.g. SP (Tung and Mori, 2019) : Teacher의 상대적 유사도 정보를 전이
    e.g. CRD (Tian et al., 2019) : 판별 목적 함수를 사용하여 Instance-level Contrastive 정보를 전이
 
-> **3가지 방법의 일반적인 수학적 표현**
+> **3가지 방법의 일반적인 수학적 표현**   
 > 아래 수식은 Knowledge 유형을 이해하기 위한 일반적인 예시이며, 원문 Section 2.2.1에 직접 제시된 수식은 아니다.
 >
 > - **Logit-based** : Teacher와 Student의 **최종 출력 확률분포**를 비교
@@ -511,7 +511,7 @@ $$
 $$
 - $\hat{X}$ : **조작 함수** $M(\cdot)$을 통해 입력 $X$를 조작한 데이터로, 이를 학습에 사용한다.
 
-> **Equation의 표기**
+> **Equation의 표기**   
 > 원문에서는 $L_{CE}(S^e,Y)$로 표기하지만, $S^e$의 의미를 명확하게 정의하지 않았다.
 > 또한 $(\hat X,Y)\in P_{tr}^{XY}$는 원문의 표기를 유지한 것으로, Augmentation을 통해 생성한 데이터가 항상 원래 Training Distribution을 따른다는 의미로 일반화해서는 안 된다.
 {: .prompt-info }
@@ -593,7 +593,7 @@ Ye et al. (2022)는 Distribution Shift를 Diversity Shift(다양성 변화), Cor
 
   즉, $F_{correlation}$은 **공유되는 Variation Factor에 대해 Label과의 통계적 관계가 얼마나 달라졌는지 정량화**하는 것이다.
 
-> **허위 상관관계(Spurious Correlation)**
+> **허위 상관관계(Spurious Correlation)**   
 > 특정 환경에서는 두 변수 사이에 통계적인 연관성이 존재하여 예측에 유용해 보이지만, **환경이 달라지면 해당 관계가 유지되지 않아 일반화에 실패할 수 있는 불안정한 연관성**을 의미한다.
 >
 > 예를 들어 초록색 1과 빨간색 2를 주로 학습한 머신러닝 모델은 숫자의 형태가 아니라 색상을 가지고 Label을 예측할 수 있다. 이때 빨간색 1을 추론하도록 하면 모델의 성능이 급격하게 떨어질 수 있다.
@@ -648,7 +648,7 @@ Model Selection은 **Training-Domain Validation**을 기준으로 수행한다. 
 
 추가적으로 Expected Calibration Error(ECE)를 보고한다.
 
-> **Expected Calibration Error, ECE**
+> **Expected Calibration Error, ECE**   
 > 모델이 출력하는 신뢰도와 실제 정확도 사이의 차이를 수치화한 지표로, 0에 가까울수록 좋음
 {: .prompt-info }
 
@@ -663,7 +663,7 @@ Model Selection은 **Training-Domain Validation**을 기준으로 수행한다. 
 
 <strong>KD는 경량 모델(Student)이 Distribution Shift의 영향을 완화하는 데 도움을 줄 수 있지만, 항상 일관적으로 효과적인 것은 아니다.</strong>
 
-> **의견 : KD가 항상 효과적인가?**
+> **의견 : KD가 항상 효과적인가?**   
 > Fig.3을 보면 모든 KD 방법이 효과적인 것은 아닌 것 같다. 특히 DomainNet과 같이 일부 방법에서 WGA가 감소하는 경우도 존재한다.
 >
 > 즉, **KD가 Distribution Shift 환경에서 성능을 개선할 가능성은 있지만, 모든 Dataset과 알고리즘에서 효과를 보장하지는 않는다.**
@@ -671,7 +671,7 @@ Model Selection은 **Training-Domain Validation**을 기준으로 수행한다. 
 
 저자들은 이러한 KD의 효과를 분석하기 위해 Grad-CAM을 수행하였다.
 
-> **Grad-CAM(Gradient-weighted Class Activation Mapping, Selvaraju et al., 2017)**
+> **Grad-CAM(Gradient-weighted Class Activation Mapping, Selvaraju et al., 2017)**   
 > AI Model이 사진을 보고 특정 Class로 판단했을 때, **사진의 어느 부분이 해당 예측에 중요하게 작용했는지**를 시각적으로 보여주는 기술이다.
 >
 > 쉽게 말해, 개 사진을 보고 "개"라고 판단한 모델이 개의 얼굴을 중요하게 보았는지, 주변 배경을 중요하게 보았는지 확인할 수 있다.
@@ -683,7 +683,7 @@ Model Selection은 **Training-Domain Validation**을 기준으로 수행한다. 
 Fig. 4의 Grad-CAM을 통해 KD가 Student의 일반화 능력을 향상시킬 수 있다는 가능성을 보여준다. 일부 KD방법들은 Teacher나 w/o KD에 비해 <strong>분류에 중요한 영역에 더 집중</strong>하는 모습을 보여준다. 저자들은 이러한 현상이 <strong>Student가 Teacher보다 구조가 단순하므로 보다 일반적인 Feature를 학습</strong>하는 경향이 있어, Distribution Shift 상황에서 적응력을 높일 수 있다고 주장한다.
 즉, **Student가 분류에 중요한 특징에 집중하도록 유도하면, 배경이나 스타일처럼 Domain에 따라 변하는 불필요한 정보의 영향을 줄이는 Noise Filtering 효과를 기대할 수 있다.** 다만 해당 결과의 Grad-CAM은 해석을 뒷받침하는 정성적 시각화이지, 이러한 해석을 인과적으로 입증하는 것은 아니다.
 
-> **의견 : 작은 모델이 왜 더 일반적인 Feature를 학습할까?**
+> **의견 : 작은 모델이 왜 더 일반적인 Feature를 학습할까?**   
 > 저자들은 Student가 Teacher보다 단순하기 때문에 더 일반적인 Feature를 학습하는 경향이 있다고 설명하지만, **모델이 작다는 사실만으로 일반화 성능이 뛰어나다고 단정할 수는 없다.**
 >
 > 작은 모델은 표현할 수 있는 정보가 제한적이므로 복잡한 특징보다 간단하고 반복적으로 유용한 특징을 학습할 가능성이 있다. 이러한 Capacity Constraint가 일종의 Regularization처럼 작동할 수 있다는 것이다.
@@ -744,7 +744,7 @@ Tab.7에서는 Transformer 기반 Student 모델의 경우 대부분의 복잡�
 즉, **KD의 효과는 Teacher–Student의 Architecture Compatibility에도 크게 영향을 받을 수 있다.**
 특히 MobileViT-Small은 LSKD를 적용하더라도 전체 평균 성능을 유지하며, Art Domain에서는 78.99%에서 79.67%로 소폭 향상된다. 반면 ConvNeXt-Tiny나 ViT-Tiny에서는 치명적인 성능 하락이 나타난다. MobileViT-Small은 CNN과 Transformer를 결합한 Hybrid Architecture이므로, **Architecture의 차이가 Knowledge Transfer의 효율성과 안정성에 영향을 미칠 가능성**을 보여준다. 그러나 이것은 저자들이 해석한것 뿐이다.
 
-> **의견 : Architecture Compatibility**
+> **의견 : Architecture Compatibility**   
 > 동일한 Architecture 계열에서 Knowledge Distillation을 수행하면 성능이 더 좋아질까?
 >
 > 예를 들어 Transformer Teacher → Transformer Student, Mamba Teacher → Mamba Student와 같이 동일 계열에서 증류하는 경우와, 서로 다른 Architecture 사이에서 증류하는 경우를 비교하면 흥미로울 것 같다.
@@ -772,7 +772,7 @@ FitNet의 CKA에서는 Teacher와 Student 사이의 Representation이 상당히 
 
 Hint Layer를 L1부터 L4까지 변경하여 비교하였다.
 
-> **CKA(Centered Kernel Alignment, Kornblith et al., 2019)**
+> **CKA(Centered Kernel Alignment, Kornblith et al., 2019)**   
 > 두 모델의 **Feature Representation이 얼마나 비슷한지 측정**하는 방법이다.
 >
 > 쉽게 말해, 동일한 입력 데이터를 두 모델에 넣었을 때, **각 모델의 Layer가 데이터를 얼마나 비슷한 방식으로 표현하는지**를 비교하는 것이다.
@@ -791,7 +791,7 @@ Hint Layer를 L1부터 L4까지 변경하여 비교하였다.
 Fig.5의 (a)와 Tab.8의 결과를 비교하자면, 복잡한 KD 방법들의 성능 저하 원인은 **전달된 Feature와 실제 Task에 필요한 Representation 사이의 불일치**로 설명할 수 있다. 특히 L3에서는 CKA Similarity가 크게 감소하며, 이는 Teacher와 Student의 Feature Alignment가 잘 이루어지지 않았음을 시사한다. Tab.8을 보면 L1~L3의 Knowledge를 전달한 경우 Vanilla KD보다 평균 정확도가 낮아진다. 반면 L4의 Knowledge를 전달한 경우 가장 높은 정확도를 기록한다.
 즉, **Low-level Feature에 과도하게 의존하는 것은 Distribution Shift 상황에서 성능 저하로 이어질 수 있으며, High-level Semantic Knowledge를 전달하는 것이 더 효과적일 수 있다.**
 
-> **의견 : Low-level Feature와 High-level Feature**
+> **의견 : Low-level Feature와 High-level Feature**   
 > 일반적으로 초반 Layer에서는 Edge, Texture, Color 등 비교적 범용적인 특징을 학습하기 때문에 Transfer Learning에 유리할 수 있다.
 >
 > 그러나 Distribution Shift 상황에서는 Teacher가 가지고 있는 **Style이나 Spurious Correlation에 대한 편향까지 Low-level Representation에 인코딩되어 있을 가능성**이 있다.
@@ -807,7 +807,7 @@ Fig.5의 (a)와 Tab.8의 결과를 비교하자면, 복잡한 KD 방법들의 �
 
 즉, 상위 Layer의 정보를 증류함으로써 Student가 개의 얼굴과 같이 **분류에 중요한 영역에 집중하도록 유도할 수 있다.** 이는 Fig.5(b)의 Grad-CAM에서도 관찰된다. 따라서 **중요하지 않은 Layer에서 Teacher를 무분별하게 따르기보다, Domain의 변화에도 일반화될 수 있도록 Domain-independent하고 Semantically Meaningful한 Representation을 선택적으로 정렬해야 한다.**
 
-> **의견 : Adaptive Distillation의 필요성**
+> **의견 : Adaptive Distillation의 필요성**   
 > 이러한 결과를 보면 모든 Layer의 Knowledge를 동일하게 전달하기보다는, **Distribution Shift 유형이나 Layer별 Knowledge의 유용성에 따라 선택적으로 증류하는 Adaptive Distillation**이 필요하다고 생각한다.
 >
 > 특히 어떤 Knowledge가 새로운 Domain에서도 유효한지 판단할 수 있다면, Teacher의 Bias 전달을 줄이는 데 도움이 될 수 있을 것 같다.
@@ -825,13 +825,13 @@ Fig.5의 (a)와 Tab.8의 결과를 비교하자면, 복잡한 KD 방법들의 �
 
 다만 Table 9는 Teacher의 Robustness가 Student의 성능에 영향을 미친다는 점을 뒷받침하지만, Student의 성능이 Teacher의 성능을 절대 넘어설 수 없다는 수학적 상한을 입증한 것은 아니다.
 
-> **용어 정리**
+> **용어 정리**   
 > - **ERM(Empirical Risk Minimization, 경험적 위험 최소화)** : 주어진 Training Data에서 평균 Loss를 최소화하는 일반적인 학습 방식이다. 문제 해결에 필요한 특징뿐 아니라 학습 환경에서 우연히 Label과 연관된 Spurious Feature도 활용할 수 있으므로, 허위 상관관계를 학습할 위험이 있다.
 > - **IRM(Invariant Risk Minimization, 불변 위험 최소화)** : 여러 환경에서 **공통적으로 유효한 예측 규칙**을 학습하도록 유도하는 방법이다. 환경에 따라 달라지는 Spurious Correlation보다는 환경이 바뀌어도 유효한 특징을 학습하는 것을 목표로 한다. 다만 항상 이러한 특징을 학습하거나 OOD 성능을 개선한다고 보장할 수는 없다.
 > - **IRM Penalty** : 여러 Training Environment에서 동일한 Classifier가 최적에 가깝도록 제약하는 Regularization Term이다. 이를 통해 특정 환경에만 유효한 특징에 과도하게 의존하는 것을 줄이려 한다.
 {: .prompt-info }
 
-> **IRM Penalty의 직관적인 이해**
+> **IRM Penalty의 직관적인 이해**   
 > 예를 들어 ColorMNIST에서 숫자의 색상이 환경마다 Label과 서로 다른 상관관계를 가진다고 가정하자.
 >
 > ERM은 Training Data에서 정답을 잘 맞히는 것을 목표로 하기 때문에 색상에 의존할 수 있다.
@@ -858,7 +858,7 @@ Fig.7을 보면 Teacher Model의 출력은 뚜렷한 Bimodal Distribution을 보
 즉, **증류는 Logit 수준에서 Teacher의 예측 확신도와 Class Separation을 일부 전달하는 데 도움을 줄 수 있지만, 그 효과는 여전히 제한적이다.**
 이는 **Training Data에 존재하는 Bias와 이를 학습한 Teacher의 Bias가 KD를 통해 Student에게 함께 영향을 미칠 수 있기 때문**이라는 저자들의 설명을 뒷받침한다.
 
-> **Dual Biases : Teacher Bias와 Training Data Bias**
+> **Dual Biases : Teacher Bias와 Training Data Bias**   
 > 저자들이 설명하는 Dual Biases는 Teacher와 Student 각각의 편향이 아니라, **Teacher Bias와 Training Data Bias**를 의미한다.
 >
 > 예를 들어 ColorMNIST에서는 다음과 같은 문제가 발생할 수 있다.
