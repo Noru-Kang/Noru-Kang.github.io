@@ -19,11 +19,11 @@ title: "Noru Kang" # the main title
 tagline: "Noru's study" # it will display as the subtitle
 
 description: >- # used by seo meta and the atom feed
-  A blog for studying and organizing knowledge in Data Science, Computer Science, AI/ML/DL, and Statistics.
+  Noru Kang — 강태영(Kang TaeYoung)의 Data Science, Computer Science, AI/ML/DL, Statistics 학습 및 프로젝트 블로그.
 
 # Fill in the protocol & hostname for your site.
 # E.g. 'https://username.github.io', note that it does not end with a '/'.
-url: "https://Noru-Kang.github.io"
+url: "https://noru-kang.github.io"
 
 github:
   username: Noru-Kang # change to your GitHub username
@@ -44,6 +44,12 @@ social:
     # Uncomment below to add more social links
     # - https://www.facebook.com/username
     - https://www.linkedin.com/in/%ED%83%9C%EC%98%81-%EA%B0%95-b494662bb/
+
+# Person identity used by the About page's ProfilePage structured data.
+seo_profile:
+  name: Kang TaeYoung
+  alternate_names: [Noru Kang, 강태영]
+  description: Data Science, Computer Science, AI/ML/DL, and Statistics researcher and developer.
 
 # Site Verification Settings
 webmaster_verifications:
@@ -212,6 +218,19 @@ defaults:
     values:
       layout: page
       toc: false
+  # Keep non-content assets and legacy empty HTML files out of the SEO sitemap.
+  - scope:
+      path: "assets/pdfs/**/*.pdf"
+    values:
+      sitemap: false
+  - scope:
+      path: "home.html"
+    values:
+      sitemap: false
+  - scope:
+      path: "public/default/home.html"
+    values:
+      sitemap: false
 
 sass:
   style: compressed
@@ -230,6 +249,7 @@ exclude:
   - "*.gemspec"
   - docs
   - tools
+  - public/default/home.html
   - README.md
   - LICENSE
   - purgecss.js

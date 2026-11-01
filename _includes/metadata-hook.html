@@ -1,1 +1,19 @@
-<!-- A placeholder to allow defining custom metadata -->
+<!-- Custom metadata that extends Chirpy's jekyll-seo-tag output. -->
+{% if page.url == '/about/' and site.seo_profile %}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfilePage",
+      "mainEntity": {
+        "@type": "Person",
+        "@id": {{ '/about/#person' | absolute_url | jsonify }},
+        "name": {{ site.seo_profile.name | jsonify }},
+        "alternateName": {{ site.seo_profile.alternate_names | jsonify }},
+        "description": {{ site.seo_profile.description | jsonify }},
+        "url": {{ page.url | absolute_url | jsonify }},
+        "image": {{ site.avatar | absolute_url | jsonify }},
+        "sameAs": {{ site.social.links | jsonify }}
+      }
+    }
+  </script>
+{% endif %}

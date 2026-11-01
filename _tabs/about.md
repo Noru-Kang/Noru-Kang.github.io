@@ -2,6 +2,7 @@
 # the default layout is 'page'
 icon: fas fa-info-circle
 order: 6
+description: Kang TaeYoung(강태영), also known as Noru Kang — Data Science, Computer Science, AI/ML/DL, and Statistics researcher and developer.
 ---
 
 <!-- > Add Markdown syntax content to file `_tabs/about.md`{: .filepath } and it will show up on this page. -->
