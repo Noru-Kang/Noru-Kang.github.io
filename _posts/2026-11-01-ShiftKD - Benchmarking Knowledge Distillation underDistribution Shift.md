@@ -14,12 +14,12 @@ math: true
 ---
 # ShiftKD: Benchmarking Knowledge Distillation under Distribution Shift
 
-> **출처:** Neural Networks, Vol. 192, Article 107838 (2025)
-> <strong>저자</strong><strong>:</strong> Songming Zhang, Yuxiao Luo, Ziyu Lyu, Xiaofeng Chen
-> **연도:** 2025
-> **논문:** https://www.sciencedirect.com/science/article/pii/S089360802500718X
-> **코드:** https://github.com/ZZhangsm/ShiftKD.git
-> <strong>메모</strong>: [[ShiftKD - Benchmarking Knowledge Distillation under Distribution Shift 메모]]
+> **출처:** Neural Networks, Vol. 192, Article 107838 (2025)   
+> <strong>저자</strong><strong>:</strong> Songming Zhang, Yuxiao Luo, Ziyu Lyu, Xiaofeng Chen   
+> **연도:** 2025   
+> **논문:** https://www.sciencedirect.com/science/article/pii/S089360802500718X   
+> **코드:** https://github.com/ZZhangsm/ShiftKD.git   
+
 > 주석이 없는 그림과 표는 해당 논문의 그림과 표이다.
 
 ---

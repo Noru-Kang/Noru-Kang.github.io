@@ -10,11 +10,11 @@ math: true
 ---
 # A Comprehensive Survey on Knowledge Distillation
 
-> **출처:** TMLR
-> **저자:** Amir et al.
-> **연도:** 2025
-> **논문:** https://openreview.net/forum?id=3cbJzdR78B
-> **코드 / 자료:** [git-hub](https://github.com/IPL-sharif/KD_Survey.git)
+> **출처:** TMLR   
+> **저자:** Amir et al.   
+> **연도:** 2025   
+> **논문:** https://openreview.net/forum?id=3cbJzdR78B   
+> **코드 / 자료:** [git-hub](https://github.com/IPL-sharif/KD_Survey.git)   
 
 ---
 
