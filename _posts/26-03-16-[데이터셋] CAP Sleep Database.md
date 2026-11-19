@@ -10,7 +10,8 @@ tags:
   - sleep
 math: true
 ---
-# 🧢 CAP Sleep Database
+
+## 🧢 CAP Sleep Database
 
 > https://physionet.org/content/capslpdb/1.0.0/
 
@@ -29,7 +30,8 @@ NREM 수면의 미세구조(microstructure)인 CAP를 분석하기 위한 병리
 {: .prompt-info }
 
 ---
-## ℹ️ Data Info
+
+### ℹ️ Data Info
 
 | 항목          | 내용                                                                                               |
 | ------------- | -------------------------------------------------------------------------------------------------- |
@@ -42,12 +44,14 @@ NREM 수면의 미세구조(microstructure)인 CAP를 분석하기 위한 병리
 | stage 체계    | W, S1, S2, S3, S4, REM, MT                                                                         |
 
 ---
-## 🔔 수집 목적
+
+### 🔔 수집 목적
 
 이 데이터셋의 핵심 목적은 <strong>CAP(Cyclic Alternating Pattern)를 정량화</strong>하고, 이것이 수<strong>면 불안정성(sleep instability)과 수면 관련 병리와 어떤 관련이 있는지 평가</strong>
 
 ---
-## 🗂️ CAP Subtype
+
+### 🗂️ CAP Subtype
 
 Phase Subtype
 - A1: 동기화된 EEG event 중심, autonomic / somatomotor 영향이 낮음
@@ -76,7 +80,7 @@ Phase Subtype
 >EMG가 채널이 튀는 경우
 {: .prompt-info }
 
-### CAP 증가가 보고된 병리 Case
+#### CAP 증가가 보고된 병리 Case
 
 - sleep-disordered breathing
 - insomnia
@@ -87,12 +91,14 @@ Phase Subtype
 - narcolepsy
 
 ---
-## 📌 CAP의 특징
+
+### 📌 CAP의 특징
 
 - tage label도 있으므로 macrostructure와 microstructure를 같이 다룰 수 있음
 
 ---
-## 📍 Info
+
+### 📍 Info
 
 - `.edf` : PSG신호 파일(EEG, EOG, chin EMG, bilateral tibial EMG, airflow, 흉부/복부 effort, SaO2, ECG 등 실제 파형)
 - `.txt` : annotation 텍스트 파일.scoring 결과는 REMlogic report 형식의 텍스트 파일

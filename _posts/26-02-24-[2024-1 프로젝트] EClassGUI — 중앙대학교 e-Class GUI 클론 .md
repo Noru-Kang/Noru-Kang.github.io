@@ -5,11 +5,11 @@ categories: [Computer-Science, Java]
 tags: [project, java, swing, gui]
 ---
 
-# EClassGUI — 중앙대학교 e-Class GUI 클론 (Java Swing)
+## EClassGUI — 중앙대학교 e-Class GUI 클론 (Java Swing)
 
 ---
 
-## 프로젝트 기본
+### 프로젝트 기본
 
 - **Project Title:** EClassGUI — Java Swing 기반 중앙대학교 e-Class 클론
 - **One-line summary:** 중앙대 e-Class의 "과제 제출" 흐름을 Java Swing으로 재구현하고, 기존 UI의 불편점(과제 세부 정보 접근성)을 개선한 GUI 데스크톱 애플리케이션
@@ -23,7 +23,7 @@ tags: [project, java, swing, gui]
 
 ---
 
-## TL;DR
+### TL;DR
 
 - **Problem:** 중앙대 e-Class에서 과제를 제출할 때, 과제 세부 내용(마감일·배점 등)을 확인하려면 과제 버튼을 별도로 클릭해야 하는 불편함이 존재한다.
 - **Approach:** Java Swing의 `CardLayout`으로 5개의 화면을 전환하며, 과제 요약 정보를 별도 진입 없이 "과제 및 평가" 화면에 직접 노출. `JFileChooser`로 PDF 파일 업로드 기능 구현.
@@ -32,7 +32,7 @@ tags: [project, java, swing, gui]
 
 ---
 
-## Motivation & Background
+### Motivation & Background
 
 - **Background:** 중앙대학교 e-Class는 Moodle 기반의 LMS(학습 관리 시스템)로, 수강 신청된 과목의 과제 제출·성적 확인·강의 자료 열람 등의 기능을 제공한다. 본 프로젝트는 2024년 1학기 소프트웨어프로젝트 교과목의 기말 프로젝트 과제로 수행되었다.
 - **Why this problem matters:** 학생들이 매 학기 반복적으로 사용하는 LMS에서 UX 마찰이 작더라도 누적 시 상당한 불편으로 이어진다. "과제 세부 정보 확인 → 뒤로가기 → 과제 제출" 이라는 불필요한 단계를 줄이는 것이 실질적인 UX 개선 포인트다.
@@ -45,7 +45,7 @@ tags: [project, java, swing, gui]
 
 ---
 
-## Approach
+### Approach
 
 **(System/Pipeline 블록 채움, 나머지 해당 없음)**
 
@@ -102,7 +102,7 @@ tags: [project, java, swing, gui]
 
 ---
 
-## Data & Experiment
+### Data & Experiment
 
 - **Dataset type:** 해당 없음 (정적 GUI 애플리케이션)
 - **Source:** 해당 없음
@@ -122,7 +122,7 @@ tags: [project, java, swing, gui]
 
 ---
 
-## Results
+### Results
 
 | 구분      | 항목                        | 값                                         |
 | --------- | --------------------------- | ------------------------------------------ |
@@ -139,7 +139,7 @@ tags: [project, java, swing, gui]
 
 ---
 
-## Discussion
+### Discussion
 
 - **Key observations:**
   1. `CardLayout` 단일 프레임 구조는 화면 전환 로직을 단순하게 유지시켜 주지만, 화면 수가 늘어날수록 `EClassGUI` 클래스의 책임이 과도하게 집중된다.
@@ -157,7 +157,7 @@ tags: [project, java, swing, gui]
 
 ---
 
-## Limitations & Future Work
+### Limitations & Future Work
 
 - **Limitations:**
   1. 인증 정보가 소스 코드에 하드코딩 (`Id="1"`, `Password="1"`) — 다중 사용자 미지원
@@ -180,7 +180,7 @@ tags: [project, java, swing, gui]
 
 ---
 
-## Project Structure
+### Project Structure
 
 ```
 java_gui 2/
@@ -204,7 +204,7 @@ java_gui 2/
     └── BasicBackgroundPanel.class
 ```
 
-### 실행 방법
+#### 실행 방법
 
 **IntelliJ IDEA:**
 1. `java_gui 2/` 폴더를 IntelliJ에서 프로젝트로 열기
@@ -219,11 +219,12 @@ java EClassGUI
 > 이미지 파일(`Image/` 폴더)이 실행 디렉토리 기준으로 참조되므로, 반드시 `java_gui 2/` 내에서 실행할 것.
 
 **로그인 정보:** ID: `1` / PW: `1`  
+
 **탐색 팁:** 파란색 버튼을 따라가면 구현된 핵심 기능 확인 가능
 
 ---
 
-## PDF/Slides Mapping
+### PDF/Slides Mapping
 
 - **Main slide deck(s):** `20204885 강태영 소프트웨어프로젝트 최종보고서3.pdf` (7페이지, 2024년 1학기)
 
@@ -247,7 +248,7 @@ java EClassGUI
 
 ---
 
-## Citation & License
+### Citation & License
 
 - **Citation info:**
   - 작성자: 강태영 (학번: 20204885)

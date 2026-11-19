@@ -5,7 +5,7 @@ categories: [Data-Science, Data-Mining]
 tags: [clustering, distance]
 ---
 
-# Introduction
+## Introduction
 
 > 데이터를 **"비슷한 것끼리"** 묶는 <strong>비지도 학습(unsupervised learning)</strong>
 
@@ -14,38 +14,41 @@ tags: [clustering, distance]
 	- <strong>이상치(outlier) 탐지</strong>
 	- **패턴**파악
 
-## 분류(classification) vs 클러스터링(clutering)
+### 분류(classification) vs 클러스터링(clutering)
 
 supervised(정답 있음, 그룹(레이블, 정답)이 미리 주어짐) vs unsupervised(그룹을 찾아냄, 비슷한것끼리 묶어줌)
 
-## 종류
+### 종류
+
 - 계층적(Hierarchical)
 - 분할적(Partioning)
 - Mixture Models
 
 ---
 
-# Similarity & Dissimilarity
+## Similarity & Dissimilarity
 
 > 유사도란 <strong>"비슷한 것 끼리 묶자"</strong>를 수치로 표현하는 방법
 
 - row(행)을 묶을 때 : <strong>거리(distance)</strong>
 - col(열)을 묶을 때 : <strong>상관계수(correlation)와 같은 연관도(association measure) 사용</strong>
 
-## 대표적인 거리
+### 대표적인 거리
 
-### 유클리드(euclidean, L2 norm)
+#### 유클리드(euclidean, L2 norm)
 
 피타고라스 거리
+
 **두 점을 잇는 가장 짧은 거리**
 
 ![](/assets/img/posts/clustering/6583d7b7315951650994e0e71fd682b4.png)
 
 **범위 : $[0,∞)$, 0에가까울 수록 유사함**
 
-### 맨해튼 거리(manhattan, L1 norm)
+#### 맨해튼 거리(manhattan, L1 norm)
 
 택시 거리
+
 **격자를 따라 이동하는 가장 짧은 거리**
 
 ![](/assets/img/posts/clustering/01cc3097a6176cb6e9f67fb324540f29.png)
@@ -62,7 +65,7 @@ supervised(정답 있음, 그룹(레이블, 정답)이 미리 주어짐) vs unsu
 
 **범위 : $[0,∞)$, 0에가까울 수록 유사함**
 
-### 마할라노비스 거리(mahalanobis)
+#### 마할라노비스 거리(mahalanobis)
 
 공분산을 고려하여 변수 스케일, 상관성까지 반영한 거리로 다차원 데이터에서 **실제 분포 모양**까지 고려
 
@@ -70,7 +73,7 @@ supervised(정답 있음, 그룹(레이블, 정답)이 미리 주어짐) vs unsu
 
 **범위 : $[0,∞)$, 0에가까울 수록 통계적으로 유사함
 
-### 캔버라(canberra)
+#### 캔버라(canberra)
 
 **값이 0 근처일때 민감하게 반응**하는 거리이며, 양의 값에서 주로 사용한다. 즉 작은값에 민감하게 반응하는 거리이다.
 
@@ -78,7 +81,7 @@ supervised(정답 있음, 그룹(레이블, 정답)이 미리 주어짐) vs unsu
 
 **범위 : $[0,∞)$, 0에가까울 수록 유사함
 
-### 체카노프스키(Czekanowski)
+#### 체카노프스키(Czekanowski)
 
 **두 대상이 얼마나 겹치는지**에 대한 척도
 
@@ -86,7 +89,7 @@ supervised(정답 있음, 그룹(레이블, 정답)이 미리 주어짐) vs unsu
 
 **범위 : $[0,1]$, 1에가까울 수록 유사함
 
-### 이진 변수 유사도
+#### 이진 변수 유사도
 
 ![](/assets/img/posts/clustering/e44d806bae4052a099beaa9747386372.png)
 
@@ -95,7 +98,7 @@ supervised(정답 있음, 그룹(레이블, 정답)이 미리 주어짐) vs unsu
 
 **범위 : $[0,1]$, 1에가까울 수록 유사함
 
-### Gower
+#### Gower
 
 **혼합변수**에 사용한다. 변수마다 $s_{ijk}$를 구한 후 한번에 계산한다.
 
@@ -103,7 +106,7 @@ supervised(정답 있음, 그룹(레이블, 정답)이 미리 주어짐) vs unsu
 
 **범위 : $[0,1]$, 1에가까울 수록 유사함
 
-## Example
+### Example
 
 ```python
 # L2 norm
@@ -420,9 +423,9 @@ D_cz[:3, :3]
 
 ![](/assets/img/posts/clustering/be03e525bce7e61e2a4b6b829568170e.png)
 
-# 계층적 클러스터링
+## 계층적 클러스터링
 
-## 종류
+### 종류
 
 - **Agglomerative(bottom-up)** : 모든 데이터 포인트가 독립된 클러스터로 시작하여 가장 가까운 두 클러스터를 합쳐간다. 최종적으로 하나가 될 때 까지 반복한다
 	1.  모든 점을 독립된 n개의 클러스터로 시작(데이터 수 만큼 클러스터)
@@ -431,7 +434,7 @@ D_cz[:3, :3]
 	4. 클러스터가 특정 threshold 혹은 1이 될때까지 반복
 - Divisve(top-down) : 모든 점을 하나의 클러스터로 시작하여 계속 쪼개간다.
 
-## Linkage(거리)
+### Linkage(거리)
 
 - Single linkage : 두 클러스터안의 데이터 포인트에 대하여 가장 가까운 거리
 
@@ -448,7 +451,7 @@ D_cz[:3, :3]
 
 ![](/assets/img/posts/clustering/e970a99ee7bca8a6b0185901b15b28ee.png)
 
-## Dendrogram(덴드로그램)
+### Dendrogram(덴드로그램)
 
 ![](/assets/img/posts/clustering/7de03213cf8bf26311247393482e5f9f.png)
 

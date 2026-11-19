@@ -10,14 +10,16 @@ tags:
   - sleep
 math: true
 ---
-# Haaglanden Medisch Centrum sleep staging database
+
+## Haaglanden Medisch Centrum sleep staging database
 
 > https://physionet.org/content/hmc-sleep-staging/1.1/
 
 실제 임상 PSG를 기반으로 한, <strong>표준적인 sleep staging 중심</strong> 데이터셋
 
 ---
-## ℹ️ Data Info
+
+### ℹ️ Data Info
 
 | 항목          | 내용                                                     |
 | ------------- | -------------------------------------------------------- |
@@ -49,13 +51,16 @@ math: true
 
 
 ---
-## 🔔 수집 목적
+
+### 🔔 수집 목적
 
 <strong>automatic sleep staging algorithm이 서로 다른 데이터베이스에서도 generalize되는지 평가</strong>를 위함   
+
 patient phenotype을 최대한 일반적이고 heterogeneous하게 유지하려고 했고, 추가적인 선택 기준을 거의 두지 않음, <strong>실제 의학적 분포를 반영한 데이터에 가까움</strong>
 
 ---
-## 🗂️ 데이터 특징
+
+### 🗂️ 데이터 특징
 
 - sleep center 수집 데이터
 - in-hospital / ambulatory recording
@@ -77,7 +82,8 @@ patient phenotype을 최대한 일반적이고 heterogeneous하게 유지하려�
 - 유효 scoring interval만 남도록 lights off ~ lights on 구간으로 clipping됨
 - Stage를 위한 데이터셋이므로, 라벨이 풍부하지 않음
 ---
-## 📌 HMC의 특징
+
+### 📌 HMC의 특징
 
 - 현실적인 환자 분포
 - Sampling Rate 통일
@@ -86,7 +92,8 @@ patient phenotype을 최대한 일반적이고 heterogeneous하게 유지하려�
 - <strong>Pretrain용으로 좋음</strong>
 
 ---
-## 📍 Info
+
+### 📍 Info
 
 - `.edf` : PSG 신호 파일. EEG, EOG, chin EMG, ECG 등
 - `SNXXX_sleepscoring.edf` : annotation-only EDF+ 파일. hypnogram annotation과 lights-off/on marker가 저장. EDF+ 표준 텍스트와 polarity rule을 따릅니다. 즉, stage label과 수면 유효 구간을 EDF 계열 포맷 안에서 같이 다룸

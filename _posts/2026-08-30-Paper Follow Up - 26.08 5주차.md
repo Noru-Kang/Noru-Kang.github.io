@@ -12,16 +12,17 @@ tags:
   - AI/ML/DL
 math: true
 ---
-# Paper Follow Up - 26.08 5주차
+
+## Paper Follow Up - 26.08 5주차
 
 >
 > * **HALO: A Heterogeneity-Aware Language-Aligned IMU Foundation Model for Open-Set Human Activity Recognition**
 > * **TRACE-CRC: Trajectory-Adaptive Conformal Risk Control for Multi-Step Channel State Information Prediction**
 {: .prompt-info }
 
-## 1. 이번 주 주요 이벤트
+### 1. 이번 주 주요 이벤트
 
-### Trend: 전체 흐름
+#### Trend: 전체 흐름
 
 **"배포 시 어떤 종류의 shift와 불확실성이 발생하는가"를 모델 구조 안에 명시적으로 넣는 흐름**
 
@@ -30,7 +31,7 @@ math: true
 3. **World model과 neural decoding**에서는 Transformer를 단순한 범용 sequence mixer로 사용하는 대신 **동역학에 맞는 operator 구조**를 넣으려는 움직임이 나타난다.
 4. **통계 ML**에서는 Gaussian/RBF kernel을 GP uncertainty의 기본값으로 사용하는 관행을 비판하면서, **지나친 analyticity가 과신과 수치적 ill-conditioning을 동시에 유발할 수 있다**는 주장이 나왔다.
 
-### A: 생체신호 / 의료 시계열
+#### A: 생체신호 / 의료 시계열
 
 * `HALO`: sampling rate, channel 구성, sensor placement 등의 **센서 heterogeneity를 단순 nuisance로 제거하는 대신 모델이 처리하거나 conditioning해야 하는 관측 조건으로 명시**하는 방향을 보여준다.
 * `Graph-CMMC`: ECG의 12 lead를 독립 채널로 처리하지 않고 **lead 관계를 graph로 표현**하면서, signal/image의 **pseudo-multimodal SSL**을 수행한다.
@@ -38,17 +39,19 @@ math: true
 * `rPPG`: endpoint MAE 하나만으로 source physiology가 보존되었다고 결론내리면 안 된다는 점을 보여주며, **property-specific recoverability**라는 평가 관점을 제시한다.
 
 > **property-specific recoverability**
+>
 > **원래 신호가 가지고 있던 여러 종류의 정보 중 어떤 정보가 변환된 신호에서도 살아남아 있는지를 property별로 따로 평가하는 것**이다.
 > 예를 들어 PPG → rPPG 변환이라면 HR 하나만 보는 것이 아니라 temporal correlation, spectral structure, recurrence, nonlinear dynamics 등이 각각 얼마나 보존되는지를 따로 확인한다.
 {: .prompt-info }
 
-### B: 오디오 / 음성
+#### B: 오디오 / 음성
 
 * biomedical audio에서는 **cross-dataset failure가 병리 signal보다 recording device나 dataset identity를 학습했기 때문일 수 있다**는 결과가 나왔다. `cough-TB` 연구가 이를 직접적으로 보여준다.
 * `AVSR`에서는 모델을 다시 학습하지 않고 audio-only와 audio-visual prediction의 차이 및 attention 정보를 이용해 **token별 contrastive decoding strength를 조절하는 reliability-aware routing** 기법이 제안되었다.
 * Audio LLM 평가에서는 transcript만으로 풀 수 있는 shortcut을 제거하기 위해 **음향 cue와 텍스트가 서로 다른 답을 지지하는 conflict sample**을 별도로 만드는 평가 설계가 등장했다.
 
 > **audio-only와 audio-visual prediction의 차이를 이용해 token별 contrastive decoding strength를 조절한다는 것?**
+>
 > 단순히 **"소리가 시끄러우면 video의 가중치를 직접 키운다"**는 의미는 아니다.
 > 같은 AVSR 모델에서
 >
@@ -60,7 +63,7 @@ math: true
 >   여기서 **token별 조절**은 다음 token을 생성할 때마다 contrastive strength를 새로 결정한다는 의미이고, attention dynamics와 prediction disagreement는 현재 audio prediction의 reliability를 판단하기 위한 단서로 사용된다.
 {: .prompt-info }
 
-### C: 관심 분야
+#### C: 관심 분야
 
 * Conformal prediction의 단위를 개별 timestamp가 아니라 **forecast trajectory 전체**로 올리는 것이 가장 눈에 띈다. 각 미래 시점을 따로 보장하는 것이 아니라, **미래 예측 경로 전체에서 한 시점이라도 실패하는 사건을 직접 제어**하는 방식이다.
 * model-based inference와 NN의 결합도 단순한 KalmanNet을 넘어 **EM iteration 자체를 learned/unrolled adaptation loop**로 바꾸는 방향으로 진행되었다.
@@ -73,12 +76,14 @@ math: true
 * 통계 ML에서는 kernel smoothness가 uncertainty calibration에 미치는 영향을 다시 봐야 할 이유가 생겼다.
 
 > **Conformal prediction**
+>
 > 모델의 prediction error를 calibration data에서 측정하고 이를 이용해 **prediction interval/set의 크기를 보정하는 방법**이다.
 > 중요한 점은 `"이 sample의 실제 값이 90% 확률로 이 구간 안에 있다"`라는 개별 sample의 conditional probability를 직접 의미하는 것이 아니다.
 > 기본 split conformal에서는 exchangeability 가정 아래 새로운 sample에 반복적으로 적용했을 때 **실제 값이 prediction set 안에 포함되는 비율이 목표 coverage 이상이 되도록 finite-sample marginal coverage를 보장**한다.
 {: .prompt-info }
 
 > **KalmanNet**
+>
 > **Kalman Filter의 predict-update 구조는 유지하되, analytical model이나 covariance가 부정확할 때 계산하기 어려운 Kalman gain을 NN이 학습하도록 만든 구조**이다.
 > ![](/assets/img/posts/20260830_1709_PAPER/601d23b512fac593193de5a4855946e3.png)
 > [Kalman Filter 참고 영상](https://www.youtube.com/watch?v=LioOvUZ1MiM)
@@ -112,14 +117,19 @@ math: true
 {: .prompt-info }
 
 > **EM (Expectation-Maximization)**
+>
 > **hidden variable과 model parameter를 번갈아 추정하면서 서로를 반복적으로 개선하는 알고리즘**이다.
 > **0. Initialization**
+>
 > 처음에 parameter $F^{(0)}$를 초기화한다.
 > **1. E-step**
+>
 > 현재 $F$가 맞다고 가정하고 observation과 현재 parameter를 이용해 hidden state $x_1,\ldots,x_T$의 posterior 또는 필요한 statistics를 추정한다.
 > **2. M-step**
+>
 > E-step에서 얻은 state statistics를 이용해 더 나은 $F$를 추정한다.
 > **3. 반복**
+>
 > 새 $F$를 다시 E-step에 사용하면서 state와 parameter를 반복적으로 개선한다.
 >
 > ##### 이 논문에서 비교하는 classical EM-KF의 한계
@@ -133,7 +143,7 @@ math: true
 > 4. 빠르게 변하는 system에서는 iterative inference latency가 부담될 수 있음
 {: .prompt-info }
 
-### D: 주요 AI / DL / ML / RL
+#### D: 주요 AI / DL / ML / RL
 
 * world model에서는 latent representation만 신경 쓰는 것을 넘어 **latent transition operator 자체의 inductive bias**를 연구 대상으로 분리하는 흐름이 보인다.
 
@@ -148,41 +158,43 @@ math: true
 
   * 과거 행동 기록을 매번 통째로 다시 읽는 대신, **execution trace에서 반복적으로 사용할 지식을 추출하고 그 지식을 다시 실행 가능한 skill로 정리**하는 3단계 구조이다.
 
-### E: 참고할 분야
+#### E: 참고할 분야
 
 * neural decoding에서는 저차원 latent state를 단순 feature로 사용하지 않고 **어떤 operator를 실행할지 지정하는 instruction pointer/controller**로 해석하는 방법이 등장했다.
 * 계산신경과학에서는 neuronal activity와 pathological spreading 사이의 nonlinear feedback만으로 **hysteresis와 multistability가 발생할 수 있음**을 보였다. 즉 neuronal activity와 pathological spreading이 서로 영향을 주는 nonlinear feedback 때문에 같은 외부 조건에서도 시스템이 여러 stable state를 가질 수 있고, 한 번 다른 regime으로 전환된 뒤에는 조건을 단순히 원래 수준으로 되돌리는 것만으로 즉시 복귀하지 않을 수 있다.
 
 > **Hysteresis**
+>
 > **상태가 한 번 바뀐 뒤에는 parameter를 반대 방향으로 되돌려도 같은 threshold에서 바로 원래 상태로 복귀하지 않는 현상**이다.
 > 즉 현재 state가 현재 parameter만이 아니라 **이전에 어떤 경로를 거쳐 왔는가**에도 의존한다.
 {: .prompt-info }
 
 > **Multistability**
+>
 > **같은 외부 조건과 parameter에서도 둘 이상의 stable state가 존재할 수 있는 현상**이다.
 {: .prompt-info }
 
 ---
 
-## 2. 정독할 논문 정리
+### 2. 정독할 논문 정리
 
 이번 주는 pass.
 
 ---
 
-## 3. 상세 논문 정리
+### 3. 상세 논문 정리
 
-### A: 생체신호 / 의료 / 임상 시계열
+#### A: 생체신호 / 의료 / 임상 시계열
 
-#### HALO — Heterogeneity-Aware Language-Aligned IMU Foundation Model
+##### HALO — Heterogeneity-Aware Language-Aligned IMU Foundation Model
 
-##### 3줄 요약
+###### 3줄 요약
 
 1. 여러 IMU 데이터셋을 같이 학습하려 하면 **sampling rate, channel 수, sensor 종류·위치, activity label이 모두 달라** 고정된 하나의 encoder/classifier를 만들기 어렵다.
 2. HALO는 먼저 sampling/channel/placement heterogeneity를 처리하는 IMU encoder를 SSL로 학습하고, 이후 signal representation을 **자연어 activity representation과 정렬**한다.
 3. 센서 구성이 달라져도 같은 encoder를 사용하고, 학습할 때 보지 못한 activity도 새로운 text label bank를 사용해 zero-shot으로 분류할 수 있도록 설계했다.
 
-##### 요약
+###### 요약
 
 HALO는 기존 HAR 모델이 실제로는 특정 데이터셋의 sensor format에 강하게 묶여 있다는 문제에서 출발한다. 예를 들어 모든 데이터를 공통 50 Hz로 resampling하면 downsampling에서는 high-frequency 정보를 잃고, upsampling에서는 존재하지 않는 sample을 만들어낼 수 있다. 또한 고정된 channel 수를 가정하는 architecture는 서로 다른 sensor suite를 하나의 model로 처리하기 어렵다.
 
@@ -194,7 +206,7 @@ Stage 1에서는 encoder를 Masked Autoencoding + Contrastive Learning으로 SSL
 
 최종 zero-shot inference에서는 dataset-specific classifier를 새로 학습하지 않는다. 각 fused patch representation을 candidate text label embedding과 cosine similarity로 비교하여 patch별 prediction을 만들고, 논문의 zero-shot 평가는 이 patch prediction을 majority voting하여 최종 activity를 결정한다.
 
-##### 핵심 아이디어 및 개념
+###### 핵심 아이디어 및 개념
 
 * **Sampling rate 문제를 왜 adaptive pooling으로 해결?**: `100 samples = 1 patch`처럼 sample 수를 기준으로 patch를 정의하면 100 Hz에서는 1초지만 20 Hz에서는 5초가 된다. 즉 **같은 token이 나타내는 물리적 시간이 달라진다.**
   HALO는 반대로 **몇 초라는 실제 시간 기준으로 segment를 정의**한다. 따라서 sampling rate에 따라 들어오는 sample 수는 달라도 같은 물리적 시간 범위를 표현한다.
@@ -375,17 +387,17 @@ final activity
 
 ---
 
-### C: 관심 분야
+#### C: 관심 분야
 
-#### TRACE-CRC
+##### TRACE-CRC
 
-##### 3줄 요약
+###### 3줄 요약
 
 1. multi-step forecasting에서 각 future timestamp를 따로 90% coverage로 보장해도 **전체 future trajectory가 동시에 coverage될 확률이 90%라는 뜻은 아니다.**
 2. TRACE-CRC는 `미래 중 한 시점이라도 uncertainty ball 밖에 존재하면 trajectory failure`라고 정의하고 이 failure risk를 직접 제어한다.
 3. uncertainty radius를 **horizon difficulty × trajectory difficulty × global risk multiplier**로 분해하여 adaptive하게 만들면서도 trajectory-level risk를 별도의 LTT 단계에서 certify한다.
 
-##### 요약
+###### 요약
 
 TRACE-CRC는 새로운 forecasting model보다 **예측 결과 주위의 uncertainty를 어떻게 calibration할 것인가**가 핵심이다.
 
@@ -411,7 +423,7 @@ $$
 
 마지막으로 별도의 validation subset에서 Learn-then-Test 방식으로 여러 $\lambda$ 후보를 검정하고, target trajectory failure risk를 만족한다고 certify할 수 있는 가장 작은 multiplier를 선택한다.
 
-##### 핵심 아이디어 및 개념
+###### 핵심 아이디어 및 개념
 
 * **왜 point coverage와 trajectory coverage가 다른가?**
 

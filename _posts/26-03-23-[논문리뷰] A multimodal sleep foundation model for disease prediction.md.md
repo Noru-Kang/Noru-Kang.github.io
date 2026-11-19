@@ -8,7 +8,8 @@ categories:
 tags: [psg, sleep, foundation-model, paper-review]
 math: true
 ---
-# A multimodal sleep foundation model for disease prediction(SleepFM)
+
+## A multimodal sleep foundation model for disease prediction(SleepFM)
 
 > https://arxiv.org/abs/2510.21585
 

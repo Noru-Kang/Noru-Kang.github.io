@@ -7,13 +7,14 @@ categories:
 tags: [eeg, foundation-model, paper-review]
 math: true
 ---
-# REVE : A Foundation Model for EEG Adapting to Any Setup with Large-Scale Pretraining on 25,000 Subjects
+
+## REVE : A Foundation Model for EEG Adapting to Any Setup with Large-Scale Pretraining on 25,000 Subjects
 
 > https://arxiv.org/abs/2510.21585
 
 ![](/assets/img/posts/REVE/ddb8e5907c47a576dbc70fee96992955.png)
 
-## 💭 3줄 요약
+### 💭 3줄 요약
 
 1. REVE(Representation for EEG with Versatile Embeddings)는 EEG 데이터의 이질성 문제에 대응하고 다양한 설정에 적응하도록 설계된 Foundation Model
 2. REVE는 <strong>임의의 길이와 전극 배열을 처리하는 4D positional encoding</strong>과 masked autoencoding objective를 활용하여 25,000명의 피험자로부터 얻은 60,000시간 이상의 EEG 데이터로 사전 학습
@@ -21,7 +22,7 @@ math: true
 
 ---
 
-## 👿 문제 상황 (Problem Statement)
+### 👿 문제 상황 (Problem Statement)
 
 > **전극 배치, 길이가 달라도 여러 EEG를 동일한 모델로 다루고 싶다**  
 >
@@ -30,8 +31,9 @@ math: true
 
 ---
 
-## ⭐️ 핵심 Intuition & Idea
-### 4D Positional Encoding
+### ⭐️ 핵심 Intuition & Idea
+
+#### 4D Positional Encoding
 
 코드 : https://github.com/braindecode/braindecode/blob/master/braindecode/models/reve.py
 
@@ -41,7 +43,7 @@ math: true
 
 REVE에서는 이러한 문제점 해결을 위해 전극의 3D 좌표 (x, y, z)와 시간 정보 (t)를 결합한 4D Positional Encoding (이하 4D PE)을 제안하였다.
 
-#### 1. 4D Coordinate 생성
+##### 1. 4D Coordinate 생성
 
 EEG가 가지고 있는 (x, y, z) 좌표에 시간축 (t, 패치 단위, t = [1..P])을 결합하여 4D Coordinate 생성
 
@@ -54,7 +56,7 @@ $$
 P_{ext} \in \mathbb{R}^{C \times p \times 4}
 $$
 
-#### 2. 4D Fourier-Based Position Encoding
+##### 2. 4D Fourier-Based Position Encoding
 
 > Défossez et al. (2023)
 
@@ -68,7 +70,8 @@ v \in \{x, y, z, t\}
 
 $$
 
-#####  📍**Decoding speech perception from non-invasive brain recordings** 
+######  📍**Decoding speech perception from non-invasive brain recordings** 
+
 Défossez et al. (2023)
 
 > https://www.nature.com/articles/s42256-023-00714-5
@@ -83,7 +86,7 @@ Défossez et al. (2023)
 3. $a_j(x,y)$의 좌표를 푸리에 변환 $cos(2π(kx+ly)), sin⁡(2π(kx+ly))$ 의 조합으로 $a_j$를 만듬($K$는 주파수 개수)
 4. 센서 $i$개의 좌표 $(x_i, y_i)$에서 $a_j(x_i, y_i)$로 평가한 값을 softmax에 넣어 위치 기반 attention 가중치로 센서를 재가중합
 
-#### 3. 학습 가능한 구성 요소 추가
+##### 3. 학습 가능한 구성 요소 추가
 
 푸리에 변환 후 MLP 적용
 
@@ -91,13 +94,13 @@ $$
 F_{lin} = \text{LayerNorm}(\text{GELU}(\text{Linear}(P_{ext})))
 $$
 
-#### 4. 위치 인코딩 생성
+##### 4. 위치 인코딩 생성
 
 $$
 P_{enc} = \text{LayerNorm}(F_{pe} + F_{lin})
 $$
 
-#### 5. 원시 신호에 위치 인코딩
+##### 5. 원시 신호에 위치 인코딩
 
 $$
 \text{최종 입력 토큰} = \underbrace{E_{signal}}_{\text{신호 모양}} + \underbrace{P_{enc}}_{\text{시공간 위치}}
@@ -106,8 +109,9 @@ $$
 $E_{signal}$은 원시 신호를 $LinearProj.$한 벡터
 
 
-## 📌 상세 개념 및 아이디어 (Key Concepts)
-### 1.1. Block Masking : Spatio-Temporal Block Masking
+### 📌 상세 개념 및 아이디어 (Key Concepts)
+
+#### 1.1. Block Masking : Spatio-Temporal Block Masking
 
 Random masking을 하면 너무 쉬운 문제가 된다. 따라서 REVE는 <strong>Spatio-Temporal Block Masking</strong>을 사용하여 <strong>인접한 채널, 근처 시간 구간들을 통째로 가림</strong>
 
@@ -118,7 +122,7 @@ Random masking을 하면 너무 쉬운 문제가 된다. 따라서 REVE는 <stro
 > $R_t$ : 시간 마스킹 반경  
 {: .prompt-tip }
 
-### 1.2. Dropout
+#### 1.2. Dropout
 
 Dropout 또한 Block Masking과 비슷한 접근을 가져간다. Dropout은 <strong>Channel 단위</strong>로 발생하며, 다른 모델들과 다른 점은 Spatio-Temporal Block Masking과 비슷하게 <strong>인접한 채널까지 Dropout</strong>을 적용한다는 점이다
 
@@ -128,8 +132,10 @@ Dropout 또한 Block Masking과 비슷한 접근을 가져간다. Dropout은 <st
 > $R_d$ : Dropout의 영향을 받을 인접한 공간 반경  
 {: .prompt-tip }
 
-### 2. Multi-Task Learning
-#### 2.1. Main Task
+#### 2. Multi-Task Learning
+
+##### 2.1. Main Task
+
 > **보이는걸 최대한 활용해서 마스킹을 복원해봐**  
 >
 {: .prompt-warning }
@@ -148,13 +154,15 @@ Dropout 또한 Block Masking과 비슷한 접근을 가져간다. Dropout은 <st
 > EEG는 그 자체가 노이즈가 많은 데이터이고, 학습 과정에서 토큰을 통해 <strong>평균적인 EEG 신호의 잠재적 형태를 제시하기 위한 Prior임</strong>  
 {: .prompt-tip }
 
-##### Main Loss : L1
+###### Main Loss : L1
 
-$$ L_{\text{primary}} = \frac{1}{|P_m|} \sum_{i \in P_m} \| \hat{P}^{(i)}_m - P^{(i)}_m \|_1$$
+$$
+L_{\text{primary}} = \frac{1}{|P_m|} \sum_{i \in P_m} \| \hat{P}^{(i)}_m - P^{(i)}_m \|_1
+$$
 
 L2 말고 L1을 선택한 이유: EEG의 경우 노이즈가 많은 데이터이고, L2의 경우 이상치에 민감하므로 노이즈를 증폭시킬 위험이 있음
 
-#### 2.2. Secondary Task
+##### 2.2. Secondary Task
 
 > **Local 정보 없이 전체 내용을 잘 요약해서 복원해봐**  
 >
@@ -176,13 +184,17 @@ L2 말고 L1을 선택한 이유: EEG의 경우 노이즈가 많은 데이터이
 > https://www.researchgate.net/figure/Overview-of-Attention-Pooling-Mechanism_fig2_330348603  
 {: .prompt-tip }
 
-##### Secondary Loss : L1
+###### Secondary Loss : L1
 
-$$ L_{\text{primary}} = \frac{1}{|P_m|} \sum_{i \in P_m} \| \hat{P}^{(i)}_m - P^{(i)}_m \|_1$$
+$$
+L_{\text{primary}} = \frac{1}{|P_m|} \sum_{i \in P_m} \| \hat{P}^{(i)}_m - P^{(i)}_m \|_1
+$$
 
-#### 2.3. Loss
+##### 2.3. Loss
 
-$$ \text{Total Loss} = L_{\text{primary}} + \lambda \cdot L_{\text{secondary}} $$
+$$
+\text{Total Loss} = L_{\text{primary}} + \lambda \cdot L_{\text{secondary}}
+$$
 
 
 > **왜?**  
@@ -190,7 +202,7 @@ $$ \text{Total Loss} = L_{\text{primary}} + \lambda \cdot L_{\text{secondary}} $
 > <strong>좋은 표현을 만드는 Encoder만을 남겨</strong> 비교적 Local에 집중하는 main task뿐만 아니라, secondary task를 통해서 <strong>Global한 요약을 강제</strong>한다. 이를 통해 <strong>Frozen/Linear Probing</strong>의 성능을 향상시킨다.  
 {: .prompt-info }
 
-### 3. Transformer
+#### 3. Transformer
 
 대형 모델에서 검증 완료된, 변형된 Transformer를 채택
 
@@ -202,25 +214,30 @@ $$ \text{Total Loss} = L_{\text{primary}} + \lambda \cdot L_{\text{secondary}} $
 > <strong>평균을 빼는 과정 없이 scale만 맞추는 방식에 가까움</strong>  
 >   
 > <strong>LayerNorm</strong> : 평균과 분산을 모두 맞춤  
-> $$\begin{align*}
-\mu &= \frac{1}{d} \sum_{i=1}^{d} x_i \\
-\sigma^2 &= \frac{1}{d} \sum_{i=1}^{d} (x_i - \mu)^2 \\
-\bar{x}_i &= \frac{x_i - \mu}{\sqrt{\sigma^2 + \epsilon}} \\
-y_i &= \gamma_i \bar{x}_i + \beta_i
-\end{align*}
-$$  
+>
+> $$
+> \begin{align*}
+> \mu &= \frac{1}{d} \sum_{i=1}^{d} x_i \\
+> \sigma^2 &= \frac{1}{d} \sum_{i=1}^{d} (x_i - \mu)^2 \\
+> \bar{x}_i &= \frac{x_i - \mu}{\sqrt{\sigma^2 + \epsilon}} \\
+> y_i &= \gamma_i \bar{x}_i + \beta_i
+> \end{align*}
+> $$
 >  
 > <strong>RMSNorm</strong> : scale(크기)만 안정화, 계산이 더 단순해지고 대규모 transformer에서 학습 안정성이 높아짐
->$$
-\begin{align*}
-\text{RMS}(x) &= \sqrt{\frac{1}{d} \sum_{i=1}^{d} x_i^2 + \epsilon} \\
-\bar{x}_i &= \frac{x_i}{\text{RMS}(x)} \\
-y_i &= \gamma_i \bar{x}_i
-\end{align*} $$
+>
+> $$
+> \begin{align*}
+> \text{RMS}(x) &= \sqrt{\frac{1}{d} \sum_{i=1}^{d} x_i^2 + \epsilon} \\
+> \bar{x}_i &= \frac{x_i}{\text{RMS}(x)} \\
+> y_i &= \gamma_i \bar{x}_i
+> \end{align*}
+> $$
 >
 {: .prompt-tip }
 
 ><strong>📍 GEGLU</strong>  
+>
 >GELU(값이 크면 통과, 애매하면 조금만 통과)에서 변경됨 
 GEGLU는 <strong>GLU계열 activation으로 Sigmoid대신 GELU로 변경하여</strong> 단순 활성화가 아니라, <strong>한 쪽이 다른쪽을 gate하는 구조로</strong> 입력 정보 중 어떤 부분을 더 살릴지 <strong>gate</strong>가 결정함, 이를 통해 표현력의 상승과 종종 GELU보다 성능이 상승하기도 함(transformer FFN에서)  
 >
@@ -250,12 +267,13 @@ GEGLU는 <strong>GLU계열 activation으로 Sigmoid대신 GELU로 변경하여</
 > 긴 시퀀스, GPU 메모리 관리, 속도 측면에서 기존 attention보다 유리하다.  
 {: .prompt-tip }
 
-#### 추가사항
-##### Optimizer : StableAdamW
+##### 추가사항
+
+###### Optimizer : StableAdamW
 
 대규모 모델, mixed precision, large batch의 학습에서 덜 흔들리게 만든 버전
 
-##### Scheduler : WarmUpStableDecay
+###### Scheduler : WarmUpStableDecay
 
 초반 10%: linear warmup
 
@@ -264,18 +282,19 @@ GEGLU는 <strong>GLU계열 activation으로 Sigmoid대신 GELU로 변경하여</
 마지막: 최대값의 1%까지 linear decay
 
 
-## 📈 핵심 실험 결과 (Key Findings)
+### 📈 핵심 실험 결과 (Key Findings)
 
 ![](/assets/img/posts/REVE/3f01f832007d9d626db5016cebac96c4.png)
 
 ![](/assets/img/posts/REVE/1333a0c6ad13e00a13b3face6af4b6ea.png)
 
 
-## 💡 나의 생각 (Critical Review)
+### 💡 나의 생각 (Critical Review)
+
 * **Strength:** 서로 다른 전극 수에 대해 하나의 방식으로 처리할 수 있는 점이 눈여겨볼 만하다. 그리고 현재 EEG에서의 대규모 모델 학습 전략에 대해 많은 것을 배울 수 있었다.
 * **Next Step:** PSG에 포함된 EEG와 ECG에 대해 적용해보면 좋을 것 같다. 느낌이 VCG랑 비슷한데도 서로 달라 적용해보면 좋을 것 같다.
 
-## 📎 APPENDIX
+### 📎 APPENDIX
 
 $$
 \begin{align*}\sigma_{noise} &= 0.25 \text{ cm} \\n_{freq} &= 4 \text{ (Base model)}, 5 \text{ (Large model)} \\\text{dim}(F_{pe}) &= 2 \cdot 4^4 = 512 \text{ (Base model)} \\\text{dim}(F_{pe}) &= 2 \cdot 5^4 = 1250 \text{ (Large model)}\end{align*}

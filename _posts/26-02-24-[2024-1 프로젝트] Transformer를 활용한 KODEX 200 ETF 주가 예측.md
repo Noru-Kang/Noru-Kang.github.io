@@ -5,11 +5,11 @@ categories: [AI-ML-DL, Time-Series]
 tags: [project, time-series, financial-forecasting, rnn, lstm, gru, transformer]
 ---
 
-# Time-Series Deep Learning — RNN / LSTM / GRU / Transformer를 활용한 KODEX 200 ETF 주가 예측
+## Time-Series Deep Learning — RNN / LSTM / GRU / Transformer를 활용한 KODEX 200 ETF 주가 예측
 
 ---
 
-## 프로젝트 기본
+### 프로젝트 기본
 
 - **Project Title:** Time-Series Deep Learning — RNN / LSTM / GRU / Transformer를 활용한 KODEX 200 ETF 종가 예측
 - **One-line summary:** 한국 대표 ETF인 KODEX 200의 다음 날 종가를 시계열 딥러닝 4개 모델(RNN · LSTM · GRU · Transformer)로 예측하고 성능을 비교한다.
@@ -22,7 +22,7 @@ tags: [project, time-series, financial-forecasting, rnn, lstm, gru, transformer]
 
 ---
 
-## TL;DR
+### TL;DR
 
 - **Problem:** KODEX 200 ETF는 대표적인 비정상 시계열 자산가격이다. 과거 OHLCV 10일치로 내일 종가를 예측할 수 있을까? 그리고 어떤 시계열 딥러닝 아키텍처가 가장 적합한가?
 - **Approach:** OHLCV 데이터를 RobustScaler로 정규화하고, window_size=10의 슬라이딩 윈도우로 입력을 구성한 뒤 RNN · LSTM · GRU · Transformer를 동일 설정(Adam / MSE / EarlyStopping / 60:20:20 분할)으로 학습해 R² Score로 비교한다.
@@ -31,7 +31,7 @@ tags: [project, time-series, financial-forecasting, rnn, lstm, gru, transformer]
 
 ---
 
-## Motivation & Background
+### Motivation & Background
 
 - **Background:** 주가 예측은 금융 딥러닝의 가장 고전적인 응용 영역 중 하나다. KODEX 200은 코스피 200 지수를 추종하는 국내 최대 규모 ETF로, 한국 주식시장 전체의 흐름을 대표한다. 수업에서 배운 RNN 계열 시계열 모델들을 실제 금융 데이터에 적용함으로써 이론을 실전으로 연결하는 것이 이 프로젝트의 출발점이다.<br>발표자료(슬라이드 7)에서 KODEX 200을 선택한 이유를 세 가지로 명시했다: ① 금융 도메인 지식이 없는 초보자도 접근 가능, ② 자산 규모가 크기 때문에 오로지 숫자(가격)만으로 판단하기 용이, ③ 우리나라를 대표하는 주식들로 구성되어 한국 시장 전체를 반영.
 - **Why this problem matters:** 비정상 시계열(ADF 검정 p-value=0.756)인 주가 데이터를 딥러닝으로 예측하는 것은 "모델이 단기 패턴을 얼마나 포착하는가"를 직접 검증할 수 있는 도전적인 과제다. 또한 단일 모델이 아닌 4개 아키텍처를 동등 조건 비교함으로써 각 모델의 시계열 표현 능력 차이를 실증적으로 확인할 수 있다.
@@ -44,9 +44,9 @@ tags: [project, time-series, financial-forecasting, rnn, lstm, gru, transformer]
 
 ---
 
-## Approach
+### Approach
 
-### ML/DL 관련
+#### ML/DL 관련
 
 - **Model/Architecture:**
 
@@ -87,21 +87,21 @@ tags: [project, time-series, financial-forecasting, rnn, lstm, gru, transformer]
   - RobustScaler 선택: 금융 데이터 특유의 급등락(이상치)에 MinMaxScaler보다 강건한 스케일러 선택.
   - window_size=10: 2주 영업일 기준. 단기 패턴 포착에 초점.
 
-### Algorithm/Statistics 관련
+#### Algorithm/Statistics 관련
 
 해당 없음
 
-### Data Mining/Science 관련
+#### Data Mining/Science 관련
 
 해당 없음
 
-### System/Pipeline 관련
+#### System/Pipeline 관련
 
 해당 없음
 
 ---
 
-## Data & Experiment
+### Data & Experiment
 
 - **Dataset type:** 정형 금융 시계열 데이터 (일별 OHLCV)
 - **Source:** [FinanceDataReader](https://github.com/FinanceData/FinanceDataReader) — `fdr.DataReader('069500')`로 수집. KRX 상장 데이터 기반.
@@ -144,7 +144,7 @@ tags: [project, time-series, financial-forecasting, rnn, lstm, gru, transformer]
 
 ---
 
-## Results
+### Results
 
 **R² Score 비교 (Test Set, 노트북 저장 출력값 기준)**
 
@@ -176,7 +176,7 @@ tags: [project, time-series, financial-forecasting, rnn, lstm, gru, transformer]
 
 ---
 
-## Discussion
+### Discussion
 
 - **Key observations:**
   1. ADF 검정(p=0.756) 결과 KODEX 200 종가는 명확한 **비정상 시계열**임이 확인되었다. 추세 제거 없이 딥러닝 모델이 이를 학습하기 때문에, 결과 해석 시 이 점을 고려해야 한다.
@@ -200,7 +200,7 @@ tags: [project, time-series, financial-forecasting, rnn, lstm, gru, transformer]
 
 ---
 
-## Limitations & Future Work
+### Limitations & Future Work
 
 - **Limitations:**
   1. **스케일러 누수 가능성:** `RobustScaler`를 전체 데이터(Train+Val+Test 포함)에 `fit_transform` 적용 → 미래 정보가 스케일링에 미세하게 반영됨. 엄밀하게는 Train 데이터로만 `fit` 후 Val/Test에 `transform` 적용해야 함.
@@ -225,7 +225,7 @@ tags: [project, time-series, financial-forecasting, rnn, lstm, gru, transformer]
 
 ---
 
-## Project Structure
+### Project Structure
 
 ```
 LSTM 주가 예측/
@@ -248,7 +248,7 @@ LSTM 주가 예측/
 
 ---
 
-## PDF/Slides Mapping
+### PDF/Slides Mapping
 
 - **Main slide deck:** `해룡당 세미나(2024-1)/강태영.pptx` → `강태영.pdf` (PDF 변환본) — 2024년 상반기 해룡당 세미나 발표본. **총 55슬라이드, 9개 섹션.**
 
@@ -304,7 +304,7 @@ LSTM 주가 예측/
 
 ---
 
-## Citation & License
+### Citation & License
 
 - **Citation info:** 강태영, "Time-Series Deep Learning — RNN/LSTM/GRU/Transformer를 활용한 KODEX 200 주가 예측", 해룡당 세미나 2024-1, 2024.
 - **License:** 추가 필요: 명시된 라이선스 없음.

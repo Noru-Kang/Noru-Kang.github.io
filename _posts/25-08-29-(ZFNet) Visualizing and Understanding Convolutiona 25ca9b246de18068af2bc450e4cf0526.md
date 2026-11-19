@@ -4,6 +4,7 @@ date: 2025-08-29 18:00:00 +0900
 categories: [AI-ML-DL, Computer-Vision]
 tags: [zfnet, cnn, computer-vision, paper-review]
 ---
+
 ## 📚 정리
 
 ### 📌 제목
@@ -411,6 +412,7 @@ tags: [zfnet, cnn, computer-vision, paper-review]
 ### 📚 5. Experiments
 
 > **5.1. ImageNet 2012**
+>
 > **✅ 5줄 요약**
 >
 >   - ImageNet 2012: 학습 130만 / 검증 5만 / 테스트 10만, 1000 클래스
@@ -433,6 +435,7 @@ tags: [zfnet, cnn, computer-vision, paper-review]
 > ![ImageNet 2012 Results Table](/assets/img/posts/zfnet/image%207.png)
 >
 > **5.2 Feature Generalization**
+>
 > **✅ 5줄 요약**
 >
 >   - ImageNet 사전학습 feature는 소규모 데이터셋에서도 강력
